@@ -73,6 +73,9 @@ deno_version = 2
 [functions.connexion_telephone_pin]
 verify_jwt = false
 
+[functions.inscription-cliente]
+verify_jwt = false
+
 # Les autres fonctions vérifient le JWT puis les droits (super_admin, propriétaire…).
 [functions.admin-create-merchant]
 verify_jwt = true
@@ -84,6 +87,12 @@ verify_jwt = true
 verify_jwt = true
 
 [functions.changer-code]
+verify_jwt = true
+
+[functions.send-notification]
+verify_jwt = true
+
+[functions.admin-create-staff]
 verify_jwt = true
 
 [analytics]
