@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 
-export type ErreurConnexion = 'identifiants_invalides' | 'compte_verrouille' | 'erreur'
+export type ErreurConnexion = 'identifiants_invalides' | 'compte_verrouille' | 'compte_existant' | 'erreur'
 
 export class ErreurAuth extends Error {
   constructor(public readonly code: ErreurConnexion) {
@@ -33,4 +33,14 @@ export async function connexionCliente(boutiqueSlug: string, telephone: string, 
 
 export async function deconnexionCliente(): Promise<void> {
   await supabase.auth.signOut()
+}
+
+/** Création d'un compte cliente (identité propre à la boutique), puis connexion immédiate. */
+export async function inscriptionCliente(boutiqueSlug: string, nom: string, telephone: string, code: string): Promise<void> {
+  const { error } = await supabase.functions.invoke('inscription-cliente', { body: { boutique_slug: boutiqueSlug, nom, telephone, code } })
+  if (error) {
+    const statut = (error as { context?: Response }).context?.status
+    throw new ErreurAuth(statut === 409 ? 'compte_existant' : statut === 429 ? 'compte_verrouille' : 'erreur')
+  }
+  await connexionCliente(boutiqueSlug, telephone, code)
 }

@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Amiri";
+  src: url("/fonts/Amiri-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Les variables --b-* sont pilotées par parametres_site (thème de la boutique) : aucun code par boutique. */

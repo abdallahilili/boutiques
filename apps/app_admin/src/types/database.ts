@@ -2380,6 +2380,7 @@ export type Database = {
           message_confirmation_ar: string | null
           message_confirmation_fr: string | null
           langues_activees: string[] | null
+          theme_schema: Json | null
         }
         Relationships: []
         }

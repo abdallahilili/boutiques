@@ -3094,6 +3094,7 @@ class ParametresBoutiquePublicsRow {
     this.messageConfirmationAr,
     this.messageConfirmationFr,
     this.languesActivees,
+    this.themeSchema,
   });
 
   final String? boutiqueId;
@@ -3125,6 +3126,7 @@ class ParametresBoutiquePublicsRow {
   final String? messageConfirmationAr;
   final String? messageConfirmationFr;
   final List<String>? languesActivees;
+  final dynamic themeSchema;
 
   factory ParametresBoutiquePublicsRow.depuisJson(
     Map<String, dynamic> json,
@@ -3186,6 +3188,7 @@ class ParametresBoutiquePublicsRow {
     languesActivees: json['langues_activees'] == null
         ? null
         : (json['langues_activees'] as List).map((e) => e as String).toList(),
+    themeSchema: json['theme_schema'] == null ? null : json['theme_schema'],
   );
 
   Map<String, dynamic> versJson() => {
@@ -3218,6 +3221,7 @@ class ParametresBoutiquePublicsRow {
     'message_confirmation_ar': messageConfirmationAr,
     'message_confirmation_fr': messageConfirmationFr,
     'langues_activees': languesActivees?.map((e) => e).toList(),
+    'theme_schema': themeSchema,
   };
 }
 
