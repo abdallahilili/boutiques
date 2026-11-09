@@ -1,0 +1,27 @@
+{
+  "@@locale": "ar",
+  "appTitle": "متجري",
+  "login": "تسجيل الدخول",
+  "phone": "رقم الهاتف",
+  "pin": "الرمز السري (4 أرقام)",
+  "loginButton": "دخول",
+  "invalidCredentials": "رقم الهاتف أو الرمز غير صحيح",
+  "accountLocked": "محاولات كثيرة. حاول مجدداً بعد {minutes} دقيقة",
+  "@accountLocked": {
+    "placeholders": { "minutes": { "type": "int" } }
+  },
+  "networkError": "تعذّر الاتصال بالخادم، تحقق من الإنترنت",
+  "genericError": "حدث خطأ، حاول مجدداً",
+  "phoneRequired": "أدخل رقم الهاتف",
+  "pinInvalid": "الرمز يتكون من 4 أرقام",
+  "tabHome": "الرئيسية",
+  "tabSell": "البيع",
+  "tabProducts": "المنتجات",
+  "tabStock": "المخزون",
+  "tabMore": "المزيد",
+  "language": "اللغة",
+  "arabic": "العربية",
+  "french": "Français",
+  "logout": "تسجيل الخروج",
+  "loading": "جارٍ التحميل…"
+}
