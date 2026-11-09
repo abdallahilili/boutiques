@@ -1,0 +1,14 @@
+{
+  "name": "boutiques-outils",
+  "private": true,
+  "type": "module",
+  "description": "Outils de développement : exécution des migrations/tests SQL hors Docker (PGlite), génération des types, Deno pour les Edge Functions.",
+  "scripts": {
+    "test:db": "node test_db.mjs",
+    "gen:types": "node gen_types.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.16",
+    "deno": "2.9.6"
+  }
+}

@@ -1,0 +1,43 @@
+# Secrets : jamais commités (seuls les .env.example le sont)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+supabase/.env
+supabase/functions/.env
+google-services.json
+GoogleService-Info.plist
+key.properties
+*.jks
+*.keystore
+
+# Node / Web
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+.pub-cache/
+.pub/
+*.g.dart
+*.freezed.dart
+apps/app_commercante/android/local.properties
+apps/app_commercante/ios/Pods/
+
+# Éditeurs / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
