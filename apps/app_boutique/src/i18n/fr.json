@@ -1,0 +1,17 @@
+{
+  "commun": {
+    "chargement": "Chargement…",
+    "erreur": "Une erreur est survenue, réessayez",
+    "langue": "Langue",
+    "retour": "Retour"
+  },
+  "auth": {
+    "connexion": "Connexion",
+    "telephone": "Numéro de téléphone",
+    "code": "Code secret (4 chiffres)",
+    "valider": "Se connecter",
+    "identifiants_invalides": "Numéro ou code incorrect",
+    "compte_verrouille": "Trop de tentatives, réessayez plus tard",
+    "deconnexion": "Se déconnecter"
+  }
+}

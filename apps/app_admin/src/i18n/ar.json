@@ -1,0 +1,28 @@
+{
+  "app": { "titre": "لوحة تحكم الناشر" },
+  "commun": {
+    "chargement": "جارٍ التحميل…",
+    "erreur": "حدث خطأ، حاول مجدداً",
+    "deconnexion": "تسجيل الخروج",
+    "langue": "اللغة",
+    "theme": "المظهر",
+    "annuler": "إلغاء",
+    "valider": "تأكيد"
+  },
+  "nav": { "tableau_de_bord": "لوحة القيادة" },
+  "auth": {
+    "titre": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "mot_de_passe": "كلمة المرور",
+    "connexion": "دخول",
+    "identifiants_invalides": "بيانات الدخول غير صحيحة",
+    "acces_refuse": "هذا الحساب غير مخوّل لدخول لوحة التحكم",
+    "mfa_titre": "التحقق بخطوتين",
+    "mfa_code": "الرمز المكوّن من 6 أرقام",
+    "mfa_verifier": "تحقق",
+    "mfa_invalide": "رمز غير صحيح",
+    "mfa_enrolement": "امسح الرمز بتطبيق المصادقة (Google Authenticator…) ثم أدخل الرمز.",
+    "mfa_cle_manuelle": "أو أدخل المفتاح يدوياً"
+  },
+  "tableau_de_bord": { "titre": "لوحة القيادة", "bienvenue": "مرحباً" }
+}

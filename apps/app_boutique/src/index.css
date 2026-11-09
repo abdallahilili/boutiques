@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Les variables --b-* sont pilotées par parametres_site (thème de la boutique) : aucun code par boutique. */
+@theme {
+  --color-fond: var(--b-fond);
+  --color-surface: var(--b-surface);
+  --color-bordure: var(--b-bordure);
+  --color-texte: var(--b-texte);
+  --color-discret: var(--b-discret);
+  --color-primaire: var(--b-primaire);
+  --color-primaire-texte: var(--b-primaire-texte);
+  --color-secondaire: var(--b-secondaire);
+  --color-danger: var(--b-danger);
+  --color-succes: var(--b-succes);
+  --radius-boutique: var(--b-rayon);
+  --font-sans: var(--b-police);
+}
+
+:root {
+  --b-fond: #ffffff;
+  --b-surface: #f8f7f5;
+  --b-bordure: #e5e2dc;
+  --b-texte: #1d1b19;
+  --b-discret: #6b665f;
+  --b-primaire: #8a3b5c;
+  --b-primaire-texte: #ffffff;
+  --b-secondaire: #c9a24b;
+  --b-danger: #b42318;
+  --b-succes: #067647;
+  --b-rayon: 0.75rem;
+  --b-police: "Segoe UI", Tahoma, "Noto Sans Arabic", system-ui, sans-serif;
+}
+
+body {
+  background: var(--b-fond);
+  color: var(--b-texte);
+  font-family: var(--b-police);
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-boutique border border-bordure bg-surface px-4 py-2 text-sm font-medium transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primaire {
+    @apply border-transparent bg-primaire text-primaire-texte;
+  }
+  .input {
+    @apply w-full rounded-boutique border border-bordure bg-fond px-3 py-2 text-sm outline-none focus:border-primaire focus:ring-2 focus:ring-primaire/30;
+  }
+  .carte {
+    @apply rounded-boutique border border-bordure bg-surface p-4;
+  }
+  .etiquette {
+    @apply mb-1 block text-sm font-medium text-discret;
+  }
+}

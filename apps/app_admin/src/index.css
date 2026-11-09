@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-fond: var(--fond);
+  --color-surface: var(--surface);
+  --color-bordure: var(--bordure);
+  --color-texte: var(--texte);
+  --color-discret: var(--discret);
+  --color-primaire: var(--primaire);
+  --color-primaire-texte: var(--primaire-texte);
+  --color-danger: var(--danger);
+  --color-succes: var(--succes);
+  --color-alerte: var(--alerte);
+  --font-sans: "Segoe UI", Tahoma, "Noto Sans Arabic", system-ui, sans-serif;
+}
+
+:root {
+  --fond: #f6f7f9;
+  --surface: #ffffff;
+  --bordure: #e3e6ea;
+  --texte: #1b1f24;
+  --discret: #5d6671;
+  --primaire: #0f766e;
+  --primaire-texte: #ffffff;
+  --danger: #b42318;
+  --succes: #067647;
+  --alerte: #b54708;
+}
+.dark {
+  --fond: #0e1114;
+  --surface: #171b20;
+  --bordure: #2a3037;
+  --texte: #e9ecef;
+  --discret: #9aa4af;
+  --primaire: #2dd4bf;
+  --primaire-texte: #052e2b;
+  --danger: #f97066;
+  --succes: #47cd89;
+  --alerte: #fdb022;
+}
+
+body {
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--font-sans);
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-bordure bg-surface px-4 py-2 text-sm font-medium transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primaire {
+    @apply border-transparent bg-primaire text-primaire-texte;
+  }
+  .btn-danger {
+    @apply border-transparent bg-danger text-white;
+  }
+  .input {
+    @apply w-full rounded-lg border border-bordure bg-surface px-3 py-2 text-sm outline-none focus:border-primaire focus:ring-2 focus:ring-primaire/30;
+  }
+  .carte {
+    @apply rounded-xl border border-bordure bg-surface p-4 shadow-sm;
+  }
+  .etiquette {
+    @apply mb-1 block text-sm font-medium text-discret;
+  }
+  .table-donnees {
+    @apply w-full text-sm;
+  }
+  .table-donnees th {
+    @apply border-b border-bordure px-3 py-2 text-start font-semibold text-discret;
+  }
+  .table-donnees td {
+    @apply border-b border-bordure px-3 py-2;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "commun": {
+    "chargement": "جارٍ التحميل…",
+    "erreur": "حدث خطأ، حاول مجدداً",
+    "langue": "اللغة",
+    "retour": "رجوع"
+  },
+  "auth": {
+    "connexion": "تسجيل الدخول",
+    "telephone": "رقم الهاتف",
+    "code": "الرمز السري (4 أرقام)",
+    "valider": "دخول",
+    "identifiants_invalides": "رقم الهاتف أو الرمز غير صحيح",
+    "compte_verrouille": "محاولات كثيرة، حاول لاحقاً",
+    "deconnexion": "تسجيل الخروج"
+  }
+}
