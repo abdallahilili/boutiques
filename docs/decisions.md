@@ -59,4 +59,16 @@ En cas de conflit entre le cahier et ce document, **ce document prime**.
 Devis, BL, avoirs, conversion, transferts, gestion du site depuis le mobile, rapports, hors ligne complet, impression Bluetooth, domaines personnalisés (`domain-verify`), FCM, crons, export.
 
 ## 4. Journal des phases
-_(complété à la fin de chaque phase)_
+
+### Phase 0 — Socle (terminée)
+
+**Fait**
+- Monorepo, Makefile, scripts, README, guide de déploiement, `.gitignore` / `.gitattributes`.
+- Migrations : `profils`, `commercantes`, `boutiques`, `permissions`, `roles`, `permissions_role`, `membres_boutique`, `plans`, `abonnements`, `paiements_abonnement`, `journal_audit` (immuable), `appareils`, `notifications`, `tentatives_connexion` ; helpers RLS (`prive.*`), `boutique_est_active`, quotas de plan, triggers de protection de colonnes (slug, statut, rôles), audit.
+- Edge Functions : `connexion_telephone_pin`, `admin-create-merchant`, `invite-member`, `reset-pin`, `changer-code` + modules partagés testés (Deno).
+- Génération des types TypeScript et Dart (`scripts/gen_types.mjs`, sans Docker).
+- Squelettes : `app_admin` (login + 2FA TOTP obligatoire, i18n ar/fr + RTL, thème clair/sombre), `app_boutique` (i18n, RTL, thème par variables CSS, connexion cliente, Helmet), `app_commercante` (GetX, ARB ar/fr, RTL, thème, routage + garde, connexion téléphone + code).
+- Tests : 47 tests SQL (RLS, quotas, audit, verrouillage), 8 Deno, 9 + 11 Vitest, 15 Flutter.
+
+**Reste** : voir la phase 1.
+
