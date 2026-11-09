@@ -3,7 +3,18 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/features/auth/AuthProvider'
 import { Preferences } from './Preferences'
 
-const LIENS = [{ vers: '/', cle: 'nav.tableau_de_bord' }] as const
+const LIENS = [
+  { vers: '/', cle: 'nav.tableau_de_bord' },
+  { vers: '/commercantes', cle: 'nav.commercantes' },
+  { vers: '/boutiques', cle: 'nav.boutiques' },
+  { vers: '/plans', cle: 'nav.plans' },
+  { vers: '/abonnements', cle: 'nav.abonnements' },
+  { vers: '/paiements', cle: 'nav.paiements' },
+  { vers: '/sites', cle: 'nav.sites' },
+  { vers: '/utilisateurs', cle: 'nav.utilisateurs' },
+  { vers: '/audit', cle: 'nav.audit' },
+  { vers: '/notifications', cle: 'nav.notifications' },
+] as const
 
 export function Layout() {
   const { t } = useTranslation()

@@ -338,6 +338,7 @@ abstract final class Tables {
 
 /// Noms des fonctions SQL (RPC).
 abstract final class Rpc {
+  static const adminQuotasBoutique = 'admin_quotas_boutique';
   static const adminStatistiques = 'admin_statistiques';
   static const ajusterStock = 'ajuster_stock';
   static const attribuerNumeroDocument = 'attribuer_numero_document';

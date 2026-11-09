@@ -2,7 +2,7 @@
 -- RPC inter-boutiques, Storage, domaines, thèmes et quotas.
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(42);
+select plan(43);
 
 -- ---------------------------------------------------------------------------
 -- Compteur générique : liste des tables/vues (portant boutique_id) où l'appelant voit des lignes
@@ -218,6 +218,7 @@ select set_config('request.jwt.claims', '{"sub":"d0000000-0000-0000-0000-0000000
 set local role authenticated;
 select lives_ok($$update public.domaines_boutique set sous_domaine = 'nouveau-nom' where boutique_id = 'a2000000-0000-0000-0000-000000000001'$$, 'l''éditeur modifie le sous-domaine');
 select is((public.admin_statistiques() -> 'boutiques' ->> 'essai')::int, 2, 'statistiques éditeur : 2 boutiques en essai');
+select is((public.admin_quotas_boutique('a2000000-0000-0000-0000-000000000001') ->> 'utilisateurs')::int, 1, 'quotas consommés d''une boutique (éditeur)');
 reset role;
 
 select * from finish();

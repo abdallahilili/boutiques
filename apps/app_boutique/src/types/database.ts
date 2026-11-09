@@ -2485,6 +2485,12 @@ export type Database = {
         }
     }
     Functions: {
+      admin_quotas_boutique: {
+        Args: {
+        p_boutique: string
+      }
+        Returns: Json
+      }
       admin_statistiques: {
         Args: Record<PropertyKey, never>
         Returns: Json
