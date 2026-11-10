@@ -42,6 +42,23 @@ make mobile       # app Flutter sur l'appareil connecté (lit apps/app_commercan
 
 `make gen-types` régénère les types TypeScript/Dart depuis les migrations (sans base ni Docker).
 
+### Windows (PowerShell) sans `make` ni CLI installée
+
+`make` et la CLI Supabase ne sont pas fournis avec Windows. Équivalents sans rien installer de plus que Node :
+
+```powershell
+npm --prefix scripts install; npm --prefix apps/app_admin install; npm --prefix apps/app_boutique install
+cd apps/app_commercante; flutter pub get; dart run build_runner build; cd ../..
+npx supabase@latest login
+npx supabase@latest link --project-ref <ref-du-projet>
+npx supabase@latest db push
+npx supabase@latest secrets set PIN_SECRET=<64-caractères-hex> PHONE_EMAIL_DOMAIN=tel.invalid PAYS_INDICATIF=222
+npx supabase@latest functions deploy connexion_telephone_pin inscription-cliente admin-create-merchant admin-create-staff invite-member reset-pin changer-code send-notification
+npm --prefix apps/app_admin run dev          # make admin
+npm --prefix apps/app_boutique run dev       # make boutique
+cd apps/app_commercante; flutter run --dart-define-from-file=.env   # make mobile
+```
+
 ### Alternative : Supabase local (Docker)
 
 Pour développer sans toucher au projet distant : `make db-start`, `make db-reset`, `make fn-serve`, avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
