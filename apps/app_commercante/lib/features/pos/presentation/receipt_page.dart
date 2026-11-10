@@ -3,6 +3,7 @@ import 'package:get/get.dart' hide Value;
 import 'package:printing/printing.dart';
 
 import '../../../core/routing/app_pages.dart';
+import '../../../core/session/shop_controller.dart';
 import '../../../core/util/contact.dart';
 import '../../../core/util/format.dart';
 import '../../../l10n/app_localizations.dart';
@@ -19,14 +20,15 @@ class InvoiceActions extends StatelessWidget {
 
   Future<void> _share(BuildContext context) async {
     final arabic = Localizations.localeOf(context).languageCode == 'ar';
-    final bytes = await buildInvoicePdf(invoice, arabic: arabic, theme: await loadPdfTheme());
+    final bytes = await buildInvoicePdf(invoice, arabic: arabic, theme: await loadPdfTheme(), logo: await Get.find<ShopController>().loadLogoBytes());
     await Printing.sharePdf(bytes: bytes, filename: '${invoice.number ?? 'facture'}.pdf');
   }
 
   Future<void> _print(BuildContext context) async {
     final arabic = Localizations.localeOf(context).languageCode == 'ar';
     final theme = await loadPdfTheme();
-    await Printing.layoutPdf(onLayout: (format) => buildInvoicePdf(invoice, arabic: arabic, theme: theme, format: format), name: invoice.number ?? 'facture');
+    final logo = await Get.find<ShopController>().loadLogoBytes();
+    await Printing.layoutPdf(onLayout: (format) => buildInvoicePdf(invoice, arabic: arabic, theme: theme, format: format, logo: logo), name: invoice.number ?? 'facture');
   }
 
   Future<void> _whatsapp(BuildContext context) async {

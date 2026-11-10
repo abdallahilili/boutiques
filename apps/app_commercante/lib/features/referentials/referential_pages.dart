@@ -5,6 +5,7 @@ import '../../core/session/shop_controller.dart';
 import '../../core/sync/sync_service.dart';
 import '../../core/util/errors.dart';
 import '../../core/util/format.dart';
+import '../../core/widgets/color_picker.dart';
 import '../../core/widgets/common.dart';
 import '../../l10n/app_localizations.dart';
 import 'referential_config.dart';
@@ -235,50 +236,37 @@ class _RefFormState extends State<RefForm> {
   }
 }
 
-/// Sélecteur de couleur : palette courante + saisie du code hexadécimal avec aperçu.
+/// Couleur d'un référentiel : sélecteur visuel (carré + teinte + pastilles), le code `#RRGGBB` est écrit dans [controller].
 class ColorHexField extends StatefulWidget {
   const ColorHexField({super.key, required this.controller, required this.label});
 
   final TextEditingController controller;
   final String label;
 
-  static const palette = [
-    '#000000', '#FFFFFF', '#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#1E88E5', '#00ACC1',
-    '#43A047', '#7CB342', '#FDD835', '#FB8C00', '#6D4C41', '#D7C4A3', '#9E9E9E', '#D4AF37',
-  ];
-
   @override
   State<ColorHexField> createState() => _ColorHexFieldState();
 }
 
 class _ColorHexFieldState extends State<ColorHexField> {
+  late Color _color = colorFromHex(widget.controller.text) ?? Colors.black;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.text = colorToHex(_color);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final color = _parseHex(widget.controller.text);
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      TextFormField(
-        controller: widget.controller,
-        textDirection: TextDirection.ltr,
-        decoration: InputDecoration(
-          labelText: widget.label,
-          prefixIcon: Padding(padding: const EdgeInsets.all(12), child: CircleAvatar(radius: 10, backgroundColor: color ?? Colors.transparent, child: color == null ? const Icon(Icons.close, size: 12) : null)),
-        ),
-        onChanged: (_) => setState(() {}),
-        validator: (v) => _parseHex((v ?? '').trim()) == null ? l10n.colorInvalid : null,
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(widget.label, style: Theme.of(context).textTheme.titleSmall)),
+      ColorPicker(
+        color: _color,
+        onChanged: (c) => setState(() {
+          _color = c;
+          widget.controller.text = colorToHex(c);
+        }),
       ),
-      const SizedBox(height: 8),
-      Wrap(spacing: 8, runSpacing: 8, children: [
-        for (final hex in ColorHexField.palette)
-          GestureDetector(
-            onTap: () => setState(() => widget.controller.text = hex),
-            child: Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(color: _parseHex(hex), shape: BoxShape.circle, border: Border.all(color: widget.controller.text.toUpperCase() == hex ? Theme.of(context).colorScheme.primary : Colors.black26, width: widget.controller.text.toUpperCase() == hex ? 3 : 1)),
-            ),
-          ),
-      ]),
     ]);
   }
 }

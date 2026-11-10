@@ -455,5 +455,26 @@
   "chooseLogo": "اختيار شعار",
   "back": "رجوع",
   "next": "التالي",
-  "finish": "إنهاء"
+  "finish": "إنهاء",
+  "appearance": "المظهر",
+  "themeModeTitle": "وضع العرض",
+  "themeSystem": "تلقائي",
+  "themeLight": "فاتح",
+  "themeDark": "داكن",
+  "appColor": "لون التطبيق",
+  "appColorHint": "اختاري لوناً بالسحب فوق المربع والشريط، أو اضغطي على لون جاهز.",
+  "resetColor": "اللون الأصلي",
+  "shopLogo": "شعار المتجر",
+  "shopLogoHint": "يظهر في الفواتير وفي المتجر الإلكتروني.",
+  "changeLogo": "تغيير الشعار",
+  "removeLogo": "إزالة الشعار",
+  "shopIdentity": "هوية المتجر",
+  "productImageFailed": "تم حفظ المنتج لكن تعذّر رفع الصورة: {details}",
+  "@productImageFailed": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  }
 }

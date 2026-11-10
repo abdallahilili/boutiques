@@ -6,10 +6,10 @@ import '../../../core/routing/app_pages.dart';
 import '../../../core/session/shop_controller.dart';
 import '../../../core/sync/sync_service.dart';
 import '../../../core/util/format.dart';
+import '../../../core/util/storage_urls.dart';
 import '../../../core/widgets/common.dart';
 import '../../../core/widgets/variant_picker.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../catalog/presentation/products_page.dart' show productImageUrl;
 import '../cart_controller.dart';
 import '../cash_session_controller.dart';
 import 'cash_session_sheets.dart';
@@ -158,7 +158,7 @@ class _PosPageState extends State<PosPage> {
                   child: InkWell(
                     onTap: () => vs.length == 1 ? _add(vs.first) : _chooseVariant(vs, name),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                      Expanded(child: vs.first.imageUrl == null ? const ColoredBox(color: Colors.black12, child: Icon(Icons.image_outlined, size: 36)) : Image.network(productImageUrl(vs.first.imageUrl!, width: 300), fit: BoxFit.cover, errorBuilder: (_, _, _) => const ColoredBox(color: Colors.black12, child: Icon(Icons.broken_image_outlined)))),
+                      Expanded(child: vs.first.imageUrl == null ? const ColoredBox(color: Colors.black12, child: Icon(Icons.image_outlined, size: 36)) : Image.network(productImageUrl(vs.first.imageUrl!), fit: BoxFit.cover, cacheWidth: 400, errorBuilder: (_, _, _) => const ColoredBox(color: Colors.black12, child: Icon(Icons.broken_image_outlined)))),
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

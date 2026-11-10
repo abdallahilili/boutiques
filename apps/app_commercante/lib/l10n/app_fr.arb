@@ -334,5 +334,19 @@
   "chooseLogo": "Choisir un logo",
   "back": "Retour",
   "next": "Suivant",
-  "finish": "Terminer"
+  "finish": "Terminer",
+  "appearance": "Apparence",
+  "themeModeTitle": "Mode d'affichage",
+  "themeSystem": "Auto",
+  "themeLight": "Clair",
+  "themeDark": "Sombre",
+  "appColor": "Couleur de l'application",
+  "appColorHint": "Faites glisser le doigt sur le carré et la barre, ou touchez une couleur rapide.",
+  "resetColor": "Couleur d'origine",
+  "shopLogo": "Logo de la boutique",
+  "shopLogoHint": "Affiché sur les factures et sur la boutique en ligne.",
+  "changeLogo": "Changer le logo",
+  "removeLogo": "Retirer le logo",
+  "shopIdentity": "Identité de la boutique",
+  "productImageFailed": "Produit enregistré, mais l'envoi de la photo a échoué : {details}"
 }

@@ -592,6 +592,24 @@ export type Database = {
         }
         Relationships: []
         }
+        documents_liens: {
+        Row: {
+          boutique_id: string
+          document_id: string
+          source_id: string
+        }
+        Insert: {
+          boutique_id: string
+          document_id: string
+          source_id: string
+        }
+        Update: {
+          boutique_id?: string
+          document_id?: string
+          source_id?: string
+        }
+        Relationships: []
+        }
         documents_vente: {
         Row: {
           id: string
@@ -933,6 +951,7 @@ export type Database = {
           cout_unitaire: number
           total: number
           ordre: number
+          ligne_source_id: string | null
         }
         Insert: {
           id?: string
@@ -947,6 +966,7 @@ export type Database = {
           cout_unitaire?: number
           total: number
           ordre?: number
+          ligne_source_id?: string | null
         }
         Update: {
           id?: string
@@ -961,6 +981,7 @@ export type Database = {
           cout_unitaire?: number
           total?: number
           ordre?: number
+          ligne_source_id?: string | null
         }
         Relationships: []
         }
@@ -2502,6 +2523,13 @@ export type Database = {
       }
         Returns: Json
       }
+      annuler_document: {
+        Args: {
+        p_id: string
+        p_motif: string
+      }
+        Returns: Json
+      }
       attribuer_numero_document: {
         Args: {
         p_boutique_id: string
@@ -2515,11 +2543,43 @@ export type Database = {
       }
         Returns: boolean
       }
+      changer_statut_bon_livraison: {
+        Args: {
+        p_id: string
+        p_statut: Database['public']['Enums']['statut_document_vente']
+      }
+        Returns: Json
+      }
       changer_statut_commande: {
         Args: {
         p_commande_id: string
         p_statut: Database['public']['Enums']['statut_commande']
         p_note?: string
+      }
+        Returns: Json
+      }
+      changer_statut_devis: {
+        Args: {
+        p_id: string
+        p_statut: Database['public']['Enums']['statut_document_vente']
+      }
+        Returns: Json
+      }
+      convertir_document: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
+      creer_avoir: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
+      creer_bon_livraison: {
+        Args: {
+        p_donnees: Json
       }
         Returns: Json
       }
@@ -2537,6 +2597,12 @@ export type Database = {
         Returns: string
       }
       creer_commercante_avec_boutique: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
+      creer_devis: {
         Args: {
         p_donnees: Json
       }
@@ -2573,6 +2639,10 @@ export type Database = {
         p_donnees: Json
       }
         Returns: Json
+      }
+      expirer_devis_perimes: {
+        Args: Record<PropertyKey, never>
+        Returns: number
       }
       fermer_session_caisse: {
         Args: {
@@ -2616,6 +2686,12 @@ export type Database = {
         p_boutique: string
       }
         Returns: string[]
+      }
+      modifier_devis: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
       }
       ouvrir_session_caisse: {
         Args: {

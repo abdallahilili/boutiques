@@ -39,6 +39,7 @@ Le script lit `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY` dans `supabase/funct
 ## 4. Applications web
 
 Variables de build (voir README) : `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` ; pour la boutique, `VITE_DOMAINE_BASE`.
+Images : servies telles quelles (valable sur tous les plans Supabase). Sur le plan Pro, ajouter `VITE_IMAGE_TRANSFORMS=true` au build de la boutique pour activer le redimensionnement WebP des transformations Storage.
 
 - **app_admin** : `npm --prefix apps/app_admin run build` → publier `dist/` (Vercel, Netlify ou Cloudflare Pages) avec réécriture SPA vers `index.html`.
 - **app_boutique** : même build ; configurer un **domaine wildcard** `*.votreplateforme.com` vers le même déploiement. Chaque boutique est résolue par sous-domaine via la fonction SQL `resoudre_boutique`. Les domaines personnalisés (plans Premium) se déclarent dans la console et se rattachent au déploiement (phase 2 : vérification DNS automatisée).

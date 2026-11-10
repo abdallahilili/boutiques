@@ -28,7 +28,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,ttf}'],
         runtimeCaching: [
           {
-            urlPattern: ({ url }) => url.pathname.includes('/storage/v1/render/image/'),
+            urlPattern: ({ url }) => url.pathname.includes('/storage/v1/render/image/') || url.pathname.includes('/storage/v1/object/public/'),
             handler: 'StaleWhileRevalidate',
             options: { cacheName: 'images', expiration: { maxEntries: 200, maxAgeSeconds: 30 * 86400 } },
           },

@@ -1054,4 +1054,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get finish => 'إنهاء';
+
+  @override
+  String get appearance => 'المظهر';
+
+  @override
+  String get themeModeTitle => 'وضع العرض';
+
+  @override
+  String get themeSystem => 'تلقائي';
+
+  @override
+  String get themeLight => 'فاتح';
+
+  @override
+  String get themeDark => 'داكن';
+
+  @override
+  String get appColor => 'لون التطبيق';
+
+  @override
+  String get appColorHint =>
+      'اختاري لوناً بالسحب فوق المربع والشريط، أو اضغطي على لون جاهز.';
+
+  @override
+  String get resetColor => 'اللون الأصلي';
+
+  @override
+  String get shopLogo => 'شعار المتجر';
+
+  @override
+  String get shopLogoHint => 'يظهر في الفواتير وفي المتجر الإلكتروني.';
+
+  @override
+  String get changeLogo => 'تغيير الشعار';
+
+  @override
+  String get removeLogo => 'إزالة الشعار';
+
+  @override
+  String get shopIdentity => 'هوية المتجر';
+
+  @override
+  String productImageFailed(String details) {
+    return 'تم حفظ المنتج لكن تعذّر رفع الصورة: $details';
+  }
 }

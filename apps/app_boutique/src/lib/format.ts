@@ -36,12 +36,17 @@ export function formaterDate(valeur: string, langue: string): string {
 }
 
 /**
- * URL d'image servie par les transformations Supabase Storage (redimensionnement, WebP).
- * Un chemin de bucket `product-images` ou `shop-assets` est transformé ; une URL absolue est conservée.
+ * URL publique d'une image d'un bucket `product-images` ou `shop-assets` ; une URL absolue est conservée.
+ * Par défaut le fichier est servi tel quel (les photos sont déjà réduites à l'envoi par l'application) :
+ * cela fonctionne sur tous les plans Supabase. Avec `VITE_IMAGE_TRANSFORMS=true` (plan Pro, transformations
+ * d'image activées), l'image est redimensionnée et servie en WebP.
  */
 export function urlImage(chemin: string | null | undefined, largeur = 600, bucket: 'product-images' | 'shop-assets' = 'product-images'): string | undefined {
   if (!chemin) return undefined
   if (/^https?:\/\//.test(chemin)) return chemin
   const base = (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? ''
-  return `${base}/storage/v1/render/image/public/${bucket}/${chemin}?width=${largeur}&quality=75&format=webp`
+  if (import.meta.env.VITE_IMAGE_TRANSFORMS === 'true') {
+    return `${base}/storage/v1/render/image/public/${bucket}/${chemin}?width=${largeur}&quality=75&format=webp`
+  }
+  return `${base}/storage/v1/object/public/${bucket}/${chemin}`
 }

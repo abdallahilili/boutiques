@@ -2107,6 +2107,90 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إنهاء'**
   String get finish;
+
+  /// No description provided for @appearance.
+  ///
+  /// In ar, this message translates to:
+  /// **'المظهر'**
+  String get appearance;
+
+  /// No description provided for @themeModeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع العرض'**
+  String get themeModeTitle;
+
+  /// No description provided for @themeSystem.
+  ///
+  /// In ar, this message translates to:
+  /// **'تلقائي'**
+  String get themeSystem;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In ar, this message translates to:
+  /// **'فاتح'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In ar, this message translates to:
+  /// **'داكن'**
+  String get themeDark;
+
+  /// No description provided for @appColor.
+  ///
+  /// In ar, this message translates to:
+  /// **'لون التطبيق'**
+  String get appColor;
+
+  /// No description provided for @appColorHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختاري لوناً بالسحب فوق المربع والشريط، أو اضغطي على لون جاهز.'**
+  String get appColorHint;
+
+  /// No description provided for @resetColor.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللون الأصلي'**
+  String get resetColor;
+
+  /// No description provided for @shopLogo.
+  ///
+  /// In ar, this message translates to:
+  /// **'شعار المتجر'**
+  String get shopLogo;
+
+  /// No description provided for @shopLogoHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'يظهر في الفواتير وفي المتجر الإلكتروني.'**
+  String get shopLogoHint;
+
+  /// No description provided for @changeLogo.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيير الشعار'**
+  String get changeLogo;
+
+  /// No description provided for @removeLogo.
+  ///
+  /// In ar, this message translates to:
+  /// **'إزالة الشعار'**
+  String get removeLogo;
+
+  /// No description provided for @shopIdentity.
+  ///
+  /// In ar, this message translates to:
+  /// **'هوية المتجر'**
+  String get shopIdentity;
+
+  /// No description provided for @productImageFailed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم حفظ المنتج لكن تعذّر رفع الصورة: {details}'**
+  String productImageFailed(String details);
 }
 
 class _AppLocalizationsDelegate

@@ -17,6 +17,7 @@ import '../../features/pos/presentation/payment_page.dart';
 import '../../features/pos/presentation/pos_page.dart';
 import '../../features/pos/presentation/receipt_page.dart';
 import '../../features/referentials/referential_pages.dart';
+import '../../features/settings/appearance_page.dart';
 import '../../features/settings/settings_pages.dart';
 import '../../features/stock/presentation/stock_adjust_page.dart';
 import '../../features/stock/presentation/stock_entry_page.dart';
@@ -46,6 +47,7 @@ abstract final class Routes {
   static const documentDetail = '/factures/detail';
   static const referentials = '/referentiels';
   static const settings = '/parametres';
+  static const appearance = '/apparence';
   static const notifications = '/notifications';
   static const sync = '/synchronisation';
 }
@@ -82,6 +84,7 @@ abstract final class AppPages {
     _page(Routes.documentDetail, DocumentDetailPage.new),
     _page(Routes.referentials, ReferentialsPage.new),
     _page(Routes.settings, SettingsPage.new),
+    _page(Routes.appearance, AppearancePage.new),
     _page(Routes.notifications, NotificationsPage.new),
     _page(Routes.sync, SyncPage.new),
   ];

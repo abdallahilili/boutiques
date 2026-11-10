@@ -5,6 +5,7 @@ import 'package:uuid/uuid.dart';
 import '../../../core/session/shop_controller.dart';
 import '../../../core/util/errors.dart';
 import '../../../core/util/format.dart';
+import '../../../core/util/storage_urls.dart';
 import '../../../core/widgets/common.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../referentials/referential_config.dart';
@@ -12,7 +13,7 @@ import '../../referentials/referential_controller.dart';
 import '../../referentials/referential_pages.dart';
 import '../domain/variant_combinations.dart';
 import 'product_form_controller.dart';
-import 'products_page.dart' show productImageUrl;
+
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({super.key});
@@ -51,6 +52,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
       await _c.save();
       showMessage(l10n.saved);
       Get.back<void>();
+    } on ProductImageException catch (e) {
+      showMessage(l10n.productImageFailed(e.message), error: true);
     } catch (e) {
       showMessage(friendlyError(l10n, e), error: true);
     }
@@ -190,7 +193,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       Padding(
                         padding: const EdgeInsetsDirectional.only(end: 8),
                         child: Stack(children: [
-                          ClipRRect(borderRadius: BorderRadius.circular(8), child: Image.network(productImageUrl(image['url'] as String, width: 200), width: 88, height: 88, fit: BoxFit.cover)),
+                          ClipRRect(borderRadius: BorderRadius.circular(8), child: Image.network(productImageUrl(image['url'] as String), width: 88, height: 88, fit: BoxFit.cover, cacheWidth: 264, errorBuilder: (_, _, _) => const SizedBox(width: 88, height: 88, child: Icon(Icons.broken_image_outlined)))),
                           PositionedDirectional(top: 0, end: 0, child: InkWell(onTap: () => _c.removeImage(image), child: const CircleAvatar(radius: 11, backgroundColor: Colors.black54, child: Icon(Icons.close, size: 14, color: Colors.white)))),
                           if (image['principale'] == true) PositionedDirectional(bottom: 0, start: 0, end: 0, child: Container(color: Colors.black54, child: Text(l10n.photoMain, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 11)))),
                         ]),

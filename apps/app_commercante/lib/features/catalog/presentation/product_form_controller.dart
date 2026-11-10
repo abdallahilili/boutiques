@@ -10,6 +10,7 @@ import '../../../core/session/shop_controller.dart';
 import '../../../core/sync/sync_service.dart';
 import '../../../core/types/database_types.dart';
 import '../../../core/util/format.dart';
+import '../../../core/util/image_format.dart';
 import '../domain/variant_combinations.dart';
 
 /// Variante en cours d'édition (existante ou à créer).
@@ -42,7 +43,7 @@ class VariantDraft {
   DateTime? promoEnd;
   double minStock;
   bool active;
-  final bool isNew;
+  bool isNew;
   bool dirty = false;
 
   VariantCombo get combo => VariantCombo(modelId, colorId, sizeId);
@@ -86,6 +87,19 @@ class PickedImage {
   PickedImage(this.name, this.bytes);
   final String name;
   final Uint8List bytes;
+
+  ImageFormat get format => sniffImageFormat(bytes);
+}
+
+/// Le produit est enregistré mais l'envoi d'une photo a échoué : on peut réessayer sans rien dupliquer.
+class ProductImageException implements Exception {
+  ProductImageException(this.cause);
+  final Object cause;
+
+  String get message => cause is StorageException ? (cause as StorageException).message : '$cause';
+
+  @override
+  String toString() => message;
 }
 
 /// Création / modification d'un produit et de ses variantes (connexion requise).
@@ -99,6 +113,10 @@ class ProductFormController extends GetxController {
 
   late final String id = productId ?? const Uuid().v4();
   bool get isNew => productId == null;
+
+  /// Vrai dès que la ligne produit existe en base : une nouvelle tentative d'enregistrement
+  /// (après un échec sur les variantes ou les photos) met à jour au lieu de réinsérer.
+  late bool _productSaved = productId != null;
 
   final nameAr = TextEditingController();
   final nameFr = TextEditingController();
@@ -226,38 +244,54 @@ class ProductFormController extends GetxController {
         'statut': active.value ? 'actif' : 'inactif',
         'etiquettes': etiquettes,
       };
-      if (isNew) {
-        await _client.from(Tables.produits).insert({...values, 'id': id, 'boutique_id': _shop.shopId, 'cree_par': _shop.userId});
-      } else {
+      if (_productSaved) {
         await _client.from(Tables.produits).update(values).eq('id', id);
+      } else {
+        await _client.from(Tables.produits).insert({...values, 'id': id, 'boutique_id': _shop.shopId, 'cree_par': _shop.userId});
+        _productSaved = true;
       }
 
       final created = variants.where((v) => v.isNew).toList();
       if (created.isNotEmpty) {
         await _client.from(Tables.variantesProduit).insert([for (final v in created) v.toJson(_shop.shopId, id, userId: _shop.userId)]);
+        for (final v in created) {
+          v
+            ..isNew = false
+            ..dirty = false;
+        }
       }
       for (final v in variants.where((v) => !v.isNew && v.dirty)) {
         final json = v.toJson(_shop.shopId, id)..remove('id')..remove('boutique_id')..remove('produit_id');
         await _client.from(Tables.variantesProduit).update(json).eq('id', v.id);
+        v.dirty = false;
       }
 
-      var order = existingImages.length;
-      for (final image in newImages) {
-        final extension = image.name.contains('.') ? image.name.split('.').last.toLowerCase() : 'jpg';
-        final path = '${_shop.shopId}/$id/${const Uuid().v4()}.$extension';
-        await _client.storage.from('product-images').uploadBinary(path, image.bytes, fileOptions: FileOptions(contentType: extension == 'png' ? 'image/png' : 'image/jpeg'));
-        await _client.from(Tables.imagesProduit).insert({
-          'boutique_id': _shop.shopId,
-          'produit_id': id,
-          'url': path,
-          'principale': existingImages.isEmpty && order == 0,
-          'ordre': order++,
-        });
-      }
-      newImages.clear();
+      await _uploadNewImages();
       await _sync.syncAll();
     } finally {
       saving.value = false;
+    }
+  }
+
+  /// Envoie les photos une à une : chaque photo réussie est retirée de la file, une photo en échec reste en attente.
+  Future<void> _uploadNewImages() async {
+    for (final image in List<PickedImage>.of(newImages)) {
+      try {
+        final format = image.format;
+        final path = '${_shop.shopId}/$id/${const Uuid().v4()}.${format.extension}';
+        await _client.storage.from('product-images').uploadBinary(path, image.bytes, fileOptions: FileOptions(contentType: format.mime));
+        final row = await _client.from(Tables.imagesProduit).insert({
+          'boutique_id': _shop.shopId,
+          'produit_id': id,
+          'url': path,
+          'principale': existingImages.isEmpty,
+          'ordre': existingImages.length,
+        }).select().single();
+        existingImages.add(row);
+        newImages.remove(image);
+      } catch (e) {
+        throw ProductImageException(e);
+      }
     }
   }
 
@@ -276,5 +310,13 @@ class ProductFormController extends GetxController {
   Future<void> removeImage(Map<String, dynamic> image) async {
     await _client.from(Tables.imagesProduit).delete().eq('id', image['id'] as String);
     existingImages.remove(image);
+    final path = image['url'] as String;
+    if (!path.startsWith('http')) {
+      try {
+        await _client.storage.from('product-images').remove([path]);
+      } catch (_) {
+        // Fichier orphelin sans conséquence : la ligne d'image est déjà supprimée.
+      }
+    }
   }
 }

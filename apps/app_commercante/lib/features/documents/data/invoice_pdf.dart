@@ -24,11 +24,21 @@ Future<pw.ThemeData> loadPdfTheme() async {
 }
 
 /// Génère le PDF d'un document à la demande (impression A4, partage WhatsApp/e-mail). Jamais stocké.
-Future<Uint8List> buildInvoicePdf(InvoiceData d, {required bool arabic, required pw.ThemeData theme, PdfPageFormat format = PdfPageFormat.a4}) async {
+Future<Uint8List> buildInvoicePdf(InvoiceData d, {required bool arabic, required pw.ThemeData theme, PdfPageFormat format = PdfPageFormat.a4, Uint8List? logo}) async {
   final l = arabic ? _Labels.ar : _Labels.fr;
   final direction = arabic ? pw.TextDirection.rtl : pw.TextDirection.ltr;
   String money(double v) => formatMoney(v, currency: d.currency, decimals: d.decimals);
   String name(String? ar, String? fr) => localName(ar, fr, arabic: arabic);
+
+  // Logo de la boutique en en-tête ; un format illisible ne doit jamais empêcher d'émettre la facture.
+  pw.MemoryImage? logoImage;
+  if (logo != null) {
+    try {
+      logoImage = pw.MemoryImage(logo);
+    } catch (_) {
+      logoImage = null;
+    }
+  }
 
   final doc = pw.Document(title: '${l.title} ${d.number ?? ''}', theme: theme);
   pw.Widget cell(String text, {bool bold = false, pw.TextAlign align = pw.TextAlign.start}) =>
@@ -40,9 +50,16 @@ Future<Uint8List> buildInvoicePdf(InvoiceData d, {required bool arabic, required
       textDirection: direction,
       margin: const pw.EdgeInsets.all(32),
       build: (context) => [
-        pw.Text(name(d.shopNameAr, d.shopNameFr), style: pw.TextStyle(fontSize: 22, fontWeight: pw.FontWeight.bold)),
-        if (d.shopAddress != null) pw.Text(d.shopAddress!),
-        if (d.shopPhone != null) pw.Text(d.shopPhone!, textDirection: pw.TextDirection.ltr),
+        pw.Row(crossAxisAlignment: pw.CrossAxisAlignment.center, children: [
+          if (logoImage != null) ...[pw.SizedBox(width: 64, height: 64, child: pw.Image(logoImage, fit: pw.BoxFit.contain)), pw.SizedBox(width: 12)],
+          pw.Expanded(
+            child: pw.Column(crossAxisAlignment: pw.CrossAxisAlignment.start, children: [
+              pw.Text(name(d.shopNameAr, d.shopNameFr), style: pw.TextStyle(fontSize: 22, fontWeight: pw.FontWeight.bold)),
+              if (d.shopAddress != null) pw.Text(d.shopAddress!),
+              if (d.shopPhone != null) pw.Text(d.shopPhone!, textDirection: pw.TextDirection.ltr),
+            ]),
+          ),
+        ]),
         pw.SizedBox(height: 18),
         pw.Text('${l.title} ${d.number == null ? '' : '${l.number} ${d.number}'}', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
         pw.Text('${l.date} : ${formatDateFor(d.date, arabic)}'),

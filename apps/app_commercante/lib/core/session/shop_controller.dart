@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 import '../db/app_database.dart';
 import '../types/database_types.dart';
+import '../util/image_format.dart';
 
 /// Boutique active, permissions de l'utilisatrice et état d'abonnement (lecture seule si suspendue).
 class ShopController extends GetxController {
@@ -78,6 +82,68 @@ class ShopController extends GetxController {
     final fresh = BoutiquesRow.depuisJson(row);
     shops[shops.indexWhere((s) => s.id == fresh.id)] = fresh;
     active.value = fresh;
+  }
+
+  String? get logoPath => active.value?.logoUrl;
+
+  /// Remplace le logo : envoi dans `shop-assets/{boutique}/logo-….ext` puis `boutiques.logo_url`
+  /// (lu par la boutique en ligne) ; l'ancien fichier est supprimé. Les factures PDF utilisent le même logo.
+  Future<void> setLogo(Uint8List bytes) async {
+    final format = sniffImageFormat(bytes);
+    final path = '$shopId/logo-${DateTime.now().millisecondsSinceEpoch}.${format.extension}';
+    final previous = logoPath;
+    await _client.storage.from('shop-assets').uploadBinary(path, bytes, fileOptions: FileOptions(contentType: format.mime));
+    try {
+      await _client.from(Tables.boutiques).update({'logo_url': path}).eq('id', shopId);
+    } catch (_) {
+      await _removeAsset(path);
+      rethrow;
+    }
+    await _remember(path, bytes);
+    if (previous != null) await _removeAsset(previous);
+    await refreshActive();
+  }
+
+  Future<void> removeLogo() async {
+    final previous = logoPath;
+    await _client.from(Tables.boutiques).update({'logo_url': null}).eq('id', shopId);
+    await _db.setMeta(_logoPathKey, '');
+    await _db.setMeta(_logoDataKey, '');
+    if (previous != null) await _removeAsset(previous);
+    await refreshActive();
+  }
+
+  Future<void> _removeAsset(String path) async {
+    if (path.startsWith('http')) return;
+    try {
+      await _client.storage.from('shop-assets').remove([path]);
+    } catch (_) {
+      // Fichier orphelin sans conséquence.
+    }
+  }
+
+  static const _logoPathKey = 'logo_chemin';
+  static const _logoDataKey = 'logo_donnees';
+
+  Future<void> _remember(String path, Uint8List bytes) async {
+    await _db.setMeta(_logoPathKey, path);
+    await _db.setMeta(_logoDataKey, base64Encode(bytes));
+  }
+
+  /// Octets du logo pour les factures PDF : copie gardée sur l'appareil (les ventes se font aussi hors ligne),
+  /// téléchargée une seule fois par logo. Null sans logo ou si le téléchargement est impossible.
+  Future<Uint8List?> loadLogoBytes() async {
+    final path = logoPath;
+    if (path == null || path.isEmpty) return null;
+    final cached = await _db.meta(_logoDataKey);
+    if (await _db.meta(_logoPathKey) == path && cached != null && cached.isNotEmpty) return base64Decode(cached);
+    try {
+      final bytes = await _client.storage.from('shop-assets').download(path);
+      await _remember(path, bytes);
+      return bytes;
+    } catch (_) {
+      return null;
+    }
   }
 
   /// Fournisseurs de la boutique (liste vide hors ligne : le fournisseur reste facultatif).

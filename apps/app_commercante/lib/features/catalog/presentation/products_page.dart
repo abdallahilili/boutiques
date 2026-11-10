@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/config/env.dart';
 import '../../../core/routing/app_pages.dart';
 import '../../../core/session/shop_controller.dart';
 import '../../../core/util/format.dart';
+import '../../../core/util/storage_urls.dart';
 import '../../../core/widgets/common.dart';
 import '../../../l10n/app_localizations.dart';
 import 'products_controller.dart';
@@ -87,16 +87,10 @@ class _Thumb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = url == null ? null : productImageUrl(url!, width: 120);
+    final image = url == null ? null : productImageUrl(url!);
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
-      child: SizedBox(width: 48, height: 48, child: image == null ? const ColoredBox(color: Colors.black12, child: Icon(Icons.image_outlined)) : Image.network(image, fit: BoxFit.cover, errorBuilder: (_, _, _) => const Icon(Icons.broken_image_outlined))),
+      child: SizedBox(width: 48, height: 48, child: image == null ? const ColoredBox(color: Colors.black12, child: Icon(Icons.image_outlined)) : Image.network(image, fit: BoxFit.cover, cacheWidth: 144, errorBuilder: (_, _, _) => const Icon(Icons.broken_image_outlined))),
     );
   }
-}
-
-/// URL publique transformée (WebP, redimensionnée) d'une image du bucket product-images.
-String productImageUrl(String path, {int width = 400}) {
-  if (path.startsWith('http')) return path;
-  return '${Env.supabaseUrl}/storage/v1/render/image/public/product-images/$path?width=$width&quality=75&format=webp';
 }

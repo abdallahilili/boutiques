@@ -1067,4 +1067,50 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get finish => 'Terminer';
+
+  @override
+  String get appearance => 'Apparence';
+
+  @override
+  String get themeModeTitle => 'Mode d\'affichage';
+
+  @override
+  String get themeSystem => 'Auto';
+
+  @override
+  String get themeLight => 'Clair';
+
+  @override
+  String get themeDark => 'Sombre';
+
+  @override
+  String get appColor => 'Couleur de l\'application';
+
+  @override
+  String get appColorHint =>
+      'Faites glisser le doigt sur le carré et la barre, ou touchez une couleur rapide.';
+
+  @override
+  String get resetColor => 'Couleur d\'origine';
+
+  @override
+  String get shopLogo => 'Logo de la boutique';
+
+  @override
+  String get shopLogoHint =>
+      'Affiché sur les factures et sur la boutique en ligne.';
+
+  @override
+  String get changeLogo => 'Changer le logo';
+
+  @override
+  String get removeLogo => 'Retirer le logo';
+
+  @override
+  String get shopIdentity => 'Identité de la boutique';
+
+  @override
+  String productImageFailed(String details) {
+    return 'Produit enregistré, mais l\'envoi de la photo a échoué : $details';
+  }
 }

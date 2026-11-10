@@ -280,6 +280,7 @@ abstract final class Tables {
   static const couleurs = 'couleurs';
   static const couleursPubliques = 'couleurs_publiques';
   static const depenses = 'depenses';
+  static const documentsLiens = 'documents_liens';
   static const documentsVente = 'documents_vente';
   static const domainesBoutique = 'domaines_boutique';
   static const fournisseurs = 'fournisseurs';
@@ -341,22 +342,31 @@ abstract final class Rpc {
   static const adminQuotasBoutique = 'admin_quotas_boutique';
   static const adminStatistiques = 'admin_statistiques';
   static const ajusterStock = 'ajuster_stock';
+  static const annulerDocument = 'annuler_document';
   static const attribuerNumeroDocument = 'attribuer_numero_document';
   static const boutiqueEstActive = 'boutique_est_active';
+  static const changerStatutBonLivraison = 'changer_statut_bon_livraison';
   static const changerStatutCommande = 'changer_statut_commande';
+  static const changerStatutDevis = 'changer_statut_devis';
+  static const convertirDocument = 'convertir_document';
+  static const creerAvoir = 'creer_avoir';
+  static const creerBonLivraison = 'creer_bon_livraison';
   static const creerBoutiqueAvecDefauts = 'creer_boutique_avec_defauts';
   static const creerCommercanteAvecBoutique = 'creer_commercante_avec_boutique';
+  static const creerDevis = 'creer_devis';
   static const enregistrerEchecConnexion = 'enregistrer_echec_connexion';
   static const enregistrerPaiement = 'enregistrer_paiement';
   static const enregistrerPaiementAbonnement =
       'enregistrer_paiement_abonnement';
   static const enregistrerVente = 'enregistrer_vente';
+  static const expirerDevisPerimes = 'expirer_devis_perimes';
   static const fermerSessionCaisse = 'fermer_session_caisse';
   static const genererDocumentCommande = 'generer_document_commande';
   static const inviterMembre = 'inviter_membre';
   static const joindreJustificatifCommande = 'joindre_justificatif_commande';
   static const limiterRequete = 'limiter_requete';
   static const mesPermissions = 'mes_permissions';
+  static const modifierDevis = 'modifier_devis';
   static const ouvrirSessionCaisse = 'ouvrir_session_caisse';
   static const passerCommandeEnLigne = 'passer_commande_en_ligne';
   static const recevoirStock = 'recevoir_stock';
@@ -1338,6 +1348,32 @@ class DepensesRow {
   };
 }
 
+/// Table `documents_liens`.
+class DocumentsLiensRow {
+  const DocumentsLiensRow({
+    required this.boutiqueId,
+    required this.documentId,
+    required this.sourceId,
+  });
+
+  final String boutiqueId;
+  final String documentId;
+  final String sourceId;
+
+  factory DocumentsLiensRow.depuisJson(Map<String, dynamic> json) =>
+      DocumentsLiensRow(
+        boutiqueId: json['boutique_id'] as String,
+        documentId: json['document_id'] as String,
+        sourceId: json['source_id'] as String,
+      );
+
+  Map<String, dynamic> versJson() => {
+    'boutique_id': boutiqueId,
+    'document_id': documentId,
+    'source_id': sourceId,
+  };
+}
+
 /// Table `documents_vente`.
 class DocumentsVenteRow {
   const DocumentsVenteRow({
@@ -1885,6 +1921,7 @@ class LignesDocumentVenteRow {
     required this.coutUnitaire,
     required this.total,
     required this.ordre,
+    this.ligneSourceId,
   });
 
   final String id;
@@ -1899,6 +1936,7 @@ class LignesDocumentVenteRow {
   final double coutUnitaire;
   final double total;
   final int ordre;
+  final String? ligneSourceId;
 
   factory LignesDocumentVenteRow.depuisJson(
     Map<String, dynamic> json,
@@ -1917,6 +1955,9 @@ class LignesDocumentVenteRow {
     coutUnitaire: (json['cout_unitaire'] as num).toDouble(),
     total: (json['total'] as num).toDouble(),
     ordre: json['ordre'] as int,
+    ligneSourceId: json['ligne_source_id'] == null
+        ? null
+        : json['ligne_source_id'] as String,
   );
 
   Map<String, dynamic> versJson() => {
@@ -1932,6 +1973,7 @@ class LignesDocumentVenteRow {
     'cout_unitaire': coutUnitaire,
     'total': total,
     'ordre': ordre,
+    'ligne_source_id': ligneSourceId,
   };
 }
 

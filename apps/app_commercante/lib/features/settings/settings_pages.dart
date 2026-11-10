@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Value;
+import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/session/shop_controller.dart';
@@ -8,7 +9,9 @@ import '../../core/util/contact.dart';
 import '../../core/util/errors.dart';
 import '../../core/util/format.dart';
 import '../../core/widgets/common.dart';
+import '../../core/widgets/shop_logo.dart';
 import '../../l10n/app_localizations.dart';
+import 'appearance_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -21,7 +24,22 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.menuSettings)),
       body: ListView(children: [
+        Obx(() {
+          final row = shop.active.value;
+          final arabic = Localizations.localeOf(context).languageCode == 'ar';
+          final canEdit = shop.can('parametres.gerer');
+          return ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            leading: const ShopLogoAvatar(radius: 28),
+            title: Text(localName(row?.nomAr, row?.nomFr, arabic: arabic), style: Theme.of(context).textTheme.titleLarge),
+            subtitle: Text(l10n.shopIdentity),
+            trailing: canEdit ? const Icon(Icons.edit_outlined) : null,
+            onTap: canEdit ? () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const ShopProfilePage())) : null,
+          );
+        }),
+        const Divider(height: 1),
         item(Icons.storefront_outlined, l10n.shopProfile, () => const ShopProfilePage(), visible: shop.can('parametres.gerer')),
+        item(Icons.palette_outlined, l10n.appearance, () => const AppearancePage()),
         item(Icons.public, l10n.onlineStore, () => const OnlineStorePage()),
         item(Icons.group_outlined, l10n.employees, () => const EmployeesPage(), visible: shop.can('employes.gerer')),
         item(Icons.workspace_premium_outlined, l10n.menuSubscription, () => const SubscriptionPage(), visible: shop.can('abonnement.voir')),
@@ -55,6 +73,34 @@ class _ShopProfilePageState extends State<ShopProfilePage> {
   late final _threshold = TextEditingController(text: '${_settings['seuil_stock_defaut'] ?? 2}');
   late bool _negative = _settings['stock_negatif_autorise'] == true;
   bool _saving = false;
+  bool _logoBusy = false;
+
+  Future<void> _changeLogo() async {
+    final l10n = AppLocalizations.of(context);
+    final file = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 800, imageQuality: 85);
+    if (file == null) return;
+    setState(() => _logoBusy = true);
+    try {
+      await _shop.setLogo(await file.readAsBytes());
+      showMessage(l10n.saved);
+    } catch (e) {
+      showMessage(friendlyError(l10n, e), error: true);
+    } finally {
+      if (mounted) setState(() => _logoBusy = false);
+    }
+  }
+
+  Future<void> _removeLogo() async {
+    final l10n = AppLocalizations.of(context);
+    setState(() => _logoBusy = true);
+    try {
+      await _shop.removeLogo();
+    } catch (e) {
+      showMessage(friendlyError(l10n, e), error: true);
+    } finally {
+      if (mounted) setState(() => _logoBusy = false);
+    }
+  }
 
   Future<void> _save() async {
     final l10n = AppLocalizations.of(context);
@@ -89,6 +135,25 @@ class _ShopProfilePageState extends State<ShopProfilePage> {
       body: Form(
         key: _key,
         child: ListView(padding: const EdgeInsets.all(16), children: [
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const ShopLogoAvatar(radius: 40),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(l10n.shopLogo, style: Theme.of(context).textTheme.titleMedium),
+                Text(l10n.shopLogoHint, style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(height: 8),
+                if (_logoBusy)
+                  const Padding(padding: EdgeInsets.all(8), child: SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2)))
+                else
+                  Wrap(spacing: 8, children: [
+                    OutlinedButton.icon(style: OutlinedButton.styleFrom(minimumSize: const Size(0, 44)), onPressed: _changeLogo, icon: const Icon(Icons.image_outlined), label: Text(l10n.changeLogo)),
+                    Obx(() => (_shop.logoPath ?? '').isEmpty ? const SizedBox.shrink() : TextButton(onPressed: _removeLogo, child: Text(l10n.removeLogo))),
+                  ]),
+              ]),
+            ),
+          ]),
+          const SizedBox(height: 20),
           BilingualNameFields(arabic: _ar, french: _fr),
           const SizedBox(height: 12),
           TextFormField(controller: _address, decoration: InputDecoration(labelText: l10n.address)),
