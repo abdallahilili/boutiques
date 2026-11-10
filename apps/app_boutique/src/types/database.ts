@@ -2668,6 +2668,12 @@ export type Database = {
       }
         Returns: Json
       }
+      tableau_de_bord: {
+        Args: {
+        p_boutique_id: string
+      }
+        Returns: Json
+      }
       verifier_verrou_connexion: {
         Args: {
         p_identifiant: string

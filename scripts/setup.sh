@@ -12,7 +12,7 @@ for app in app_admin app_boutique; do
 done
 
 echo "→ app_commercante (Flutter)"
-(cd apps/app_commercante && flutter pub get && dart run build_runner build --delete-conflicting-outputs)
+(cd apps/app_commercante && flutter pub get && dart run build_runner build)
 
 for f in supabase/functions/.env apps/app_admin/.env apps/app_boutique/.env apps/app_commercante/.env; do
   example="$f.example"

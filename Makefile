@@ -40,7 +40,7 @@ boutique: ## Lance la boutique en ligne (app_boutique)
 	npm --prefix $(BOUTIQUE_DIR) run dev
 
 mobile: ## Lance l'app commerçante (Flutter) sur l'appareil/émulateur connecté
-	cd $(MOBILE_DIR) && flutter run
+	cd $(MOBILE_DIR) && flutter run --dart-define-from-file=.env
 
 test: test-db test-fn test-admin test-boutique test-mobile ## Lance toutes les suites de tests
 

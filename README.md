@@ -77,13 +77,17 @@ Aucun secret n'est commité : seuls les `.env.example` le sont.
 ## Tests
 
 ```bash
-make test-db-local          # 200+ tests SQL : RLS, FIFO, stock ≥ 0, numérotation, commandes, Storage
+make test-db-local          # 211 tests SQL : RLS, FIFO, stock ≥ 0, numérotation, commandes, Storage
 cd supabase/functions && deno test --allow-env --allow-net _shared/
 npm --prefix apps/app_admin run test
 npm --prefix apps/app_boutique run test
-cd apps/app_commercante && flutter test
+cd apps/app_commercante && flutter test      # (build_runner requis une fois : make setup)
 ```
 
 ## Déploiement
 
 Voir [docs/guide_deploiement.md](docs/guide_deploiement.md) : projet Supabase, migrations, secrets des Edge Functions, création du premier super-admin, hébergement des deux apps web (wildcard DNS), build Android.
+
+## Licences tierces
+
+- Police **Amiri** (SIL Open Font License 1.1) : `assets/fonts/` (mobile) et `public/fonts/` (web), utilisée pour l'arabe dans les PDF.

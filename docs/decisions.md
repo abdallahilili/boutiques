@@ -36,6 +36,12 @@ En cas de conflit entre le cahier et ce document, **ce document prime**.
 - **Stock négatif optionnel** (`boutiques.parametres.stock_negatif_autorise`) : le manque est porté par un lot « découvert » (quantité négative) absorbé par les réceptions suivantes ; l'invariant « stock = somme des lots » est conservé.
 - **Types générés sans Docker** : `scripts/gen_types.mjs` applique les migrations dans PGlite puis introspecte le catalogue pour produire `database.ts` (web) et `database_types.dart` (mobile).
 - **Tests SQL** : fichiers pgTAP dans `supabase/tests/` (`supabase test db`). Sans Docker, `make test-db-local` rejoue les mêmes fichiers dans PGlite avec un shim pgTAP (`scripts/pglite/`).
+- **Coûts masqués par vues.** `lots_stock`, `mouvements_stock`, `receptions_stock`, `lignes_*` portant un coût ne sont lisibles qu'avec « couts.voir » ; les autres rôles lisent les vues `*_vue` (coût nul) et `stock_variante`. Les vues sont `security_barrier`, en lecture seule, filtrées par permission. Le prix de vente n'est pas masqué à la magasinière (donnée publique) : seul l'écran le cache.
+- **Hors ligne = outbox idempotente.** Ventes, entrées/sorties/inventaires, paiements et sessions de caisse sont écrits dans une file SQLite (Drift) avec des UUID d'appareil, puis rejoués vers les RPC. Erreur réseau : reprise automatique ; erreur métier (stock insuffisant…) : l'opération passe « en échec » et la commerçante décide (relancer / abandonner). Création de produits, référentiels et paramètres : connexion requise (cahier §5.13).
+- **Numéros hors ligne.** `reserver_plage_numeros` accorde 20 numéros par appareil ; une vente hors ligne consomme la plage locale. Sans plage, le serveur attribue le numéro à la synchronisation (l'écran affiche « numéro en attente »). Réserve plafonnée à 25 numéros non utilisés par appareil.
+- **Montants.** Chiffres occidentaux (lecture sûre en caisse), MRU sans décimales ; dates localisées (`intl`).
+- **Polices PDF.** Amiri (SIL OFL 1.1) embarquée dans l'app mobile et les deux apps web pour rendre l'arabe dans les PDF générés à la demande.
+- **Documents Phase 1.** La caisse émet des factures et tickets ; la facture d'une commande en ligne est générée par `generer_document_commande` (la BL et les devis arrivent en phase 2).
 - **Nom du paquet SEO** : `react-helmet-async` (fork maintenu de React Helmet, compatible React 18/19).
 
 ## 3. Plan par phase
@@ -71,4 +77,19 @@ Devis, BL, avoirs, conversion, transferts, gestion du site depuis le mobile, rap
 - Tests : 47 tests SQL (RLS, quotas, audit, verrouillage), 8 Deno, 9 + 11 Vitest, 15 Flutter.
 
 **Reste** : voir la phase 1.
+
+### Phase 1 — MVP (terminée)
+
+**Fait**
+- **Base de données** : référentiels (catégories ordonnables, modèles, couleurs `#hex`, tailles, marques, unités, modes de paiement, clientes, fournisseurs, zones, motifs), produits / variantes / images (EAN-13 interne, slug SEO, épinglage), stock (réceptions, lots FIFO/FEFO, mouvements en ajout seul, ajustements, `stock_variante`), documents de vente (en-tête figé `jsonb`, lignes, paiements, sessions de caisse, dépenses), numérotation sans trou + plages par appareil, commandes en ligne (réservation de stock, historique, RPC publique anti-spam), site (domaines, thèmes, paramètres, sections, pages, bannières), comptes clientes, vues publiques, Storage (`product-images`, `shop-assets`, `payment-proofs`).
+- **Fonctions SQL** : `creer_boutique_avec_defauts`, `attribuer_numero_document`, `reserver_plage_numeros`, `enregistrer_vente`, `enregistrer_paiement`, `recevoir_stock`, `ajuster_stock`, `ouvrir/fermer_session_caisse`, `passer_commande_en_ligne`, `suivre_commande`, `joindre_justificatif_commande`, `changer_statut_commande`, `generer_document_commande`, `resoudre_boutique`, `tableau_de_bord`, `admin_statistiques`, `admin_quotas_boutique`.
+- **Edge Functions** : + `inscription-cliente`, `send-notification` (stub FCM), `admin-create-staff`.
+- **app_admin** : tableau de bord (MRR, expirations, évolution), commerçantes (création + code initial WhatsApp, réinitialisation), boutiques (suspension, quotas), plans, abonnements, paiements (justificatif, reçu PDF), sites / sous-domaines, équipe interne, journal d'audit (CSV), notifications.
+- **app_commercante** : onboarding, référentiels (couleurs avec sélecteur hex, glisser-déposer des catégories, création à la volée), produits + génération de variantes, stock (entrées, sorties, inventaire, lots, historique), POS (scan, grille, variantes, paiements multiples, rendu de monnaie, ventes suspendues, session de caisse + rapport Z), facture PDF à la demande + partage WhatsApp, clientes (dettes, règlement réparti, relance), commandes temps réel, paramètres (profil, employées, abonnement, site en lecture seule), notifications, synchronisation.
+- **app_boutique** : résolution par domaine, accueil par sections, catalogue (filtres, épinglés en tête, ordre des catégories), fiche produit (variantes, WhatsApp), panier persistant, checkout sans compte, preuve de paiement, suivi, compte cliente, thèmes par variables CSS, SEO (Helmet + JSON-LD), PWA.
+- **Tests** : 211 tests SQL (isolement RLS sur toutes les tables et vues, FIFO/FEFO, stock jamais négatif, numérotation sans doublon, idempotence, commandes, Storage, quotas) ; 8 Deno ; Vitest (admin 12, boutique 36) ; Flutter 75 (cart, outbox, plages, PDF arabe/français, charge utile des ventes, contrôleurs GetX).
+
+**Reste / limites connues**
+- Phase 2 : devis, BL, avoirs, conversion ; transferts entre commerçantes ; gestion du site depuis le mobile ; rapports ; impression Bluetooth ; `domain-verify` ; push FCM réel ; crons (`subscription-cron`, `stock-alerts-cron`) ; `export-data` ; `admin-impersonate` ; `on-order-created` ; `storefront-sitemap` ; paiements fournisseurs ; favoris / coupons ; modules éditeur Support, base d'aide, paramètres globaux.
+- Vérification : les tests SQL tournent dans PGlite (Postgres WASM) avec un shim pgTAP ; la CLI Supabase/Docker n'était pas disponible ici (à relancer avec `make test-db`). Les Edge Functions sont typées et leurs modules partagés testés, mais non exécutées face à un projet Supabase réel. L'app Flutter est validée par analyse statique et tests, non exécutée sur un appareil dans cet environnement.
 

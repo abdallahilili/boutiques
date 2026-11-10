@@ -2,7 +2,7 @@
 -- idempotence, crédit client, permissions de prix, plages hors ligne, session de caisse.
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(36);
+select plan(40);
 
 -- ---------------------------------------------------------------------------
 -- Jeu de données : boutique A (propriétaire + vendeuse), 1 produit, stock de 115 (10 @100, 5 @150, 100 @200)
@@ -213,6 +213,21 @@ select is((public.fermer_session_caisse('ac000000-0000-0000-0000-000000000001', 
 reset role;
 select set_config('request.jwt.claims', '', true);
 select is((select attendu from public.sessions_caisse where id = 'ac000000-0000-0000-0000-000000000001'), 6500::numeric, 'montant attendu en caisse');
+
+-- ---------------------------------------------------------------------------
+-- Tableau de bord : chiffres financiers réservés aux rôles autorisés
+-- ---------------------------------------------------------------------------
+select set_config('request.jwt.claims', '{"sub":"a0000000-0000-0000-0000-00000000000a","role":"authenticated"}', true);
+set local role authenticated;
+select cmp_ok((public.tableau_de_bord('a2000000-0000-0000-0000-000000000001') ->> 'ca_jour')::numeric, '>', 0::numeric, 'la propriétaire voit le chiffre d''affaires du jour');
+select cmp_ok((public.tableau_de_bord('a2000000-0000-0000-0000-000000000001') ->> 'nb_ventes_jour')::int, '>=', 5, 'nombre de ventes du jour');
+reset role;
+select set_config('request.jwt.claims', '{"sub":"c0000000-0000-0000-0000-00000000000c","role":"authenticated"}', true);
+set local role authenticated;
+select is((public.tableau_de_bord('a2000000-0000-0000-0000-000000000001') -> 'ca_jour')::text, 'null', 'la vendeuse ne voit pas le chiffre d''affaires');
+select is((public.tableau_de_bord('a2000000-0000-0000-0000-000000000001') -> 'impayes')::text, 'null', 'ni les impayés');
+reset role;
+select set_config('request.jwt.claims', '', true);
 
 select * from finish();
 rollback;
