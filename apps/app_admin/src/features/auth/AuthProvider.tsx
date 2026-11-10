@@ -1,12 +1,13 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
-import { deduireEtat, type EtatAuth, type NiveauAssurance, type RolePlateforme } from './etat'
+import { emailEquipe } from '@/lib/telephone'
+import { deduireEtat, type EtatAuth, type RolePlateforme } from './etat'
 
 interface ContexteAuth {
   etat: EtatAuth
   role: RolePlateforme | null
-  email: string | null
-  seConnecter: (email: string, motDePasse: string) => Promise<void>
+  nom: string | null
+  seConnecter: (telephone: string, motDePasse: string) => Promise<void>
   rafraichir: () => Promise<void>
   deconnexion: () => Promise<void>
 }
@@ -15,29 +16,22 @@ const Contexte = createContext<ContexteAuth | null>(null)
 
 interface Instantane {
   session: boolean
-  email: string | null
+  nom: string | null
   role: RolePlateforme | null
   actif: boolean
-  niveauActuel: NiveauAssurance | null
-  niveauSuivant: NiveauAssurance | null
 }
 
-const VIDE: Instantane = { session: false, email: null, role: null, actif: false, niveauActuel: null, niveauSuivant: null }
+const VIDE: Instantane = { session: false, nom: null, role: null, actif: false }
 
 async function lireInstantane(): Promise<Instantane> {
   const { data: { session } } = await supabase.auth.getSession()
   if (!session) return VIDE
-  const [{ data: profil }, { data: niveaux }] = await Promise.all([
-    supabase.from('profils').select('role_plateforme, actif').eq('id', session.user.id).maybeSingle(),
-    supabase.auth.mfa.getAuthenticatorAssuranceLevel(),
-  ])
+  const { data: profil } = await supabase.from('profils').select('nom_ar, nom_fr, telephone, role_plateforme, actif').eq('id', session.user.id).maybeSingle()
   return {
     session: true,
-    email: session.user.email ?? null,
+    nom: profil?.nom_fr ?? profil?.nom_ar ?? profil?.telephone ?? null,
     role: profil?.role_plateforme ?? 'aucun',
     actif: profil?.actif ?? false,
-    niveauActuel: (niveaux?.currentLevel as NiveauAssurance | null | undefined) ?? null,
-    niveauSuivant: (niveaux?.nextLevel as NiveauAssurance | null | undefined) ?? null,
   }
 }
 
@@ -58,10 +52,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       etat: instantane ? deduireEtat(instantane) : 'chargement',
       role: instantane?.role ?? null,
-      email: instantane?.email ?? null,
+      nom: instantane?.nom ?? null,
       rafraichir,
-      seConnecter: async (email, motDePasse) => {
-        const { error } = await supabase.auth.signInWithPassword({ email, password: motDePasse })
+      seConnecter: async (telephone, motDePasse) => {
+        const { error } = await supabase.auth.signInWithPassword({ email: emailEquipe(telephone), password: motDePasse })
         if (error) throw error
         await rafraichir()
       },

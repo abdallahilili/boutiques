@@ -39,7 +39,7 @@ npm run functions:deploy   # déploie les Edge Functions
 ```
 
 `npm run deploy` enchaîne `db:push`, `functions:secrets` et `functions:deploy` pour les mises à jour suivantes.
-3. Créer le premier super-admin : `npm run admin:create -- vous@exemple.com "MotDePasse12+" "Nom"` (voir [docs/guide_deploiement.md](docs/guide_deploiement.md)).
+3. Créer le premier super-admin : `npm run admin:create -- 31177008 "MotDePasse" "Nom"` (voir [docs/guide_deploiement.md](docs/guide_deploiement.md)).
 4. Lancer les apps :
 
 ```bash
@@ -58,7 +58,7 @@ Pour changer de projet Supabase, modifier `--project-ref` dans le script `db:lin
 | `npm run mobile:setup` | `flutter pub get` + code généré (Drift) |
 | `npm run dev` / `dev:admin` / `dev:boutique` / `dev:mobile` | Lance l'application correspondante |
 | `npm run db:login` / `db:link` / `db:push` | Connexion, liaison et migrations du projet Supabase |
-| `npm run admin:create -- <email> <mdp> <nom>` | Crée le premier super-admin de la console |
+| `npm run admin:create -- <téléphone> <mdp> <nom>` | Crée le premier super-admin de la console |
 | `npm run functions:secrets` / `functions:deploy` / `deploy` | Secrets et déploiement des Edge Functions |
 | `npm run gen:types` | Régénère les types TypeScript (web) et Dart (mobile) depuis les migrations |
 | `npm test` | Toutes les suites (SQL, Deno, Vitest ×2, Flutter) ; chacune aussi seule : `test:db`, `test:functions`, `test:admin`, `test:boutique`, `test:mobile` |
@@ -89,7 +89,7 @@ Aucun secret n'est commité : seuls les `.env.example` le sont.
 - **Multi-tenant** : `boutique_id` sur toutes les tables métier, RLS par appartenance (`membres_boutique`), clés étrangères composites `(boutique_id, id)`.
 - **Opérations sensibles** (vente, stock, numérotation, commande, transfert) : fonctions SQL `SECURITY DEFINER` transactionnelles et idempotentes ; les clients n'écrivent jamais directement dans le stock ni dans les documents.
 - **Stock** : lots + mouvements en ajout seul, consommation FIFO/FEFO, coût figé sur les lignes de vente, jamais négatif par défaut.
-- **Authentification** : téléphone + code à 4 chiffres via l'Edge Function `connexion_telephone_pin` (5 tentatives puis verrouillage) ; admin web : email + mot de passe + 2FA TOTP.
+- **Authentification** : téléphone + code à 4 chiffres via l'Edge Function `connexion_telephone_pin` (5 tentatives puis verrouillage) ; admin web : numéro de téléphone (nom d'utilisateur) + mot de passe.
 - **Documents** : aucun PDF stocké ; en-tête figé en base, PDF généré à la demande sur l'appareil ou le navigateur.
 - **Aucune taxe / TVA** dans le modèle de données.
 

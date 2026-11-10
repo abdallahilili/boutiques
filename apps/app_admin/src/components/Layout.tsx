@@ -18,7 +18,7 @@ const LIENS = [
 
 export function Layout() {
   const { t } = useTranslation()
-  const { email, deconnexion } = useAuth()
+  const { nom, deconnexion } = useAuth()
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       <aside className="border-bordure bg-surface md:w-60 md:border-e">
@@ -34,7 +34,7 @@ export function Layout() {
       </aside>
       <div className="flex-1">
         <header className="flex items-center justify-between gap-2 border-b border-bordure bg-surface p-3">
-          <span className="text-sm text-discret" dir="ltr">{email}</span>
+          <span className="text-sm text-discret" >{nom}</span>
           <div className="flex items-center gap-2">
             <Preferences />
             <button className="btn" onClick={() => void deconnexion()}>{t('commun.deconnexion')}</button>

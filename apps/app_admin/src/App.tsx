@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/features/auth/AuthProvider'
 import { LoginPage } from '@/features/auth/LoginPage'
-import { MfaPage } from '@/features/auth/MfaPage'
 import { Layout } from '@/components/Layout'
 import { DashboardPage } from '@/pages/DashboardPage'
 const CommercantesPage = lazy(() => import('@/pages/CommercantesPage').then((m) => ({ default: m.CommercantesPage })))
@@ -32,9 +31,6 @@ export function App() {
           <button className="btn" onClick={() => void deconnexion()}>{t('commun.deconnexion')}</button>
         </main>
       )
-    case 'mfa_enrolement':
-    case 'mfa_verification':
-      return <MfaPage />
     case 'ok':
       return (
         <BrowserRouter>

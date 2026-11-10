@@ -13,7 +13,7 @@ En cas de conflit entre le cahier et ce document, **ce document prime**.
 | Langues | Arabe par défaut (RTL) dans les 3 apps, bascule en français. Fichiers de traduction `ar` et `fr`. |
 | Base de données | Noms de tables, colonnes, statuts et fonctions SQL en français (snake_case sans accents). Chaque nom a `nom_ar` / `nom_fr` (idem `description_ar` / `description_fr`). Multi-tenant par `boutique_id` + RLS sur toutes les tables, aucune table sans politique. |
 | Authentification mobile + boutique en ligne | Identifiant = numéro de téléphone, mot de passe = code à 4 chiffres. Edge Function `connexion_telephone_pin` : le code est converti côté serveur en secret d'authentification (HMAC-SHA256 avec un poivre serveur), 5 tentatives puis verrouillage temporaire. |
-| Authentification admin | Email + mot de passe + 2FA TOTP (MFA Supabase Auth). |
+| Authentification admin | Numéro de téléphone (nom d'utilisateur) + mot de passe, sans 2FA (décision de l'utilisateur, remplace « email + mot de passe + 2FA TOTP » du cahier des charges). Identifiant Auth technique `<chiffres>@admin.invalid`. |
 | PDF | **Aucun PDF enregistré.** Documents (devis, BL, facture, avoir, ticket) stockés en base : en-tête figé (`jsonb`) + lignes + paiements. PDF généré à la demande côté appareil (`pdf` + `printing`) ou côté web (`@react-pdf/renderer`). Pas de bucket `documents`, pas de colonne `pdf_url`. |
 | Fiscalité | **Aucune taxe, TVA ni fiscalité** : ni table, ni colonne, ni champ, ni écran. |
 | Sous-domaine | Attribué à la création, non modifiable par la commerçante (lecture seule dans le mobile) ; modifiable uniquement depuis `app_admin` (garanti par trigger). Domaine personnalisé configurable. |
@@ -73,7 +73,7 @@ Devis, BL, avoirs, conversion, transferts, gestion du site depuis le mobile, rap
 - Migrations : `profils`, `commercantes`, `boutiques`, `permissions`, `roles`, `permissions_role`, `membres_boutique`, `plans`, `abonnements`, `paiements_abonnement`, `journal_audit` (immuable), `appareils`, `notifications`, `tentatives_connexion` ; helpers RLS (`prive.*`), `boutique_est_active`, quotas de plan, triggers de protection de colonnes (slug, statut, rôles), audit.
 - Edge Functions : `connexion_telephone_pin`, `admin-create-merchant`, `invite-member`, `reset-pin`, `changer-code` + modules partagés testés (Deno).
 - Génération des types TypeScript et Dart (`scripts/gen_types.mjs`, sans Docker).
-- Squelettes : `app_admin` (login + 2FA TOTP obligatoire, i18n ar/fr + RTL, thème clair/sombre), `app_boutique` (i18n, RTL, thème par variables CSS, connexion cliente, Helmet), `app_commercante` (GetX, ARB ar/fr, RTL, thème, routage + garde, connexion téléphone + code).
+- Squelettes : `app_admin` (login téléphone + mot de passe, i18n ar/fr + RTL, thème clair/sombre), `app_boutique` (i18n, RTL, thème par variables CSS, connexion cliente, Helmet), `app_commercante` (GetX, ARB ar/fr, RTL, thème, routage + garde, connexion téléphone + code).
 - Tests : 47 tests SQL (RLS, quotas, audit, verrouillage), 8 Deno, 9 + 11 Vitest, 15 Flutter.
 
 **Reste** : voir la phase 1.

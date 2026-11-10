@@ -59,11 +59,6 @@ enabled = true
 double_confirm_changes = true
 enable_confirmations = false
 
-# 2FA TOTP obligatoire pour l'admin web (vérifié côté app_admin).
-[auth.mfa.totp]
-enroll_enabled = true
-verify_enabled = true
-
 [edge_runtime]
 enabled = true
 policy = "per_worker"

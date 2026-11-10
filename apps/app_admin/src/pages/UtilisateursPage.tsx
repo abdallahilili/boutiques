@@ -16,7 +16,7 @@ type Profil = Tables<'profils'>
 function FormulaireMembre({ onFini }: { onFini: () => void }) {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
-  const [v, setV] = useState({ email: '', nom_fr: '', nom_ar: '', role: 'support', mot_de_passe: '' })
+  const [v, setV] = useState({ telephone: '', nom_fr: '', nom_ar: '', role: 'support', mot_de_passe: '' })
   const creation = useMutation({
     mutationFn: () => invoquerFonction('admin-create-staff', v),
     onSuccess: () => {
@@ -28,10 +28,10 @@ function FormulaireMembre({ onFini }: { onFini: () => void }) {
     e.preventDefault()
     creation.mutate()
   }
-  const erreur = creation.error instanceof ErreurFonction && creation.error.code === 'email_deja_utilise' ? t('utilisateurs.email_deja_utilise') : creation.error ? t('commun.erreur') : null
+  const erreur = creation.error instanceof ErreurFonction && creation.error.code === 'telephone_deja_utilise' ? t('utilisateurs.telephone_deja_utilise') : creation.error ? t('commun.erreur') : null
   return (
     <form onSubmit={soumettre} className="grid grid-cols-2 gap-3">
-      <div className="col-span-2"><Champ etiquette={t('commun.email')}><input className="input" type="email" dir="ltr" required value={v.email} onChange={(e) => setV({ ...v, email: e.target.value })} /></Champ></div>
+      <div className="col-span-2"><Champ etiquette={t('commun.telephone')}><input className="input" type="tel" dir="ltr" required value={v.telephone} onChange={(e) => setV({ ...v, telephone: e.target.value })} /></Champ></div>
       <Champ etiquette={t('commun.nom_ar')}><input className="input" value={v.nom_ar} onChange={(e) => setV({ ...v, nom_ar: e.target.value })} /></Champ>
       <Champ etiquette={t('commun.nom_fr')}><input className="input" value={v.nom_fr} onChange={(e) => setV({ ...v, nom_fr: e.target.value })} /></Champ>
       <Champ etiquette={t('utilisateurs.role')}>
@@ -40,7 +40,7 @@ function FormulaireMembre({ onFini }: { onFini: () => void }) {
           <option value="super_admin">{t('statut.super_admin')}</option>
         </select>
       </Champ>
-      <Champ etiquette={t('utilisateurs.mot_de_passe')}><input className="input" type="password" dir="ltr" minLength={12} required value={v.mot_de_passe} onChange={(e) => setV({ ...v, mot_de_passe: e.target.value })} /></Champ>
+      <Champ etiquette={t('utilisateurs.mot_de_passe')}><input className="input" type="password" dir="ltr" minLength={8} required value={v.mot_de_passe} onChange={(e) => setV({ ...v, mot_de_passe: e.target.value })} /></Champ>
       <p className="col-span-2 text-xs text-discret">{t('utilisateurs.mot_de_passe_aide')}</p>
       {erreur && <p role="alert" className="col-span-2 text-sm text-danger">{erreur}</p>}
       <div className="col-span-2 flex justify-end"><button className="btn btn-primaire" disabled={creation.isPending}>{t('commun.creer')}</button></div>
@@ -75,7 +75,7 @@ export function UtilisateursPage() {
       <DataTable
         colonnes={[
           { cle: 'nom', titre: t('commun.nom_fr'), rendu: (p) => nomLocalise(p, i18n.language) },
-          { cle: 'email', titre: t('commun.email'), rendu: (p) => <span dir="ltr">{p.email}</span> },
+          { cle: 'tel', titre: t('commun.telephone'), rendu: (p) => <span dir="ltr">{p.telephone}</span> },
           { cle: 'role', titre: t('utilisateurs.role'), rendu: (p) => <Statut valeur={p.role_plateforme} /> },
           { cle: 'actif', titre: t('commun.actif'), rendu: (p) => (p.actif ? t('commun.oui') : t('commun.non')) },
           {

@@ -1,5 +1,7 @@
 {
-  "app": { "titre": "Console éditeur" },
+  "app": {
+    "titre": "Console éditeur"
+  },
   "commun": {
     "chargement": "Chargement…",
     "erreur": "Une erreur est survenue, réessayez",
@@ -68,20 +70,18 @@
     "verifie": "Vérifié",
     "erreur": "Erreur"
   },
-  "mode": { "especes": "Espèces", "virement": "Virement", "mobile_money": "Mobile money" },
+  "mode": {
+    "especes": "Espèces",
+    "virement": "Virement",
+    "mobile_money": "Mobile money"
+  },
   "auth": {
     "titre": "Connexion",
-    "email": "Email",
     "mot_de_passe": "Mot de passe",
     "connexion": "Se connecter",
     "identifiants_invalides": "Identifiants incorrects",
     "acces_refuse": "Ce compte n'est pas autorisé à accéder à la console",
-    "mfa_titre": "Vérification en deux étapes",
-    "mfa_code": "Code à 6 chiffres",
-    "mfa_verifier": "Vérifier",
-    "mfa_invalide": "Code incorrect",
-    "mfa_enrolement": "Scannez le QR code avec une application d'authentification (Google Authenticator…) puis saisissez le code.",
-    "mfa_cle_manuelle": "Ou saisissez la clé manuellement"
+    "telephone": "Téléphone"
   },
   "tableau_de_bord": {
     "titre": "Tableau de bord",
@@ -184,9 +184,9 @@
     "nouveau": "Nouveau membre",
     "role": "Rôle",
     "mot_de_passe": "Mot de passe initial",
-    "mot_de_passe_aide": "12 caractères minimum. L'enrôlement 2FA est imposé à la première connexion.",
+    "mot_de_passe_aide": "8 caractères minimum. Le membre se connecte avec son numéro de téléphone et ce mot de passe.",
     "reserve_super_admin": "Réservé au super-admin",
-    "email_deja_utilise": "Cet email est déjà utilisé"
+    "telephone_deja_utilise": "Cet identifiant (téléphone) est déjà utilisé"
   },
   "audit": {
     "titre": "Journal d'audit",

@@ -12,7 +12,6 @@ Les migrations créent les tables, la RLS, les fonctions, les vues publiques, le
 
 Réglages Auth (Dashboard → Authentication) :
 - désactiver les inscriptions publiques (les comptes sont créés par les Edge Functions) ;
-- activer MFA TOTP ;
 - ajouter les URL de l'admin web dans les URL de redirection.
 
 ## 2. Edge Functions
@@ -32,10 +31,10 @@ supabase functions deploy connexion_telephone_pin inscription-cliente admin-crea
 Après `npm run db:push` :
 
 ```bash
-npm run admin:create -- vous@exemple.com "MotDePasse12+" "Nom complet"
+npm run admin:create -- 31177008 "MotDePasse" "Nom complet"
 ```
 
-Le script lit `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY` dans `supabase/functions/.env` (jamais commité), crée l'utilisateur Auth et son profil `super_admin`. À la première connexion sur `app_admin`, l'enrôlement TOTP est obligatoire. Les autres membres de l'équipe sont créés depuis *Utilisateurs internes*.
+Le script lit `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY` dans `supabase/functions/.env` (jamais commité), crée l'utilisateur Auth et son profil `super_admin`. Connexion sur `app_admin` avec le numéro de téléphone et le mot de passe (8 caractères minimum) ; relancer la commande remplace le mot de passe. Les autres membres de l'équipe sont créés depuis *Utilisateurs internes*.
 
 ## 4. Applications web
 

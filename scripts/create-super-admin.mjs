@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // Crée (ou promeut) le premier super-admin de la console éditeur, sans passer par le dashboard ni le SQL.
 //
-//   npm run admin:create -- vous@exemple.com "MotDePasse12+" "Nom complet"
+//   npm run admin:create -- 31177008 "MotDePasse" "Nom complet"
 //
 // Variables lues dans supabase/functions/.env (ignoré par Git) ou dans l'environnement :
 //   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (clé secrète du projet : jamais loguée ni envoyée à une app)
-// À sa première connexion sur app_admin, l'enrôlement du 2FA TOTP est obligatoire.
+// Connexion sur app_admin : numéro de téléphone (nom d'utilisateur) + mot de passe (8 caractères minimum).
+// Relancer le script avec un compte existant remplace son mot de passe et le promeut super-admin.
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,13 +23,20 @@ function lireEnv(fichier) {
   return env;
 }
 
-const [, , email, motDePasse, nom = 'Éditeur'] = process.argv;
-if (!email?.includes('@') || !motDePasse) {
-  console.error('Usage : npm run admin:create -- <email> <mot_de_passe_12+_caractères> ["Nom complet"]');
+function normaliserTelephone(saisie) {
+  let chiffres = String(saisie ?? '').replace(/\D/g, '');
+  if (chiffres.startsWith('00')) chiffres = chiffres.slice(2);
+  return chiffres.length <= 8 ? `222${chiffres}` : chiffres;
+}
+
+const [, , telephoneBrut, motDePasse, nom = 'Éditeur'] = process.argv;
+const telephone = normaliserTelephone(telephoneBrut);
+if (!/^[0-9]{8,15}$/.test(telephone) || !motDePasse) {
+  console.error('Usage : npm run admin:create -- <téléphone> <mot_de_passe_8+_caractères> ["Nom complet"]');
   process.exit(1);
 }
-if (motDePasse.length < 12) {
-  console.error('Le mot de passe doit contenir au moins 12 caractères.');
+if (motDePasse.length < 8) {
+  console.error('Le mot de passe doit contenir au moins 8 caractères.');
   process.exit(1);
 }
 
@@ -52,12 +60,13 @@ async function appeler(methode, chemin, corps, extra = {}) {
   return { ok: reponse.ok, statut: reponse.status, json, texte };
 }
 
-const adresse = email.trim().toLowerCase();
+// Même identifiant technique que la console et la fonction admin-create-staff.
+const adresse = `${telephone}@admin.invalid`;
 let utilisateurId;
 const creation = await appeler('POST', '/auth/v1/admin/users', { email: adresse, password: motDePasse, email_confirm: true });
 if (creation.ok) {
   utilisateurId = creation.json.id;
-  console.log(`Utilisateur Auth créé : ${adresse}`);
+  console.log(`Super-admin créé : ${telephone}`);
 } else if (creation.statut === 422 || /already|exists|registered/i.test(creation.texte)) {
   const liste = await appeler('GET', '/auth/v1/admin/users?page=1&per_page=1000');
   utilisateurId = liste.json?.users?.find((u) => u.email?.toLowerCase() === adresse)?.id;
@@ -65,7 +74,12 @@ if (creation.ok) {
     console.error('Utilisateur existant introuvable :', liste.texte);
     process.exit(1);
   }
-  console.log(`Utilisateur Auth déjà existant : ${adresse} (promu super-admin ; mot de passe inchangé)`);
+  const maj = await appeler('PUT', `/auth/v1/admin/users/${utilisateurId}`, { password: motDePasse });
+  if (!maj.ok) {
+    console.error(`Mot de passe non modifié (${maj.statut}) :`, maj.texte);
+    process.exit(1);
+  }
+  console.log(`Compte existant ${telephone} : mot de passe remplacé, promu super-admin.`);
 } else {
   console.error(`Création impossible (${creation.statut}) :`, creation.texte);
   process.exit(1);
@@ -74,11 +88,11 @@ if (creation.ok) {
 const profil = await appeler(
   'POST',
   '/rest/v1/profils?on_conflict=id',
-  { id: utilisateurId, nom_fr: nom, email: adresse, role_plateforme: 'super_admin', actif: true },
+  { id: utilisateurId, nom_fr: nom, telephone, role_plateforme: 'super_admin', actif: true },
   { Prefer: 'resolution=merge-duplicates,return=minimal' },
 );
 if (!profil.ok) {
   console.error(`Profil non enregistré (${profil.statut}) — les migrations sont-elles appliquées (npm run db:push) ?`, profil.texte);
   process.exit(1);
 }
-console.log('Super-admin prêt. Connectez-vous sur app_admin : l\'enrôlement TOTP sera demandé.');
+console.log(`Super-admin prêt. Connectez-vous sur app_admin avec le numéro ${telephone} et ce mot de passe.`);

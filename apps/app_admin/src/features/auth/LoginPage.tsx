@@ -5,7 +5,7 @@ import { useAuth } from './AuthProvider'
 export function LoginPage() {
   const { t } = useTranslation()
   const { seConnecter } = useAuth()
-  const [email, setEmail] = useState('')
+  const [telephone, setTelephone] = useState('')
   const [motDePasse, setMotDePasse] = useState('')
   const [erreur, setErreur] = useState<string | null>(null)
   const [envoi, setEnvoi] = useState(false)
@@ -15,7 +15,7 @@ export function LoginPage() {
     setErreur(null)
     setEnvoi(true)
     try {
-      await seConnecter(email.trim(), motDePasse)
+      await seConnecter(telephone.trim(), motDePasse)
     } catch {
       setErreur(t('auth.identifiants_invalides'))
     } finally {
@@ -29,9 +29,9 @@ export function LoginPage() {
         <h1 className="text-xl font-bold">{t('app.titre')}</h1>
         <h2 className="text-discret">{t('auth.titre')}</h2>
         <div>
-          <label className="etiquette" htmlFor="email">{t('auth.email')}</label>
-          <input id="email" className="input" type="email" autoComplete="username" required value={email}
-            onChange={(e) => setEmail(e.target.value)} dir="ltr" />
+          <label className="etiquette" htmlFor="telephone">{t('auth.telephone')}</label>
+          <input id="telephone" className="input" type="tel" inputMode="tel" autoComplete="username" required value={telephone}
+            onChange={(e) => setTelephone(e.target.value)} dir="ltr" />
         </div>
         <div>
           <label className="etiquette" htmlFor="mdp">{t('auth.mot_de_passe')}</label>
