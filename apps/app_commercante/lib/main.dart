@@ -17,6 +17,7 @@ import 'features/auth/presentation/auth_controller.dart';
 import 'features/boot/boot_controller.dart';
 import 'features/customers/customers_controller.dart';
 import 'features/pos/cart_controller.dart';
+import 'core/push/push_service.dart';
 import 'features/pos/cash_session_controller.dart';
 import 'features/printing/thermal_printer_service.dart';
 import 'features/pos/data/sales_service.dart';
@@ -39,6 +40,7 @@ Future<void> main() async {
   Get.put<AppDatabase>(db, permanent: true);
   final shop = Get.put(ShopController(client, db), permanent: true);
   final sync = Get.put(SyncService(client, db, shop), permanent: true);
+  Get.put(PushService(client, shop), permanent: true);
   Get.put(CartController(db, shop, SalesService(db, shop, sync)), permanent: true);
   Get.put(CashSessionController(client, db, shop, sync), permanent: true);
   Get.put(CustomersController(client, db, shop, sync), permanent: true);

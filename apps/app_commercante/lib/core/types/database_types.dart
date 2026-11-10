@@ -376,6 +376,7 @@ abstract final class Rpc {
   static const enregistrerClient = 'enregistrer_client';
   static const enregistrerDepense = 'enregistrer_depense';
   static const enregistrerEchecConnexion = 'enregistrer_echec_connexion';
+  static const enregistrerJetonFcm = 'enregistrer_jeton_fcm';
   static const enregistrerPaiement = 'enregistrer_paiement';
   static const enregistrerPaiementAbonnement =
       'enregistrer_paiement_abonnement';

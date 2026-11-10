@@ -79,7 +79,7 @@ Le même appel peut être fait par n'importe quel planificateur (`curl -X POST -
 
 **Push de nouvelle commande** : les notifications in-app sont créées par un trigger ; pour le push FCM, créer dans *Database → Webhooks* un webhook sur `INSERT` de `public.commandes` vers `…/functions/v1/on-order-created` avec l'en-tête `x-cron-secret: <WEBHOOK_SECRET>`.
 
-**Firebase** : créer un projet Firebase, ajouter l'app Android (`google-services.json` dans `apps/app_commercante/android/app/`), générer une clé de compte de service (Paramètres du projet → Comptes de service) et la placer dans `FCM_SERVICE_ACCOUNT`. Sans cela, les notifications in-app fonctionnent et le push est simplement ignoré.
+**Firebase** : créer un projet Firebase et y ajouter l'app Android. Côté serveur : générer une clé de compte de service (Paramètres du projet → Comptes de service) et la placer dans `FCM_SERVICE_ACCOUNT`. Côté application : renseigner dans `apps/app_commercante/.env` les identifiants **publics** `FCM_API_KEY`, `FCM_APP_ID`, `FCM_SENDER_ID`, `FCM_PROJECT_ID` (aucun fichier `google-services.json` ni plugin Gradle requis : Firebase est initialisé par `--dart-define`). Sans ces valeurs, les notifications in-app fonctionnent et le push est simplement désactivé.
 
 **Domaines personnalisés** : la commerçante saisit son domaine (plan qui l'autorise) ; `domain-verify` lit le DNS (DNS-over-HTTPS) et exige un `CNAME` vers `DOMAIN_CNAME_TARGET` (ou un `A` listé dans `DOMAIN_A_TARGETS`), puis rattache le domaine au projet Vercel si `VERCEL_TOKEN` et `VERCEL_PROJECT_ID` sont définis ; sinon le SSL reste « en attente ».
 

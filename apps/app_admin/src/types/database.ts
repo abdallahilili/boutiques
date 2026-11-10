@@ -2745,6 +2745,13 @@ export type Database = {
       }
         Returns: string
       }
+      enregistrer_jeton_fcm: {
+        Args: {
+        p_appareil: string
+        p_jeton: string
+      }
+        Returns: undefined
+      }
       enregistrer_paiement: {
         Args: {
         p_donnees: Json

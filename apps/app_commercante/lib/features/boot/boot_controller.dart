@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 
+import '../../core/push/push_service.dart';
 import '../../core/session/shop_controller.dart';
 import '../pos/cash_session_controller.dart';
 import '../../core/sync/sync_service.dart';
@@ -26,7 +27,10 @@ class BootController extends GetxController {
     await _shop.load();
     if (_shop.active.value == null) return BootDestination.noShop;
     await _cashSession.restore();
-    unawaited(_shop.registerDevice(Platform.isIOS ? 'ios' : 'android').catchError((Object _) {}));
+    // L'appareil est enregistré avant le jeton FCM (le jeton est rattaché à cette ligne).
+    unawaited(_shop.registerDevice(Platform.isIOS ? 'ios' : 'android').then((_) async {
+      if (Get.isRegistered<PushService>()) await Get.find<PushService>().start();
+    }).catchError((Object _) {}));
     unawaited(_sync.syncAll());
     return destination();
   }
