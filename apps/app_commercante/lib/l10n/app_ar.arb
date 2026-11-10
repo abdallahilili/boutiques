@@ -711,5 +711,20 @@
   "categoriesOrder": "ترتيب الفئات (سحب وإفلات)",
   "productsOnline": "المنتجات المعروضة في الموقع",
   "pinnedFirst": "مثبّت في الأعلى",
-  "pinnedOrderHint": "تظهر المنتجات المثبّتة في الأعلى بالترتيب أدناه."
+  "pinnedOrderHint": "تظهر المنتجات المثبّتة في الأعلى بالترتيب أدناه.",
+  "printerSettings": "طابعة حرارية بلوتوث",
+  "printerNotSelected": "لم يتم اختيار طابعة",
+  "printerForget": "إلغاء الطابعة",
+  "paperWidth": "عرض الورق",
+  "printTest": "طباعة تذكرة تجريبية",
+  "printerPaired": "الطابعات المقترنة",
+  "printerPairHint": "اقرن الطابعة أولاً من إعدادات البلوتوث في الهاتف ثم اخترها هنا.",
+  "printerNoneFound": "لا توجد طابعة مقترنة",
+  "printerUnsupported": "الطباعة عبر البلوتوث متاحة على أندرويد فقط",
+  "printerBluetoothOff": "فعّل البلوتوث في الهاتف",
+  "printerPermission": "اسمح للتطبيق باستخدام البلوتوث من إعدادات الهاتف",
+  "printerConnectionFailed": "تعذّر الاتصال بالطابعة: تأكد من تشغيلها وقربها",
+  "printerWriteFailed": "توقفت الطباعة",
+  "printSent": "تم إرسال الطباعة",
+  "printThermal": "طباعة (تذكرة بلوتوث)"
 }

@@ -18,6 +18,7 @@ import 'features/boot/boot_controller.dart';
 import 'features/customers/customers_controller.dart';
 import 'features/pos/cart_controller.dart';
 import 'features/pos/cash_session_controller.dart';
+import 'features/printing/thermal_printer_service.dart';
 import 'features/pos/data/sales_service.dart';
 
 Future<void> main() async {
@@ -33,6 +34,7 @@ Future<void> main() async {
   // Injection de dépendances GetX : services et contrôleurs de durée de vie « application ».
   Get.put(LocaleController(prefs), permanent: true);
   Get.put(ThemeController(prefs), permanent: true);
+  Get.put(ThermalPrinterService(prefs), permanent: true);
   Get.put<SupabaseClient>(client, permanent: true);
   Get.put<AppDatabase>(db, permanent: true);
   final shop = Get.put(ShopController(client, db), permanent: true);

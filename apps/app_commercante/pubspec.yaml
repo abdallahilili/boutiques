@@ -51,6 +51,7 @@ dependencies:
   path: ^1.9.1
   connectivity_plus: ^7.3.2
   image_picker: ^1.2.4
+  print_bluetooth_thermal: ^1.2.5
 
 dev_dependencies:
   flutter_test:

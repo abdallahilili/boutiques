@@ -1777,4 +1777,52 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get pinnedOrderHint =>
       'تظهر المنتجات المثبّتة في الأعلى بالترتيب أدناه.';
+
+  @override
+  String get printerSettings => 'طابعة حرارية بلوتوث';
+
+  @override
+  String get printerNotSelected => 'لم يتم اختيار طابعة';
+
+  @override
+  String get printerForget => 'إلغاء الطابعة';
+
+  @override
+  String get paperWidth => 'عرض الورق';
+
+  @override
+  String get printTest => 'طباعة تذكرة تجريبية';
+
+  @override
+  String get printerPaired => 'الطابعات المقترنة';
+
+  @override
+  String get printerPairHint =>
+      'اقرن الطابعة أولاً من إعدادات البلوتوث في الهاتف ثم اخترها هنا.';
+
+  @override
+  String get printerNoneFound => 'لا توجد طابعة مقترنة';
+
+  @override
+  String get printerUnsupported => 'الطباعة عبر البلوتوث متاحة على أندرويد فقط';
+
+  @override
+  String get printerBluetoothOff => 'فعّل البلوتوث في الهاتف';
+
+  @override
+  String get printerPermission =>
+      'اسمح للتطبيق باستخدام البلوتوث من إعدادات الهاتف';
+
+  @override
+  String get printerConnectionFailed =>
+      'تعذّر الاتصال بالطابعة: تأكد من تشغيلها وقربها';
+
+  @override
+  String get printerWriteFailed => 'توقفت الطباعة';
+
+  @override
+  String get printSent => 'تم إرسال الطباعة';
+
+  @override
+  String get printThermal => 'طباعة (تذكرة بلوتوث)';
 }

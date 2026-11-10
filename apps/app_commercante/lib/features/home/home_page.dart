@@ -199,6 +199,7 @@ class MoreTab extends StatelessWidget {
           item(Icons.palette_outlined, l10n.menuReferentials, Routes.referentials, visible: shop.can('referentiels.lire')),
           item(Icons.notifications_outlined, l10n.menuNotifications, Routes.notifications),
           item(Icons.sync, l10n.menuSync, Routes.sync),
+          item(Icons.print_outlined, l10n.printerSettings, Routes.printer),
           item(Icons.brightness_6_outlined, l10n.appearance, Routes.appearance),
           item(Icons.settings_outlined, l10n.menuSettings, Routes.settings, visible: shop.can('parametres.lire')),
           const Divider(),

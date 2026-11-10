@@ -583,5 +583,20 @@
   "categoriesOrder": "Ordre des catégories (glisser-déposer)",
   "productsOnline": "Produits affichés sur le site",
   "pinnedFirst": "Épinglé en tête",
-  "pinnedOrderHint": "Les produits épinglés apparaissent en tête, dans l'ordre ci-dessous."
+  "pinnedOrderHint": "Les produits épinglés apparaissent en tête, dans l'ordre ci-dessous.",
+  "printerSettings": "Imprimante thermique Bluetooth",
+  "printerNotSelected": "Aucune imprimante choisie",
+  "printerForget": "Oublier l'imprimante",
+  "paperWidth": "Largeur du papier",
+  "printTest": "Imprimer un ticket d'essai",
+  "printerPaired": "Imprimantes appairées",
+  "printerPairHint": "Appairez d'abord l'imprimante dans les réglages Bluetooth du téléphone, puis choisissez-la ici.",
+  "printerNoneFound": "Aucune imprimante appairée",
+  "printerUnsupported": "L'impression Bluetooth n'est disponible que sur Android",
+  "printerBluetoothOff": "Activez le Bluetooth du téléphone",
+  "printerPermission": "Autorisez l'accès au Bluetooth pour l'application dans les réglages du téléphone",
+  "printerConnectionFailed": "Connexion à l'imprimante impossible : vérifiez qu'elle est allumée et à portée",
+  "printerWriteFailed": "L'impression a été interrompue",
+  "printSent": "Impression envoyée",
+  "printThermal": "Imprimer (ticket Bluetooth)"
 }

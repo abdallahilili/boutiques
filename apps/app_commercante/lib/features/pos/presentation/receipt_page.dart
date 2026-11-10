@@ -4,10 +4,13 @@ import 'package:printing/printing.dart';
 
 import '../../../core/routing/app_pages.dart';
 import '../../../core/session/shop_controller.dart';
+import '../../../core/widgets/common.dart';
 import '../../../core/util/contact.dart';
 import '../../../core/util/format.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../documents/data/invoice_pdf.dart';
+import '../../printing/printer_page.dart' show printFailureMessage;
+import '../../printing/thermal_printer_service.dart';
 import '../../documents/domain/invoice_data.dart';
 import '../data/sales_service.dart';
 
@@ -31,6 +34,23 @@ class InvoiceActions extends StatelessWidget {
     await Printing.layoutPdf(onLayout: (format) => buildInvoicePdf(invoice, arabic: arabic, theme: theme, format: format, logo: logo), name: invoice.number ?? 'facture');
   }
 
+  /// Impression thermique Bluetooth : sans imprimante choisie, ouvre les réglages de l'imprimante.
+  Future<void> _thermal(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final arabic = Localizations.localeOf(context).languageCode == 'ar';
+    final printer = Get.find<ThermalPrinterService>();
+    if (!printer.hasPrinter) {
+      Get.toNamed<void>(Routes.printer);
+      return;
+    }
+    try {
+      await printer.printInvoice(invoice, arabic: arabic, logo: await Get.find<ShopController>().loadLogoBytes());
+      showMessage(l10n.printSent);
+    } catch (e) {
+      showMessage(printFailureMessage(l10n, e), error: true);
+    }
+  }
+
   Future<void> _whatsapp(BuildContext context) async {
     final arabic = Localizations.localeOf(context).languageCode == 'ar';
     await openWhatsapp(customerPhone, invoice.summaryText(arabic: arabic));
@@ -43,6 +63,7 @@ class InvoiceActions extends StatelessWidget {
       FilledButton.icon(onPressed: () => _share(context), icon: const Icon(Icons.share), label: Text(l10n.sharePdf)),
       OutlinedButton.icon(onPressed: () => _whatsapp(context), icon: const Icon(Icons.chat), label: Text(l10n.whatsappMessage)),
       OutlinedButton.icon(onPressed: () => _print(context), icon: const Icon(Icons.print_outlined), label: Text(l10n.printInvoice)),
+      if (Get.find<ThermalPrinterService>().supported) OutlinedButton.icon(onPressed: () => _thermal(context), icon: const Icon(Icons.bluetooth), label: Text(l10n.printThermal)),
     ]);
   }
 }

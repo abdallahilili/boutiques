@@ -3517,6 +3517,96 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تظهر المنتجات المثبّتة في الأعلى بالترتيب أدناه.'**
   String get pinnedOrderHint;
+
+  /// No description provided for @printerSettings.
+  ///
+  /// In ar, this message translates to:
+  /// **'طابعة حرارية بلوتوث'**
+  String get printerSettings;
+
+  /// No description provided for @printerNotSelected.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم يتم اختيار طابعة'**
+  String get printerNotSelected;
+
+  /// No description provided for @printerForget.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء الطابعة'**
+  String get printerForget;
+
+  /// No description provided for @paperWidth.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض الورق'**
+  String get paperWidth;
+
+  /// No description provided for @printTest.
+  ///
+  /// In ar, this message translates to:
+  /// **'طباعة تذكرة تجريبية'**
+  String get printTest;
+
+  /// No description provided for @printerPaired.
+  ///
+  /// In ar, this message translates to:
+  /// **'الطابعات المقترنة'**
+  String get printerPaired;
+
+  /// No description provided for @printerPairHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'اقرن الطابعة أولاً من إعدادات البلوتوث في الهاتف ثم اخترها هنا.'**
+  String get printerPairHint;
+
+  /// No description provided for @printerNoneFound.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد طابعة مقترنة'**
+  String get printerNoneFound;
+
+  /// No description provided for @printerUnsupported.
+  ///
+  /// In ar, this message translates to:
+  /// **'الطباعة عبر البلوتوث متاحة على أندرويد فقط'**
+  String get printerUnsupported;
+
+  /// No description provided for @printerBluetoothOff.
+  ///
+  /// In ar, this message translates to:
+  /// **'فعّل البلوتوث في الهاتف'**
+  String get printerBluetoothOff;
+
+  /// No description provided for @printerPermission.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسمح للتطبيق باستخدام البلوتوث من إعدادات الهاتف'**
+  String get printerPermission;
+
+  /// No description provided for @printerConnectionFailed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر الاتصال بالطابعة: تأكد من تشغيلها وقربها'**
+  String get printerConnectionFailed;
+
+  /// No description provided for @printerWriteFailed.
+  ///
+  /// In ar, this message translates to:
+  /// **'توقفت الطباعة'**
+  String get printerWriteFailed;
+
+  /// No description provided for @printSent.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم إرسال الطباعة'**
+  String get printSent;
+
+  /// No description provided for @printThermal.
+  ///
+  /// In ar, this message translates to:
+  /// **'طباعة (تذكرة بلوتوث)'**
+  String get printThermal;
 }
 
 class _AppLocalizationsDelegate

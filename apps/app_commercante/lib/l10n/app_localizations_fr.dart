@@ -1800,4 +1800,53 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get pinnedOrderHint =>
       'Les produits épinglés apparaissent en tête, dans l\'ordre ci-dessous.';
+
+  @override
+  String get printerSettings => 'Imprimante thermique Bluetooth';
+
+  @override
+  String get printerNotSelected => 'Aucune imprimante choisie';
+
+  @override
+  String get printerForget => 'Oublier l\'imprimante';
+
+  @override
+  String get paperWidth => 'Largeur du papier';
+
+  @override
+  String get printTest => 'Imprimer un ticket d\'essai';
+
+  @override
+  String get printerPaired => 'Imprimantes appairées';
+
+  @override
+  String get printerPairHint =>
+      'Appairez d\'abord l\'imprimante dans les réglages Bluetooth du téléphone, puis choisissez-la ici.';
+
+  @override
+  String get printerNoneFound => 'Aucune imprimante appairée';
+
+  @override
+  String get printerUnsupported =>
+      'L\'impression Bluetooth n\'est disponible que sur Android';
+
+  @override
+  String get printerBluetoothOff => 'Activez le Bluetooth du téléphone';
+
+  @override
+  String get printerPermission =>
+      'Autorisez l\'accès au Bluetooth pour l\'application dans les réglages du téléphone';
+
+  @override
+  String get printerConnectionFailed =>
+      'Connexion à l\'imprimante impossible : vérifiez qu\'elle est allumée et à portée';
+
+  @override
+  String get printerWriteFailed => 'L\'impression a été interrompue';
+
+  @override
+  String get printSent => 'Impression envoyée';
+
+  @override
+  String get printThermal => 'Imprimer (ticket Bluetooth)';
 }
