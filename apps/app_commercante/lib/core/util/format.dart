@@ -20,9 +20,15 @@ String formatMoney(num value, {required String currency, int? decimals}) {
 /// Quantité sans décimales inutiles (3 → « 3 », 2.5 → « 2.5 »).
 String formatQuantity(num value) => value == value.roundToDouble() ? value.toStringAsFixed(0) : value.toStringAsFixed(3).replaceFirst(RegExp(r'0+$'), '');
 
+/// Remplace les chiffres arabo-indiens (٠-٩) et persans (۰-۹) par 0-9 : l'application affiche toujours des chiffres occidentaux.
+String westernDigits(String text) => text.replaceAllMapped(RegExp('[٠-٩۰-۹]'), (m) {
+      final c = m[0]!.codeUnitAt(0);
+      return String.fromCharCode(0x30 + (c >= 0x06F0 ? c - 0x06F0 : c - 0x0660));
+    });
+
 String formatDate(DateTime value, Locale locale, {bool time = false}) {
   final tag = locale.languageCode;
-  return (time ? DateFormat.yMd(tag).add_Hm() : DateFormat.yMd(tag)).format(value.toLocal());
+  return westernDigits((time ? DateFormat.yMd(tag).add_Hm() : DateFormat.yMd(tag)).format(value.toLocal()));
 }
 
 /// Lit un nombre renvoyé par PostgREST (int, double ou chaîne numérique).

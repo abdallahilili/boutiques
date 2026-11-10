@@ -16,10 +16,14 @@ export function descriptionLocalisee(ligne: { description_ar?: string | null; de
   return nomLocalise({ nom_ar: ligne.description_ar, nom_fr: ligne.description_fr }, langue)
 }
 
+/** Locales d'affichage : chiffres occidentaux (0-9) toujours, y compris en arabe (`nu-latn`). */
+export const LOCALE_AFFICHAGE: Record<string, string> = { ar: 'ar-u-nu-latn', fr: 'fr-FR' }
+const localeDe = (langue: string) => LOCALE_AFFICHAGE[langue] ?? LOCALE_AFFICHAGE.fr
+
 /** Montant dans la devise de la boutique (MRU sans décimales). */
 export function formaterMontant(montant: number, devise: string, langue: string): string {
   try {
-    return new Intl.NumberFormat(langue === 'ar' ? 'ar-MR' : 'fr-FR', {
+    return new Intl.NumberFormat(localeDe(langue), {
       style: 'currency', currency: devise, maximumFractionDigits: devise === 'MRU' ? 0 : 2,
     }).format(montant)
   } catch {
@@ -28,7 +32,7 @@ export function formaterMontant(montant: number, devise: string, langue: string)
 }
 
 export function formaterDate(valeur: string, langue: string): string {
-  return new Intl.DateTimeFormat(langue === 'ar' ? 'ar-MR' : 'fr-FR', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(valeur))
+  return new Intl.DateTimeFormat(localeDe(langue), { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(valeur))
 }
 
 /**
