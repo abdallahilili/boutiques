@@ -1324,4 +1324,73 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chooseCustomer => 'Choisir une cliente (facultatif)';
+
+  @override
+  String get menuTransfers => 'Transferts de stock';
+
+  @override
+  String get transfersReceived => 'Reçus';
+
+  @override
+  String get transfersSent => 'Envoyés';
+
+  @override
+  String get newTransfer => 'Nouveau transfert';
+
+  @override
+  String get sendTransfer => 'Envoyer le transfert';
+
+  @override
+  String get recipientHint => 'Code boutique ou téléphone de la destinataire';
+
+  @override
+  String get transferHint =>
+      'Le stock sort immédiatement de votre boutique. La destinataire accepte (le stock entre chez elle) ou refuse (il vous revient).';
+
+  @override
+  String get transferPrice => 'Prix de transfert';
+
+  @override
+  String get transferPending => 'En attente';
+
+  @override
+  String get transferCancelled => 'Annulé';
+
+  @override
+  String get transferFrom => 'De';
+
+  @override
+  String get transferTo => 'Vers';
+
+  @override
+  String get mapToProduct => 'Associer à un produit';
+
+  @override
+  String get createProduct => 'Créer le produit';
+
+  @override
+  String get salePriceLabel => 'Prix de vente';
+
+  @override
+  String get acceptTransfer => 'Accepter';
+
+  @override
+  String get refuseTransfer => 'Refuser le transfert';
+
+  @override
+  String get cancelTransfer => 'Annuler le transfert';
+
+  @override
+  String get transferSent => 'Transfert envoyé';
+
+  @override
+  String get transferAnswered => 'Réponse enregistrée';
+
+  @override
+  String get transferInvalid =>
+      'Indiquez la destinataire et au moins un article';
+
+  @override
+  String get transferExceedsStock =>
+      'Une quantité dépasse le stock affiché. Envoyer quand même ?';
 }

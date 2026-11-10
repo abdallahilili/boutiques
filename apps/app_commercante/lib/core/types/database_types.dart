@@ -371,6 +371,7 @@ abstract final class Rpc {
   static const creerBoutiqueAvecDefauts = 'creer_boutique_avec_defauts';
   static const creerCommercanteAvecBoutique = 'creer_commercante_avec_boutique';
   static const creerDevis = 'creer_devis';
+  static const detailTransfert = 'detail_transfert';
   static const enregistrerEchecConnexion = 'enregistrer_echec_connexion';
   static const enregistrerPaiement = 'enregistrer_paiement';
   static const enregistrerPaiementAbonnement =
@@ -385,6 +386,7 @@ abstract final class Rpc {
   static const inviterMembre = 'inviter_membre';
   static const joindreJustificatifCommande = 'joindre_justificatif_commande';
   static const limiterRequete = 'limiter_requete';
+  static const listeTransferts = 'liste_transferts';
   static const mesPermissions = 'mes_permissions';
   static const modifierDevis = 'modifier_devis';
   static const ouvrirSessionCaisse = 'ouvrir_session_caisse';

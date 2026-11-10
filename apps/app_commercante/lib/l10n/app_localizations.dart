@@ -2581,6 +2581,138 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'اختر زبونة (اختياري)'**
   String get chooseCustomer;
+
+  /// No description provided for @menuTransfers.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحويلات المخزون'**
+  String get menuTransfers;
+
+  /// No description provided for @transfersReceived.
+  ///
+  /// In ar, this message translates to:
+  /// **'الواردة'**
+  String get transfersReceived;
+
+  /// No description provided for @transfersSent.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصادرة'**
+  String get transfersSent;
+
+  /// No description provided for @newTransfer.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحويل جديد'**
+  String get newTransfer;
+
+  /// No description provided for @sendTransfer.
+  ///
+  /// In ar, this message translates to:
+  /// **'إرسال التحويل'**
+  String get sendTransfer;
+
+  /// No description provided for @recipientHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'رمز المتجر أو هاتف المستلمة'**
+  String get recipientHint;
+
+  /// No description provided for @transferHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'يخرج المخزون من متجرك فوراً. تقبل المستلمة (فيدخل مخزونها) أو ترفض (فيعود إليك).'**
+  String get transferHint;
+
+  /// No description provided for @transferPrice.
+  ///
+  /// In ar, this message translates to:
+  /// **'سعر التحويل'**
+  String get transferPrice;
+
+  /// No description provided for @transferPending.
+  ///
+  /// In ar, this message translates to:
+  /// **'قيد الانتظار'**
+  String get transferPending;
+
+  /// No description provided for @transferCancelled.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملغى'**
+  String get transferCancelled;
+
+  /// No description provided for @transferFrom.
+  ///
+  /// In ar, this message translates to:
+  /// **'من'**
+  String get transferFrom;
+
+  /// No description provided for @transferTo.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلى'**
+  String get transferTo;
+
+  /// No description provided for @mapToProduct.
+  ///
+  /// In ar, this message translates to:
+  /// **'ربط بمنتج'**
+  String get mapToProduct;
+
+  /// No description provided for @createProduct.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنشاء المنتج'**
+  String get createProduct;
+
+  /// No description provided for @salePriceLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'سعر البيع'**
+  String get salePriceLabel;
+
+  /// No description provided for @acceptTransfer.
+  ///
+  /// In ar, this message translates to:
+  /// **'قبول'**
+  String get acceptTransfer;
+
+  /// No description provided for @refuseTransfer.
+  ///
+  /// In ar, this message translates to:
+  /// **'رفض التحويل'**
+  String get refuseTransfer;
+
+  /// No description provided for @cancelTransfer.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء التحويل'**
+  String get cancelTransfer;
+
+  /// No description provided for @transferSent.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم إرسال التحويل'**
+  String get transferSent;
+
+  /// No description provided for @transferAnswered.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تسجيل الرد'**
+  String get transferAnswered;
+
+  /// No description provided for @transferInvalid.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدّد المستلمة ومنتجاً واحداً على الأقل'**
+  String get transferInvalid;
+
+  /// No description provided for @transferExceedsStock.
+  ///
+  /// In ar, this message translates to:
+  /// **'كمية تتجاوز المخزون المعروض. هل تريد الإرسال؟'**
+  String get transferExceedsStock;
 }
 
 class _AppLocalizationsDelegate

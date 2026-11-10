@@ -2712,6 +2712,13 @@ export type Database = {
       }
         Returns: Json
       }
+      detail_transfert: {
+        Args: {
+        p_boutique: string
+        p_id: string
+      }
+        Returns: Json
+      }
       enregistrer_echec_connexion: {
         Args: {
         p_identifiant: string
@@ -2798,6 +2805,12 @@ export type Database = {
         p_fenetre_secondes: number
       }
         Returns: undefined
+      }
+      liste_transferts: {
+        Args: {
+        p_boutique: string
+      }
+        Returns: Json
       }
       mes_permissions: {
         Args: {

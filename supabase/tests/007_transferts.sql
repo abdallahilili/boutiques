@@ -1,7 +1,7 @@
 -- Phase 2 : transferts de stock entre deux boutiques (envoi, acceptation, refus, annulation, isolation).
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(22);
+select plan(26);
 
 insert into auth.users (id, email) values
   ('a0000000-0000-0000-0000-00000000000a', 'owner-a@test.local'),
@@ -96,6 +96,15 @@ select public.envoyer_transfert(jsonb_build_object('id', 'e1000000-0000-0000-000
   'lignes', jsonb_build_array(jsonb_build_object('variante_id', 'a4000000-0000-0000-0000-000000000001', 'quantite', 2))));
 select public.annuler_transfert('e1000000-0000-0000-0000-000000000002');
 select is(pg_temp.stock_a(), 6::numeric, 'annulation : le stock revient à l''émettrice');
+reset role;
+
+-- Lecture applicative : liste et détail avec le nom de l'autre boutique, sans coût
+select set_config('request.jwt.claims', '{"sub":"b0000000-0000-0000-0000-00000000000b","role":"authenticated"}', true);
+set local role authenticated;
+select is((public.liste_transferts('b2000000-0000-0000-0000-000000000001') -> 0 ->> 'sens'), 'recu', 'liste côté destinataire : transfert reçu');
+select is((public.liste_transferts('b2000000-0000-0000-0000-000000000001') -> 0 -> 'autre_boutique' ->> 'nom_fr'), 'Boutique A', 'nom de l''émettrice visible');
+select is((public.detail_transfert('b2000000-0000-0000-0000-000000000001', 'e1000000-0000-0000-0000-000000000001') -> 'lignes' -> 0 ->> 'prix_unitaire')::numeric, 300::numeric, 'détail : prix de transfert (pas de coût)');
+select throws_like($$select public.detail_transfert('c2000000-0000-0000-0000-000000000001', 'e1000000-0000-0000-0000-000000000001')$$, 'acces_refuse%', 'une autre boutique ne lit pas le détail');
 reset role;
 
 select * from finish();

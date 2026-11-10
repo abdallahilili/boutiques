@@ -1303,4 +1303,72 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseCustomer => 'اختر زبونة (اختياري)';
+
+  @override
+  String get menuTransfers => 'تحويلات المخزون';
+
+  @override
+  String get transfersReceived => 'الواردة';
+
+  @override
+  String get transfersSent => 'الصادرة';
+
+  @override
+  String get newTransfer => 'تحويل جديد';
+
+  @override
+  String get sendTransfer => 'إرسال التحويل';
+
+  @override
+  String get recipientHint => 'رمز المتجر أو هاتف المستلمة';
+
+  @override
+  String get transferHint =>
+      'يخرج المخزون من متجرك فوراً. تقبل المستلمة (فيدخل مخزونها) أو ترفض (فيعود إليك).';
+
+  @override
+  String get transferPrice => 'سعر التحويل';
+
+  @override
+  String get transferPending => 'قيد الانتظار';
+
+  @override
+  String get transferCancelled => 'ملغى';
+
+  @override
+  String get transferFrom => 'من';
+
+  @override
+  String get transferTo => 'إلى';
+
+  @override
+  String get mapToProduct => 'ربط بمنتج';
+
+  @override
+  String get createProduct => 'إنشاء المنتج';
+
+  @override
+  String get salePriceLabel => 'سعر البيع';
+
+  @override
+  String get acceptTransfer => 'قبول';
+
+  @override
+  String get refuseTransfer => 'رفض التحويل';
+
+  @override
+  String get cancelTransfer => 'إلغاء التحويل';
+
+  @override
+  String get transferSent => 'تم إرسال التحويل';
+
+  @override
+  String get transferAnswered => 'تم تسجيل الرد';
+
+  @override
+  String get transferInvalid => 'حدّد المستلمة ومنتجاً واحداً على الأقل';
+
+  @override
+  String get transferExceedsStock =>
+      'كمية تتجاوز المخزون المعروض. هل تريد الإرسال؟';
 }

@@ -23,6 +23,7 @@ import '../../features/settings/settings_pages.dart';
 import '../../features/stock/presentation/stock_adjust_page.dart';
 import '../../features/stock/presentation/stock_entry_page.dart';
 import '../../features/stock/presentation/variant_stock_page.dart';
+import '../../features/transfers/presentation/transfers_pages.dart';
 import '../../features/sync/sync_page.dart';
 
 abstract final class Routes {
@@ -52,6 +53,9 @@ abstract final class Routes {
   static const appearance = '/apparence';
   static const notifications = '/notifications';
   static const sync = '/synchronisation';
+  static const transfers = '/transferts';
+  static const transferForm = '/transferts/nouveau';
+  static const transferDetail = '/transferts/detail';
 }
 
 /// Redirige vers la connexion si aucune session n'est ouverte.
@@ -90,5 +94,8 @@ abstract final class AppPages {
     _page(Routes.appearance, AppearancePage.new),
     _page(Routes.notifications, NotificationsPage.new),
     _page(Routes.sync, SyncPage.new),
+    _page(Routes.transfers, TransfersPage.new),
+    _page(Routes.transferForm, TransferFormPage.new),
+    _page(Routes.transferDetail, TransferDetailPage.new),
   ];
 }
