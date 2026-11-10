@@ -59,6 +59,7 @@ Pour changer de projet Supabase, modifier `--project-ref` dans le script `db:lin
 | `npm run dev` / `dev:admin` / `dev:boutique` / `dev:mobile` | Lance l'application correspondante |
 | `npm run db:login` / `db:link` / `db:push` | Connexion, liaison et migrations du projet Supabase |
 | `npm run admin:create -- <téléphone> <mdp> <nom>` | Crée le premier super-admin de la console |
+| `npm run seed:demo` | Données fictives de démonstration (2 boutiques, catalogue, stock, ventes, commandes ; code PIN 1234) |
 | `npm run functions:secrets` / `functions:deploy` / `deploy` | Secrets et déploiement des Edge Functions |
 | `npm run gen:types` | Régénère les types TypeScript (web) et Dart (mobile) depuis les migrations |
 | `npm test` | Toutes les suites (SQL, Deno, Vitest ×2, Flutter) ; chacune aussi seule : `test:db`, `test:functions`, `test:admin`, `test:boutique`, `test:mobile` |

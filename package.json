@@ -16,6 +16,7 @@
     "functions:deploy": "supabase functions deploy",
     "deploy": "npm run db:push && npm run functions:secrets && npm run functions:deploy",
     "admin:create": "node scripts/create-super-admin.mjs",
+    "seed:demo": "node scripts/seed-demo.mjs",
     "gen:types": "node scripts/gen_types.mjs",
     "test": "npm run test:db && npm run test:functions && npm run test:admin && npm run test:boutique && npm run test:mobile",
     "test:db": "node scripts/test_db.mjs",
