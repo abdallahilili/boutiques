@@ -1518,4 +1518,263 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get discrepancyHint =>
       'مبيعات تمت مزامنتها والمخزون غير كافٍ: أكّد لإعادة المخزون إلى الصفر.';
+
+  @override
+  String get menuSite => 'المتجر الإلكتروني';
+
+  @override
+  String get siteGeneral => 'عام والنطاق';
+
+  @override
+  String get siteAppearance => 'الهوية البصرية والقالب';
+
+  @override
+  String get siteBanners => 'اللافتات';
+
+  @override
+  String get siteSections => 'أقسام الصفحة الرئيسية';
+
+  @override
+  String get sitePages => 'الصفحات (من نحن، التوصيل…)';
+
+  @override
+  String get siteSales => 'إعدادات البيع';
+
+  @override
+  String get siteCatalog => 'الكتالوج على الإنترنت';
+
+  @override
+  String get sitePublished => 'الموقع منشور (ظاهر للزبونات)';
+
+  @override
+  String get siteUrl => 'عنوان الموقع';
+
+  @override
+  String get domainNotConfigured => 'غير مهيأ';
+
+  @override
+  String get domainPending => 'قيد الانتظار';
+
+  @override
+  String get domainVerified => 'تم التحقق';
+
+  @override
+  String get domainError => 'خطأ';
+
+  @override
+  String get verifyDomain => 'التحقق من النطاق';
+
+  @override
+  String get dnsInstructions => 'أضف سجل DNS هذا لدى مزوّد النطاق ثم تحقق:';
+
+  @override
+  String get domainInvalid => 'اسم نطاق غير صالح (مثال: maboutique.com)';
+
+  @override
+  String get socialLinks => 'الشبكات الاجتماعية (الروابط)';
+
+  @override
+  String get openingHours => 'أوقات العمل (مثال: الإثنين-السبت: 9-19)';
+
+  @override
+  String get primaryColor => 'اللون الأساسي';
+
+  @override
+  String get secondaryColor => 'اللون الثانوي';
+
+  @override
+  String get backgroundColor => 'لون الخلفية';
+
+  @override
+  String get textColor => 'لون النص';
+
+  @override
+  String get fontLabel => 'الخط';
+
+  @override
+  String get fontSystem => 'عادي';
+
+  @override
+  String get fontSerif => 'كلاسيكي';
+
+  @override
+  String get fontNaskh => 'نسخ';
+
+  @override
+  String get fontRounded => 'مستدير';
+
+  @override
+  String get radiusLabel => 'شكل الأزرار والزوايا';
+
+  @override
+  String get radiusNone => 'حاد';
+
+  @override
+  String get radiusSmall => 'صغير';
+
+  @override
+  String get radiusMedium => 'متوسط';
+
+  @override
+  String get radiusLarge => 'كبير';
+
+  @override
+  String get radiusPill => 'كبسولة';
+
+  @override
+  String get cardStyleLabel => 'نمط بطاقات المنتجات';
+
+  @override
+  String get cardBorder => 'إطار';
+
+  @override
+  String get cardShadow => 'ظل';
+
+  @override
+  String get cardMinimal => 'بسيط';
+
+  @override
+  String get headerLabel => 'الترويسة';
+
+  @override
+  String get headerCenter => 'وسط';
+
+  @override
+  String get headerLeft => 'جانبية';
+
+  @override
+  String get gridLabel => 'أعمدة المنتجات';
+
+  @override
+  String get themeLabel => 'القالب';
+
+  @override
+  String get previewLabel => 'معاينة';
+
+  @override
+  String get saveDraft => 'حفظ المسودة';
+
+  @override
+  String get publishChanges => 'نشر';
+
+  @override
+  String get draftSaved => 'تم حفظ المسودة';
+
+  @override
+  String get draftPublished => 'تم نشر التعديلات';
+
+  @override
+  String get unpublishedDraft => 'مسودة غير منشورة';
+
+  @override
+  String get faviconLabel => 'أيقونة الموقع';
+
+  @override
+  String get addBanner => 'إضافة لافتة';
+
+  @override
+  String get bannerLink => 'رابط (اختياري)';
+
+  @override
+  String get bannerTitle => 'عنوان اللافتة';
+
+  @override
+  String get sectionBanner => 'اللافتة';
+
+  @override
+  String get sectionFeaturedCategories => 'الفئات المميزة';
+
+  @override
+  String get sectionNew => 'الجديد';
+
+  @override
+  String get sectionPromotions => 'العروض';
+
+  @override
+  String get sectionPopular => 'الأكثر مبيعاً';
+
+  @override
+  String get sectionAbout => 'من نحن';
+
+  @override
+  String get sectionContact => 'اتصل بنا';
+
+  @override
+  String get sectionTitleFr => 'العنوان (بالفرنسية)';
+
+  @override
+  String get sectionTitleAr => 'العنوان (بالعربية)';
+
+  @override
+  String get contentFr => 'المحتوى (بالفرنسية)';
+
+  @override
+  String get contentAr => 'المحتوى (بالعربية)';
+
+  @override
+  String get addSection => 'إضافة قسم';
+
+  @override
+  String get addPage => 'صفحة جديدة';
+
+  @override
+  String get pageSlug => 'عنوان الصفحة (أحرف صغيرة وأرقام وشرطات)';
+
+  @override
+  String get pageSlugInvalid => 'عنوان غير صالح (مثال: about)';
+
+  @override
+  String get deliveryEnabled => 'التوصيل للمنزل';
+
+  @override
+  String get pickupEnabled => 'الاستلام من المتجر';
+
+  @override
+  String get cashOnDelivery => 'الدفع عند الاستلام';
+
+  @override
+  String get mobileMoneyEnabled => 'الدفع بالمحفظة الإلكترونية (مع إثبات)';
+
+  @override
+  String get paymentInstructionsAr => 'تعليمات الدفع (بالعربية)';
+
+  @override
+  String get paymentInstructionsFr => 'تعليمات الدفع (بالفرنسية)';
+
+  @override
+  String get minimumOrder => 'الحد الأدنى للطلب';
+
+  @override
+  String get showStockOnline => 'إظهار «متوفر» في الموقع';
+
+  @override
+  String get hideSoldOut => 'إخفاء المنتجات المنتهية';
+
+  @override
+  String get confirmationMessageFr => 'رسالة التأكيد (بالفرنسية)';
+
+  @override
+  String get confirmationMessageAr => 'رسالة التأكيد (بالعربية)';
+
+  @override
+  String get deliveryZones => 'مناطق التوصيل';
+
+  @override
+  String get addZone => 'إضافة منطقة';
+
+  @override
+  String get zoneFee => 'رسوم التوصيل';
+
+  @override
+  String get categoriesOrder => 'ترتيب الفئات (سحب وإفلات)';
+
+  @override
+  String get productsOnline => 'المنتجات المعروضة في الموقع';
+
+  @override
+  String get pinnedFirst => 'مثبّت في الأعلى';
+
+  @override
+  String get pinnedOrderHint =>
+      'تظهر المنتجات المثبّتة في الأعلى بالترتيب أدناه.';
 }

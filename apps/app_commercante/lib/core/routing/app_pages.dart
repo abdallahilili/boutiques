@@ -24,6 +24,8 @@ import '../../features/settings/appearance_page.dart';
 import '../../features/settings/settings_pages.dart';
 import '../../features/stock/presentation/stock_adjust_page.dart';
 import '../../features/stock/presentation/stock_entry_page.dart';
+import '../../features/site/presentation/site_content_pages.dart';
+import '../../features/site/presentation/site_pages.dart';
 import '../../features/stock/presentation/variant_stock_page.dart';
 import '../../features/transfers/presentation/transfers_pages.dart';
 import '../../features/sync/sync_page.dart';
@@ -55,6 +57,14 @@ abstract final class Routes {
   static const appearance = '/apparence';
   static const notifications = '/notifications';
   static const sync = '/synchronisation';
+  static const site = '/site';
+  static const siteGeneral = '/site/general';
+  static const siteAppearance = '/site/apparence';
+  static const siteBanners = '/site/bannieres';
+  static const siteSections = '/site/sections';
+  static const sitePages = '/site/pages';
+  static const siteSales = '/site/vente';
+  static const siteCatalog = '/site/catalogue';
   static const reports = '/rapports';
   static const expenses = '/depenses';
   static const transfers = '/transferts';
@@ -98,6 +108,14 @@ abstract final class AppPages {
     _page(Routes.appearance, AppearancePage.new),
     _page(Routes.notifications, NotificationsPage.new),
     _page(Routes.sync, SyncPage.new),
+    _page(Routes.site, SitePage.new),
+    _page(Routes.siteGeneral, SiteGeneralPage.new),
+    _page(Routes.siteAppearance, SiteAppearancePage.new),
+    _page(Routes.siteBanners, SiteBannersPage.new),
+    _page(Routes.siteSections, SiteSectionsPage.new),
+    _page(Routes.sitePages, SitePagesPage.new),
+    _page(Routes.siteSales, SiteSalesPage.new),
+    _page(Routes.siteCatalog, SiteCatalogPage.new),
     _page(Routes.reports, ReportsPage.new),
     _page(Routes.expenses, ExpensesPage.new),
     _page(Routes.transfers, TransfersPage.new),

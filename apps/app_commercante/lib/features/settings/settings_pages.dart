@@ -3,6 +3,7 @@ import 'package:get/get.dart' hide Value;
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/routing/app_pages.dart';
 import '../../core/session/shop_controller.dart';
 import '../../core/types/database_types.dart';
 import '../../core/util/contact.dart';
@@ -202,6 +203,8 @@ class OnlineStorePage extends StatelessWidget {
             const Divider(),
             ListTile(leading: const Icon(Icons.dns_outlined), title: Text(l10n.customDomain), subtitle: Text(d?['domaine_personnalise'] as String? ?? l10n.none, textDirection: TextDirection.ltr), trailing: d?['domaine_personnalise'] == null ? null : Text('${d?['statut_dns']}')),
             ListTile(leading: const Icon(Icons.qr_code_2), title: Text(l10n.shopCode), subtitle: Text(shop.active.value?.codeBoutique ?? '', textDirection: TextDirection.ltr)),
+            const Divider(),
+            ListTile(leading: const Icon(Icons.storefront_outlined), title: Text(l10n.menuSite), trailing: const Icon(Icons.chevron_right), onTap: () => Get.toNamed<void>(Routes.site)),
           ]);
         },
       ),

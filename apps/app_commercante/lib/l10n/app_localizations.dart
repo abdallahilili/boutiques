@@ -3001,6 +3001,522 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مبيعات تمت مزامنتها والمخزون غير كافٍ: أكّد لإعادة المخزون إلى الصفر.'**
   String get discrepancyHint;
+
+  /// No description provided for @menuSite.
+  ///
+  /// In ar, this message translates to:
+  /// **'المتجر الإلكتروني'**
+  String get menuSite;
+
+  /// No description provided for @siteGeneral.
+  ///
+  /// In ar, this message translates to:
+  /// **'عام والنطاق'**
+  String get siteGeneral;
+
+  /// No description provided for @siteAppearance.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهوية البصرية والقالب'**
+  String get siteAppearance;
+
+  /// No description provided for @siteBanners.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللافتات'**
+  String get siteBanners;
+
+  /// No description provided for @siteSections.
+  ///
+  /// In ar, this message translates to:
+  /// **'أقسام الصفحة الرئيسية'**
+  String get siteSections;
+
+  /// No description provided for @sitePages.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصفحات (من نحن، التوصيل…)'**
+  String get sitePages;
+
+  /// No description provided for @siteSales.
+  ///
+  /// In ar, this message translates to:
+  /// **'إعدادات البيع'**
+  String get siteSales;
+
+  /// No description provided for @siteCatalog.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكتالوج على الإنترنت'**
+  String get siteCatalog;
+
+  /// No description provided for @sitePublished.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموقع منشور (ظاهر للزبونات)'**
+  String get sitePublished;
+
+  /// No description provided for @siteUrl.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان الموقع'**
+  String get siteUrl;
+
+  /// No description provided for @domainNotConfigured.
+  ///
+  /// In ar, this message translates to:
+  /// **'غير مهيأ'**
+  String get domainNotConfigured;
+
+  /// No description provided for @domainPending.
+  ///
+  /// In ar, this message translates to:
+  /// **'قيد الانتظار'**
+  String get domainPending;
+
+  /// No description provided for @domainVerified.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم التحقق'**
+  String get domainVerified;
+
+  /// No description provided for @domainError.
+  ///
+  /// In ar, this message translates to:
+  /// **'خطأ'**
+  String get domainError;
+
+  /// No description provided for @verifyDomain.
+  ///
+  /// In ar, this message translates to:
+  /// **'التحقق من النطاق'**
+  String get verifyDomain;
+
+  /// No description provided for @dnsInstructions.
+  ///
+  /// In ar, this message translates to:
+  /// **'أضف سجل DNS هذا لدى مزوّد النطاق ثم تحقق:'**
+  String get dnsInstructions;
+
+  /// No description provided for @domainInvalid.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسم نطاق غير صالح (مثال: maboutique.com)'**
+  String get domainInvalid;
+
+  /// No description provided for @socialLinks.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشبكات الاجتماعية (الروابط)'**
+  String get socialLinks;
+
+  /// No description provided for @openingHours.
+  ///
+  /// In ar, this message translates to:
+  /// **'أوقات العمل (مثال: الإثنين-السبت: 9-19)'**
+  String get openingHours;
+
+  /// No description provided for @primaryColor.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللون الأساسي'**
+  String get primaryColor;
+
+  /// No description provided for @secondaryColor.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللون الثانوي'**
+  String get secondaryColor;
+
+  /// No description provided for @backgroundColor.
+  ///
+  /// In ar, this message translates to:
+  /// **'لون الخلفية'**
+  String get backgroundColor;
+
+  /// No description provided for @textColor.
+  ///
+  /// In ar, this message translates to:
+  /// **'لون النص'**
+  String get textColor;
+
+  /// No description provided for @fontLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الخط'**
+  String get fontLabel;
+
+  /// No description provided for @fontSystem.
+  ///
+  /// In ar, this message translates to:
+  /// **'عادي'**
+  String get fontSystem;
+
+  /// No description provided for @fontSerif.
+  ///
+  /// In ar, this message translates to:
+  /// **'كلاسيكي'**
+  String get fontSerif;
+
+  /// No description provided for @fontNaskh.
+  ///
+  /// In ar, this message translates to:
+  /// **'نسخ'**
+  String get fontNaskh;
+
+  /// No description provided for @fontRounded.
+  ///
+  /// In ar, this message translates to:
+  /// **'مستدير'**
+  String get fontRounded;
+
+  /// No description provided for @radiusLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'شكل الأزرار والزوايا'**
+  String get radiusLabel;
+
+  /// No description provided for @radiusNone.
+  ///
+  /// In ar, this message translates to:
+  /// **'حاد'**
+  String get radiusNone;
+
+  /// No description provided for @radiusSmall.
+  ///
+  /// In ar, this message translates to:
+  /// **'صغير'**
+  String get radiusSmall;
+
+  /// No description provided for @radiusMedium.
+  ///
+  /// In ar, this message translates to:
+  /// **'متوسط'**
+  String get radiusMedium;
+
+  /// No description provided for @radiusLarge.
+  ///
+  /// In ar, this message translates to:
+  /// **'كبير'**
+  String get radiusLarge;
+
+  /// No description provided for @radiusPill.
+  ///
+  /// In ar, this message translates to:
+  /// **'كبسولة'**
+  String get radiusPill;
+
+  /// No description provided for @cardStyleLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'نمط بطاقات المنتجات'**
+  String get cardStyleLabel;
+
+  /// No description provided for @cardBorder.
+  ///
+  /// In ar, this message translates to:
+  /// **'إطار'**
+  String get cardBorder;
+
+  /// No description provided for @cardShadow.
+  ///
+  /// In ar, this message translates to:
+  /// **'ظل'**
+  String get cardShadow;
+
+  /// No description provided for @cardMinimal.
+  ///
+  /// In ar, this message translates to:
+  /// **'بسيط'**
+  String get cardMinimal;
+
+  /// No description provided for @headerLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الترويسة'**
+  String get headerLabel;
+
+  /// No description provided for @headerCenter.
+  ///
+  /// In ar, this message translates to:
+  /// **'وسط'**
+  String get headerCenter;
+
+  /// No description provided for @headerLeft.
+  ///
+  /// In ar, this message translates to:
+  /// **'جانبية'**
+  String get headerLeft;
+
+  /// No description provided for @gridLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'أعمدة المنتجات'**
+  String get gridLabel;
+
+  /// No description provided for @themeLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'القالب'**
+  String get themeLabel;
+
+  /// No description provided for @previewLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'معاينة'**
+  String get previewLabel;
+
+  /// No description provided for @saveDraft.
+  ///
+  /// In ar, this message translates to:
+  /// **'حفظ المسودة'**
+  String get saveDraft;
+
+  /// No description provided for @publishChanges.
+  ///
+  /// In ar, this message translates to:
+  /// **'نشر'**
+  String get publishChanges;
+
+  /// No description provided for @draftSaved.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم حفظ المسودة'**
+  String get draftSaved;
+
+  /// No description provided for @draftPublished.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم نشر التعديلات'**
+  String get draftPublished;
+
+  /// No description provided for @unpublishedDraft.
+  ///
+  /// In ar, this message translates to:
+  /// **'مسودة غير منشورة'**
+  String get unpublishedDraft;
+
+  /// No description provided for @faviconLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'أيقونة الموقع'**
+  String get faviconLabel;
+
+  /// No description provided for @addBanner.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة لافتة'**
+  String get addBanner;
+
+  /// No description provided for @bannerLink.
+  ///
+  /// In ar, this message translates to:
+  /// **'رابط (اختياري)'**
+  String get bannerLink;
+
+  /// No description provided for @bannerTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان اللافتة'**
+  String get bannerTitle;
+
+  /// No description provided for @sectionBanner.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللافتة'**
+  String get sectionBanner;
+
+  /// No description provided for @sectionFeaturedCategories.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفئات المميزة'**
+  String get sectionFeaturedCategories;
+
+  /// No description provided for @sectionNew.
+  ///
+  /// In ar, this message translates to:
+  /// **'الجديد'**
+  String get sectionNew;
+
+  /// No description provided for @sectionPromotions.
+  ///
+  /// In ar, this message translates to:
+  /// **'العروض'**
+  String get sectionPromotions;
+
+  /// No description provided for @sectionPopular.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأكثر مبيعاً'**
+  String get sectionPopular;
+
+  /// No description provided for @sectionAbout.
+  ///
+  /// In ar, this message translates to:
+  /// **'من نحن'**
+  String get sectionAbout;
+
+  /// No description provided for @sectionContact.
+  ///
+  /// In ar, this message translates to:
+  /// **'اتصل بنا'**
+  String get sectionContact;
+
+  /// No description provided for @sectionTitleFr.
+  ///
+  /// In ar, this message translates to:
+  /// **'العنوان (بالفرنسية)'**
+  String get sectionTitleFr;
+
+  /// No description provided for @sectionTitleAr.
+  ///
+  /// In ar, this message translates to:
+  /// **'العنوان (بالعربية)'**
+  String get sectionTitleAr;
+
+  /// No description provided for @contentFr.
+  ///
+  /// In ar, this message translates to:
+  /// **'المحتوى (بالفرنسية)'**
+  String get contentFr;
+
+  /// No description provided for @contentAr.
+  ///
+  /// In ar, this message translates to:
+  /// **'المحتوى (بالعربية)'**
+  String get contentAr;
+
+  /// No description provided for @addSection.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة قسم'**
+  String get addSection;
+
+  /// No description provided for @addPage.
+  ///
+  /// In ar, this message translates to:
+  /// **'صفحة جديدة'**
+  String get addPage;
+
+  /// No description provided for @pageSlug.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان الصفحة (أحرف صغيرة وأرقام وشرطات)'**
+  String get pageSlug;
+
+  /// No description provided for @pageSlugInvalid.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان غير صالح (مثال: about)'**
+  String get pageSlugInvalid;
+
+  /// No description provided for @deliveryEnabled.
+  ///
+  /// In ar, this message translates to:
+  /// **'التوصيل للمنزل'**
+  String get deliveryEnabled;
+
+  /// No description provided for @pickupEnabled.
+  ///
+  /// In ar, this message translates to:
+  /// **'الاستلام من المتجر'**
+  String get pickupEnabled;
+
+  /// No description provided for @cashOnDelivery.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدفع عند الاستلام'**
+  String get cashOnDelivery;
+
+  /// No description provided for @mobileMoneyEnabled.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدفع بالمحفظة الإلكترونية (مع إثبات)'**
+  String get mobileMoneyEnabled;
+
+  /// No description provided for @paymentInstructionsAr.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعليمات الدفع (بالعربية)'**
+  String get paymentInstructionsAr;
+
+  /// No description provided for @paymentInstructionsFr.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعليمات الدفع (بالفرنسية)'**
+  String get paymentInstructionsFr;
+
+  /// No description provided for @minimumOrder.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحد الأدنى للطلب'**
+  String get minimumOrder;
+
+  /// No description provided for @showStockOnline.
+  ///
+  /// In ar, this message translates to:
+  /// **'إظهار «متوفر» في الموقع'**
+  String get showStockOnline;
+
+  /// No description provided for @hideSoldOut.
+  ///
+  /// In ar, this message translates to:
+  /// **'إخفاء المنتجات المنتهية'**
+  String get hideSoldOut;
+
+  /// No description provided for @confirmationMessageFr.
+  ///
+  /// In ar, this message translates to:
+  /// **'رسالة التأكيد (بالفرنسية)'**
+  String get confirmationMessageFr;
+
+  /// No description provided for @confirmationMessageAr.
+  ///
+  /// In ar, this message translates to:
+  /// **'رسالة التأكيد (بالعربية)'**
+  String get confirmationMessageAr;
+
+  /// No description provided for @deliveryZones.
+  ///
+  /// In ar, this message translates to:
+  /// **'مناطق التوصيل'**
+  String get deliveryZones;
+
+  /// No description provided for @addZone.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة منطقة'**
+  String get addZone;
+
+  /// No description provided for @zoneFee.
+  ///
+  /// In ar, this message translates to:
+  /// **'رسوم التوصيل'**
+  String get zoneFee;
+
+  /// No description provided for @categoriesOrder.
+  ///
+  /// In ar, this message translates to:
+  /// **'ترتيب الفئات (سحب وإفلات)'**
+  String get categoriesOrder;
+
+  /// No description provided for @productsOnline.
+  ///
+  /// In ar, this message translates to:
+  /// **'المنتجات المعروضة في الموقع'**
+  String get productsOnline;
+
+  /// No description provided for @pinnedFirst.
+  ///
+  /// In ar, this message translates to:
+  /// **'مثبّت في الأعلى'**
+  String get pinnedFirst;
+
+  /// No description provided for @pinnedOrderHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'تظهر المنتجات المثبّتة في الأعلى بالترتيب أدناه.'**
+  String get pinnedOrderHint;
 }
 
 class _AppLocalizationsDelegate

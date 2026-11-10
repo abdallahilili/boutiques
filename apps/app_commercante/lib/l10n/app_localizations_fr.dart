@@ -1540,4 +1540,264 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get discrepancyHint =>
       'Ventes synchronisées alors que le stock était insuffisant : validez pour remettre le stock à zéro.';
+
+  @override
+  String get menuSite => 'Boutique en ligne';
+
+  @override
+  String get siteGeneral => 'Général et domaine';
+
+  @override
+  String get siteAppearance => 'Identité visuelle et thème';
+
+  @override
+  String get siteBanners => 'Bannières';
+
+  @override
+  String get siteSections => 'Sections de l\'accueil';
+
+  @override
+  String get sitePages => 'Pages (à propos, livraison…)';
+
+  @override
+  String get siteSales => 'Paramètres de vente';
+
+  @override
+  String get siteCatalog => 'Catalogue en ligne';
+
+  @override
+  String get sitePublished => 'Site publié (visible par les clientes)';
+
+  @override
+  String get siteUrl => 'Adresse du site';
+
+  @override
+  String get domainNotConfigured => 'Non configuré';
+
+  @override
+  String get domainPending => 'En attente';
+
+  @override
+  String get domainVerified => 'Vérifié';
+
+  @override
+  String get domainError => 'Erreur';
+
+  @override
+  String get verifyDomain => 'Vérifier le domaine';
+
+  @override
+  String get dnsInstructions =>
+      'Ajoutez cet enregistrement DNS chez votre registrar, puis vérifiez :';
+
+  @override
+  String get domainInvalid => 'Nom de domaine invalide (ex. maboutique.com)';
+
+  @override
+  String get socialLinks => 'Réseaux sociaux (adresses)';
+
+  @override
+  String get openingHours => 'Horaires (ex. Lun-Sam : 9h-19h)';
+
+  @override
+  String get primaryColor => 'Couleur principale';
+
+  @override
+  String get secondaryColor => 'Couleur secondaire';
+
+  @override
+  String get backgroundColor => 'Couleur du fond';
+
+  @override
+  String get textColor => 'Couleur du texte';
+
+  @override
+  String get fontLabel => 'Police';
+
+  @override
+  String get fontSystem => 'Standard';
+
+  @override
+  String get fontSerif => 'Classique (serif)';
+
+  @override
+  String get fontNaskh => 'Naskh (arabe)';
+
+  @override
+  String get fontRounded => 'Arrondie';
+
+  @override
+  String get radiusLabel => 'Forme des boutons et coins';
+
+  @override
+  String get radiusNone => 'Carré';
+
+  @override
+  String get radiusSmall => 'Petit';
+
+  @override
+  String get radiusMedium => 'Moyen';
+
+  @override
+  String get radiusLarge => 'Grand';
+
+  @override
+  String get radiusPill => 'Pilule';
+
+  @override
+  String get cardStyleLabel => 'Style des cartes produit';
+
+  @override
+  String get cardBorder => 'Bordure';
+
+  @override
+  String get cardShadow => 'Ombre';
+
+  @override
+  String get cardMinimal => 'Minimal';
+
+  @override
+  String get headerLabel => 'En-tête';
+
+  @override
+  String get headerCenter => 'Centré';
+
+  @override
+  String get headerLeft => 'À gauche';
+
+  @override
+  String get gridLabel => 'Colonnes de produits';
+
+  @override
+  String get themeLabel => 'Thème';
+
+  @override
+  String get previewLabel => 'Aperçu';
+
+  @override
+  String get saveDraft => 'Enregistrer le brouillon';
+
+  @override
+  String get publishChanges => 'Publier';
+
+  @override
+  String get draftSaved => 'Brouillon enregistré';
+
+  @override
+  String get draftPublished => 'Modifications publiées';
+
+  @override
+  String get unpublishedDraft => 'Brouillon non publié';
+
+  @override
+  String get faviconLabel => 'Icône du site (favicon)';
+
+  @override
+  String get addBanner => 'Ajouter une bannière';
+
+  @override
+  String get bannerLink => 'Lien (facultatif)';
+
+  @override
+  String get bannerTitle => 'Titre de la bannière';
+
+  @override
+  String get sectionBanner => 'Bannière';
+
+  @override
+  String get sectionFeaturedCategories => 'Catégories vedettes';
+
+  @override
+  String get sectionNew => 'Nouveautés';
+
+  @override
+  String get sectionPromotions => 'Promotions';
+
+  @override
+  String get sectionPopular => 'Produits populaires';
+
+  @override
+  String get sectionAbout => 'À propos';
+
+  @override
+  String get sectionContact => 'Contact';
+
+  @override
+  String get sectionTitleFr => 'Titre (français)';
+
+  @override
+  String get sectionTitleAr => 'Titre (arabe)';
+
+  @override
+  String get contentFr => 'Contenu (français)';
+
+  @override
+  String get contentAr => 'Contenu (arabe)';
+
+  @override
+  String get addSection => 'Ajouter une section';
+
+  @override
+  String get addPage => 'Nouvelle page';
+
+  @override
+  String get pageSlug => 'Adresse de la page (minuscules, chiffres, tirets)';
+
+  @override
+  String get pageSlugInvalid => 'Adresse invalide (ex. a-propos)';
+
+  @override
+  String get deliveryEnabled => 'Livraison à domicile';
+
+  @override
+  String get pickupEnabled => 'Retrait en boutique';
+
+  @override
+  String get cashOnDelivery => 'Paiement à la livraison';
+
+  @override
+  String get mobileMoneyEnabled => 'Paiement par mobile money (avec preuve)';
+
+  @override
+  String get paymentInstructionsAr => 'Instructions de paiement (arabe)';
+
+  @override
+  String get paymentInstructionsFr => 'Instructions de paiement (français)';
+
+  @override
+  String get minimumOrder => 'Commande minimale';
+
+  @override
+  String get showStockOnline => 'Afficher « en stock » sur le site';
+
+  @override
+  String get hideSoldOut => 'Masquer les produits épuisés';
+
+  @override
+  String get confirmationMessageFr => 'Message de confirmation (français)';
+
+  @override
+  String get confirmationMessageAr => 'Message de confirmation (arabe)';
+
+  @override
+  String get deliveryZones => 'Zones de livraison';
+
+  @override
+  String get addZone => 'Ajouter une zone';
+
+  @override
+  String get zoneFee => 'Frais de livraison';
+
+  @override
+  String get categoriesOrder => 'Ordre des catégories (glisser-déposer)';
+
+  @override
+  String get productsOnline => 'Produits affichés sur le site';
+
+  @override
+  String get pinnedFirst => 'Épinglé en tête';
+
+  @override
+  String get pinnedOrderHint =>
+      'Les produits épinglés apparaissent en tête, dans l\'ordre ci-dessous.';
 }
