@@ -8,6 +8,8 @@ import '../../features/boot/suspended_page.dart';
 import '../../features/catalog/presentation/product_form_page.dart';
 import '../../features/customers/presentation/customers_page.dart';
 import '../../features/documents/presentation/document_form_page.dart';
+import '../../features/expenses/expenses_page.dart';
+import '../../features/reports/presentation/reports_page.dart';
 import '../../features/documents/presentation/documents_pages.dart';
 import '../../features/home/home_page.dart';
 import '../../features/notifications/notifications_page.dart';
@@ -53,6 +55,8 @@ abstract final class Routes {
   static const appearance = '/apparence';
   static const notifications = '/notifications';
   static const sync = '/synchronisation';
+  static const reports = '/rapports';
+  static const expenses = '/depenses';
   static const transfers = '/transferts';
   static const transferForm = '/transferts/nouveau';
   static const transferDetail = '/transferts/detail';
@@ -94,6 +98,8 @@ abstract final class AppPages {
     _page(Routes.appearance, AppearancePage.new),
     _page(Routes.notifications, NotificationsPage.new),
     _page(Routes.sync, SyncPage.new),
+    _page(Routes.reports, ReportsPage.new),
+    _page(Routes.expenses, ExpensesPage.new),
     _page(Routes.transfers, TransfersPage.new),
     _page(Routes.transferForm, TransferFormPage.new),
     _page(Routes.transferDetail, TransferDetailPage.new),

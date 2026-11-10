@@ -21,6 +21,8 @@ abstract final class OutboxKind {
   static const payment = 'paiement';
   static const sessionOpen = 'session_ouvrir';
   static const sessionClose = 'session_fermer';
+  static const expense = 'depense';
+  static const customer = 'client';
 
   static String rpc(String kind) => switch (kind) {
         sale => Rpc.enregistrerVente,
@@ -29,6 +31,8 @@ abstract final class OutboxKind {
         payment => Rpc.enregistrerPaiement,
         sessionOpen => Rpc.ouvrirSessionCaisse,
         sessionClose => Rpc.fermerSessionCaisse,
+        expense => Rpc.enregistrerDepense,
+        customer => Rpc.enregistrerClient,
         _ => throw ArgumentError('Type d\'opération inconnu : $kind'),
       };
 
@@ -92,6 +96,7 @@ class SyncService extends GetxService {
     try {
       await pushOutbox();
       await pullCatalog();
+      await pullRecentDocuments();
       await ensureNumberRange(OutboxKindDocument.invoice);
       lastSync.value = DateTime.now();
       online.value = true;
@@ -170,6 +175,38 @@ class SyncService extends GetxService {
   }
 
   // ------------------------------------------------------------------- Lecture
+
+  /// Dernières ventes (30 documents avec lignes et paiements), gardées pour la consultation et la réimpression
+  /// hors ligne. Stockage clé/valeur : aucun schéma local supplémentaire.
+  Future<void> pullRecentDocuments() async {
+    final shopId = _shop.shopId;
+    final documents = await _client
+        .from(Tables.documentsVente)
+        .select()
+        .inFilter('type', ['facture', 'ticket', 'avoir', 'devis', 'bon_livraison'])
+        .eq('boutique_id', shopId)
+        .order('date_emission', ascending: false)
+        .limit(30);
+    if (documents.isEmpty) {
+      await _db.setMeta(recentDocumentsKey(shopId), '[]');
+      return;
+    }
+    final ids = [for (final d in documents) d['id'] as String];
+    final lines = await _client.from(Tables.lignesDocumentVenteVue).select().inFilter('document_id', ids).order('ordre');
+    final payments = await _client.from(Tables.paiements).select().inFilter('document_id', ids);
+    final bundles = [
+      for (final d in documents)
+        {
+          'document': d,
+          'lines': [for (final l in lines) if (l['document_id'] == d['id']) l],
+          'payments': [for (final p in payments) if (p['document_id'] == d['id']) p],
+        },
+    ];
+    await _db.setMeta(recentDocumentsKey(shopId), jsonEncode(bundles));
+  }
+
+  /// Clé du cache des documents récents d'une boutique.
+  static String recentDocumentsKey(String shopId) => 'recent_documents:$shopId';
 
   Future<List<Map<String, dynamic>>> _fetchAll(PostgrestTransformBuilder<PostgrestList> Function(int from, int to) page) async {
     const size = 1000;

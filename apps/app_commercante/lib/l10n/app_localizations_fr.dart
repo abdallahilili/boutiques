@@ -1393,4 +1393,151 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get transferExceedsStock =>
       'Une quantité dépasse le stock affiché. Envoyer quand même ?';
+
+  @override
+  String get menuReports => 'Rapports';
+
+  @override
+  String get menuExpenses => 'Dépenses';
+
+  @override
+  String get periodToday => 'Aujourd\'hui';
+
+  @override
+  String get periodWeek => '7 jours';
+
+  @override
+  String get periodMonth => 'Ce mois';
+
+  @override
+  String get periodCustom => 'Personnalisé';
+
+  @override
+  String get grossMargin => 'Marge brute';
+
+  @override
+  String get expensesTotal => 'Dépenses';
+
+  @override
+  String get netResult => 'Résultat';
+
+  @override
+  String get cashCollected => 'Encaissé';
+
+  @override
+  String get stockValue => 'Valeur du stock';
+
+  @override
+  String get supplierDebts => 'Dettes fournisseurs';
+
+  @override
+  String get reportByDay => 'Par jour';
+
+  @override
+  String get reportByProduct => 'Par produit';
+
+  @override
+  String get reportByCategory => 'Par catégorie';
+
+  @override
+  String get reportBySeller => 'Par vendeuse';
+
+  @override
+  String get reportByPayment => 'Par mode de paiement';
+
+  @override
+  String get reportByChannel => 'Par canal';
+
+  @override
+  String get reportBest => 'Meilleurs produits';
+
+  @override
+  String get reportDormant => 'Produits dormants';
+
+  @override
+  String get reportStockValue => 'Valeur du stock';
+
+  @override
+  String get reportUnpaid => 'Impayés et dettes';
+
+  @override
+  String get exportCsv => 'Exporter en CSV';
+
+  @override
+  String get exportPdf => 'Partager en PDF';
+
+  @override
+  String get colSales => 'Ventes';
+
+  @override
+  String get colMargin => 'Marge';
+
+  @override
+  String get colQuantity => 'Qté';
+
+  @override
+  String get colLastSale => 'Dernière vente';
+
+  @override
+  String get colValue => 'Valeur';
+
+  @override
+  String get customersOwing => 'Clientes débitrices';
+
+  @override
+  String get suppliersOwed => 'Fournisseurs à payer';
+
+  @override
+  String oldestDue(String date) {
+    return 'plus ancienne échéance : $date';
+  }
+
+  @override
+  String get channelCashier => 'Caisse';
+
+  @override
+  String get channelWeb => 'Site web';
+
+  @override
+  String get channelWhatsapp => 'WhatsApp';
+
+  @override
+  String get channelInstagram => 'Instagram';
+
+  @override
+  String get channelFacebook => 'Facebook';
+
+  @override
+  String get channelPhone => 'Téléphone';
+
+  @override
+  String get channelOther => 'Autre';
+
+  @override
+  String get newExpense => 'Nouvelle dépense';
+
+  @override
+  String get expenseCategory => 'Catégorie';
+
+  @override
+  String get expenseReason => 'Motif';
+
+  @override
+  String get expenseSaved => 'Dépense enregistrée';
+
+  @override
+  String get expenseQueued => 'Dépense enregistrée, envoi à la reconnexion';
+
+  @override
+  String get expensePending => 'En attente d\'envoi';
+
+  @override
+  String get stockDiscrepancies => 'Écarts de stock à valider';
+
+  @override
+  String get validateDiscrepancy => 'Valider l\'écart';
+
+  @override
+  String get discrepancyHint =>
+      'Ventes synchronisées alors que le stock était insuffisant : validez pour remettre le stock à zéro.';
 }

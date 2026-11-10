@@ -2713,6 +2713,294 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'كمية تتجاوز المخزون المعروض. هل تريد الإرسال؟'**
   String get transferExceedsStock;
+
+  /// No description provided for @menuReports.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقارير'**
+  String get menuReports;
+
+  /// No description provided for @menuExpenses.
+  ///
+  /// In ar, this message translates to:
+  /// **'المصاريف'**
+  String get menuExpenses;
+
+  /// No description provided for @periodToday.
+  ///
+  /// In ar, this message translates to:
+  /// **'اليوم'**
+  String get periodToday;
+
+  /// No description provided for @periodWeek.
+  ///
+  /// In ar, this message translates to:
+  /// **'7 أيام'**
+  String get periodWeek;
+
+  /// No description provided for @periodMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا الشهر'**
+  String get periodMonth;
+
+  /// No description provided for @periodCustom.
+  ///
+  /// In ar, this message translates to:
+  /// **'فترة مخصصة'**
+  String get periodCustom;
+
+  /// No description provided for @grossMargin.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهامش الإجمالي'**
+  String get grossMargin;
+
+  /// No description provided for @expensesTotal.
+  ///
+  /// In ar, this message translates to:
+  /// **'المصاريف'**
+  String get expensesTotal;
+
+  /// No description provided for @netResult.
+  ///
+  /// In ar, this message translates to:
+  /// **'النتيجة'**
+  String get netResult;
+
+  /// No description provided for @cashCollected.
+  ///
+  /// In ar, this message translates to:
+  /// **'المحصّل'**
+  String get cashCollected;
+
+  /// No description provided for @stockValue.
+  ///
+  /// In ar, this message translates to:
+  /// **'قيمة المخزون'**
+  String get stockValue;
+
+  /// No description provided for @supplierDebts.
+  ///
+  /// In ar, this message translates to:
+  /// **'ديون الموردين'**
+  String get supplierDebts;
+
+  /// No description provided for @reportByDay.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسب اليوم'**
+  String get reportByDay;
+
+  /// No description provided for @reportByProduct.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسب المنتج'**
+  String get reportByProduct;
+
+  /// No description provided for @reportByCategory.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسب الفئة'**
+  String get reportByCategory;
+
+  /// No description provided for @reportBySeller.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسب البائعة'**
+  String get reportBySeller;
+
+  /// No description provided for @reportByPayment.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسب طريقة الدفع'**
+  String get reportByPayment;
+
+  /// No description provided for @reportByChannel.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسب القناة'**
+  String get reportByChannel;
+
+  /// No description provided for @reportBest.
+  ///
+  /// In ar, this message translates to:
+  /// **'أفضل المنتجات'**
+  String get reportBest;
+
+  /// No description provided for @reportDormant.
+  ///
+  /// In ar, this message translates to:
+  /// **'منتجات راكدة'**
+  String get reportDormant;
+
+  /// No description provided for @reportStockValue.
+  ///
+  /// In ar, this message translates to:
+  /// **'قيمة المخزون'**
+  String get reportStockValue;
+
+  /// No description provided for @reportUnpaid.
+  ///
+  /// In ar, this message translates to:
+  /// **'المستحقات والديون'**
+  String get reportUnpaid;
+
+  /// No description provided for @exportCsv.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصدير CSV'**
+  String get exportCsv;
+
+  /// No description provided for @exportPdf.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة PDF'**
+  String get exportPdf;
+
+  /// No description provided for @colSales.
+  ///
+  /// In ar, this message translates to:
+  /// **'المبيعات'**
+  String get colSales;
+
+  /// No description provided for @colMargin.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهامش'**
+  String get colMargin;
+
+  /// No description provided for @colQuantity.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكمية'**
+  String get colQuantity;
+
+  /// No description provided for @colLastSale.
+  ///
+  /// In ar, this message translates to:
+  /// **'آخر بيع'**
+  String get colLastSale;
+
+  /// No description provided for @colValue.
+  ///
+  /// In ar, this message translates to:
+  /// **'القيمة'**
+  String get colValue;
+
+  /// No description provided for @customersOwing.
+  ///
+  /// In ar, this message translates to:
+  /// **'الزبونات المدينات'**
+  String get customersOwing;
+
+  /// No description provided for @suppliersOwed.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموردون المستحقون'**
+  String get suppliersOwed;
+
+  /// No description provided for @oldestDue.
+  ///
+  /// In ar, this message translates to:
+  /// **'أقدم استحقاق: {date}'**
+  String oldestDue(String date);
+
+  /// No description provided for @channelCashier.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصندوق'**
+  String get channelCashier;
+
+  /// No description provided for @channelWeb.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموقع'**
+  String get channelWeb;
+
+  /// No description provided for @channelWhatsapp.
+  ///
+  /// In ar, this message translates to:
+  /// **'واتساب'**
+  String get channelWhatsapp;
+
+  /// No description provided for @channelInstagram.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنستغرام'**
+  String get channelInstagram;
+
+  /// No description provided for @channelFacebook.
+  ///
+  /// In ar, this message translates to:
+  /// **'فيسبوك'**
+  String get channelFacebook;
+
+  /// No description provided for @channelPhone.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهاتف'**
+  String get channelPhone;
+
+  /// No description provided for @channelOther.
+  ///
+  /// In ar, this message translates to:
+  /// **'أخرى'**
+  String get channelOther;
+
+  /// No description provided for @newExpense.
+  ///
+  /// In ar, this message translates to:
+  /// **'مصروف جديد'**
+  String get newExpense;
+
+  /// No description provided for @expenseCategory.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفئة'**
+  String get expenseCategory;
+
+  /// No description provided for @expenseReason.
+  ///
+  /// In ar, this message translates to:
+  /// **'السبب'**
+  String get expenseReason;
+
+  /// No description provided for @expenseSaved.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تسجيل المصروف'**
+  String get expenseSaved;
+
+  /// No description provided for @expenseQueued.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تسجيل المصروف وسيُرسل عند عودة الاتصال'**
+  String get expenseQueued;
+
+  /// No description provided for @expensePending.
+  ///
+  /// In ar, this message translates to:
+  /// **'بانتظار الإرسال'**
+  String get expensePending;
+
+  /// No description provided for @stockDiscrepancies.
+  ///
+  /// In ar, this message translates to:
+  /// **'فروقات المخزون للتأكيد'**
+  String get stockDiscrepancies;
+
+  /// No description provided for @validateDiscrepancy.
+  ///
+  /// In ar, this message translates to:
+  /// **'تأكيد الفرق'**
+  String get validateDiscrepancy;
+
+  /// No description provided for @discrepancyHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'مبيعات تمت مزامنتها والمخزون غير كافٍ: أكّد لإعادة المخزون إلى الصفر.'**
+  String get discrepancyHint;
 }
 
 class _AppLocalizationsDelegate

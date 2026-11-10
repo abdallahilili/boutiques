@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart' show Value;
 import 'package:get/get.dart' hide Value;
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -37,14 +38,38 @@ class CustomersController extends GetxController {
   /// Création / modification (connexion requise) puis rafraîchissement du cache.
   Future<Map<String, dynamic>> save(Map<String, dynamic> values, {String? id}) async {
     final clean = {for (final e in values.entries) e.key: (e.value is String && (e.value as String).trim().isEmpty) ? null : e.value};
+    if (!_sync.online.value) return _saveQueued(clean, id);
     final Map<String, dynamic> saved;
-    if (id == null) {
-      saved = await _client.from(Tables.clients).insert({...clean, 'boutique_id': _shop.shopId, 'cree_par': _shop.userId}).select().single();
-    } else {
-      saved = await _client.from(Tables.clients).update(clean).eq('id', id).select().single();
+    try {
+      if (id == null) {
+        saved = await _client.from(Tables.clients).insert({...clean, 'boutique_id': _shop.shopId, 'cree_par': _shop.userId}).select().single();
+      } else {
+        saved = await _client.from(Tables.clients).update(clean).eq('id', id).select().single();
+      }
+    } catch (e) {
+      // Réseau coupé en cours d'envoi : la cliente est enregistrée localement et envoyée à la reconnexion.
+      if (isTransientError(e)) return _saveQueued(clean, id);
+      rethrow;
     }
     await _sync.syncAll();
     return saved;
+  }
+
+  /// Hors ligne : écriture dans le cache local puis outbox (RPC idempotente par identifiant de cliente).
+  Future<Map<String, dynamic>> _saveQueued(Map<String, dynamic> values, String? id) async {
+    final customerId = id ?? const Uuid().v4();
+    await _db.into(_db.localCustomers).insertOnConflictUpdate(LocalCustomersCompanion(
+      id: Value(customerId),
+      boutiqueId: Value(_shop.shopId),
+      nomAr: Value(values['nom_ar'] as String?),
+      nomFr: Value(values['nom_fr'] as String?),
+      telephone: Value(values['telephone'] as String?),
+      whatsapp: Value(values['whatsapp'] as String?),
+      ville: Value(values['ville'] as String?),
+      plafondCredit: Value(values['plafond_credit'] == null ? null : asDouble(values['plafond_credit'])),
+    ));
+    await _sync.enqueue(OutboxKind.customer, const Uuid().v4(), {...values, 'id': customerId, 'boutique_id': _shop.shopId});
+    return {...values, 'id': customerId};
   }
 
   /// Factures non soldées d'une cliente (serveur), de la plus ancienne à la plus récente.

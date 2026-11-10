@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Value;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/db/app_database.dart';
 import '../../core/session/shop_controller.dart';
@@ -7,6 +8,7 @@ import '../../core/sync/sync_service.dart';
 import '../../core/util/format.dart';
 import '../../core/widgets/common.dart';
 import '../../l10n/app_localizations.dart';
+import '../reports/data/reports_service.dart';
 
 /// État de la synchronisation : opérations en attente, opérations refusées par le serveur (relancer / abandonner).
 class SyncPage extends StatelessWidget {
@@ -51,7 +53,57 @@ class SyncPage extends StatelessWidget {
             ]);
           },
         ),
+        const Divider(),
+        const _StockDiscrepancies(),
       ]),
+    );
+  }
+}
+
+/// Écarts de stock : ventes synchronisées après coup alors que le stock était insuffisant (stock négatif).
+/// La commerçante valide chaque écart (le stock est remis à zéro par un mouvement tracé).
+class _StockDiscrepancies extends StatefulWidget {
+  const _StockDiscrepancies();
+
+  @override
+  State<_StockDiscrepancies> createState() => _StockDiscrepanciesState();
+}
+
+class _StockDiscrepanciesState extends State<_StockDiscrepancies> {
+  final _service = ReportsService(Get.find<SupabaseClient>());
+  final _shop = Get.find<ShopController>();
+  late Future<List<Map<String, dynamic>>> _future = _service.stockDiscrepancies(_shop.shopId);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final arabic = Localizations.localeOf(context).languageCode == 'ar';
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      future: _future,
+      builder: (context, snapshot) {
+        final items = snapshot.data ?? const <Map<String, dynamic>>[];
+        if (items.isEmpty) return const SizedBox.shrink();
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(padding: const EdgeInsets.fromLTRB(16, 8, 16, 0), child: Text(l10n.stockDiscrepancies, style: Theme.of(context).textTheme.titleMedium)),
+          Padding(padding: const EdgeInsets.fromLTRB(16, 4, 16, 8), child: Text(l10n.discrepancyHint, style: Theme.of(context).textTheme.bodySmall)),
+          for (final item in items)
+            ListTile(
+              leading: const Icon(Icons.warning_amber_outlined, color: Colors.orange),
+              title: Text(localName(item['libelle_ar'] as String?, item['libelle_fr'] as String?, arabic: arabic)),
+              subtitle: Text(formatQuantity(asDouble(item['quantite']))),
+              trailing: _shop.can('stock.ecrire')
+                  ? TextButton(
+                      onPressed: () async {
+                        await _service.validateDiscrepancy(_shop.shopId, item['variante_id'] as String);
+                        await Get.find<SyncService>().syncAll();
+                        if (mounted) setState(() => _future = _service.stockDiscrepancies(_shop.shopId));
+                      },
+                      child: Text(l10n.validateDiscrepancy),
+                    )
+                  : null,
+            ),
+        ]);
+      },
     );
   }
 }

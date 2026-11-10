@@ -1371,4 +1371,151 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get transferExceedsStock =>
       'كمية تتجاوز المخزون المعروض. هل تريد الإرسال؟';
+
+  @override
+  String get menuReports => 'التقارير';
+
+  @override
+  String get menuExpenses => 'المصاريف';
+
+  @override
+  String get periodToday => 'اليوم';
+
+  @override
+  String get periodWeek => '7 أيام';
+
+  @override
+  String get periodMonth => 'هذا الشهر';
+
+  @override
+  String get periodCustom => 'فترة مخصصة';
+
+  @override
+  String get grossMargin => 'الهامش الإجمالي';
+
+  @override
+  String get expensesTotal => 'المصاريف';
+
+  @override
+  String get netResult => 'النتيجة';
+
+  @override
+  String get cashCollected => 'المحصّل';
+
+  @override
+  String get stockValue => 'قيمة المخزون';
+
+  @override
+  String get supplierDebts => 'ديون الموردين';
+
+  @override
+  String get reportByDay => 'حسب اليوم';
+
+  @override
+  String get reportByProduct => 'حسب المنتج';
+
+  @override
+  String get reportByCategory => 'حسب الفئة';
+
+  @override
+  String get reportBySeller => 'حسب البائعة';
+
+  @override
+  String get reportByPayment => 'حسب طريقة الدفع';
+
+  @override
+  String get reportByChannel => 'حسب القناة';
+
+  @override
+  String get reportBest => 'أفضل المنتجات';
+
+  @override
+  String get reportDormant => 'منتجات راكدة';
+
+  @override
+  String get reportStockValue => 'قيمة المخزون';
+
+  @override
+  String get reportUnpaid => 'المستحقات والديون';
+
+  @override
+  String get exportCsv => 'تصدير CSV';
+
+  @override
+  String get exportPdf => 'مشاركة PDF';
+
+  @override
+  String get colSales => 'المبيعات';
+
+  @override
+  String get colMargin => 'الهامش';
+
+  @override
+  String get colQuantity => 'الكمية';
+
+  @override
+  String get colLastSale => 'آخر بيع';
+
+  @override
+  String get colValue => 'القيمة';
+
+  @override
+  String get customersOwing => 'الزبونات المدينات';
+
+  @override
+  String get suppliersOwed => 'الموردون المستحقون';
+
+  @override
+  String oldestDue(String date) {
+    return 'أقدم استحقاق: $date';
+  }
+
+  @override
+  String get channelCashier => 'الصندوق';
+
+  @override
+  String get channelWeb => 'الموقع';
+
+  @override
+  String get channelWhatsapp => 'واتساب';
+
+  @override
+  String get channelInstagram => 'إنستغرام';
+
+  @override
+  String get channelFacebook => 'فيسبوك';
+
+  @override
+  String get channelPhone => 'الهاتف';
+
+  @override
+  String get channelOther => 'أخرى';
+
+  @override
+  String get newExpense => 'مصروف جديد';
+
+  @override
+  String get expenseCategory => 'الفئة';
+
+  @override
+  String get expenseReason => 'السبب';
+
+  @override
+  String get expenseSaved => 'تم تسجيل المصروف';
+
+  @override
+  String get expenseQueued => 'تم تسجيل المصروف وسيُرسل عند عودة الاتصال';
+
+  @override
+  String get expensePending => 'بانتظار الإرسال';
+
+  @override
+  String get stockDiscrepancies => 'فروقات المخزون للتأكيد';
+
+  @override
+  String get validateDiscrepancy => 'تأكيد الفرق';
+
+  @override
+  String get discrepancyHint =>
+      'مبيعات تمت مزامنتها والمخزون غير كافٍ: أكّد لإعادة المخزون إلى الصفر.';
 }

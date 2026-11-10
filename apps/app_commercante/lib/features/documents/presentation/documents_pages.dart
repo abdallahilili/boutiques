@@ -14,6 +14,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../pos/presentation/receipt_page.dart' show InvoiceActions;
 import '../data/documents_service.dart';
 import '../data/invoice_pdf.dart' show documentTitle;
+import '../data/offline_documents.dart';
 import '../domain/document_payloads.dart';
 import '../domain/invoice_data.dart';
 import 'document_sheets.dart';
@@ -58,7 +59,17 @@ class _DocumentsPageState extends State<DocumentsPage> {
   final Set<String> _selected = {};
   late Future<List<Map<String, dynamic>>> _future = _load();
 
-  Future<List<Map<String, dynamic>>> _load() => _service.list(_family, unpaidOnly: _unpaidOnly && _family == DocumentFamily.invoices);
+  Future<List<Map<String, dynamic>>> _load() async {
+    final unpaid = _unpaidOnly && _family == DocumentFamily.invoices;
+    final offline = OfflineDocuments(Get.find<AppDatabase>());
+    if (!Get.find<SyncService>().online.value) return offline.list(_shop.shopId, _family, unpaidOnly: unpaid);
+    try {
+      return await _service.list(_family, unpaidOnly: unpaid);
+    } catch (e) {
+      if (isTransientError(e)) return offline.list(_shop.shopId, _family, unpaidOnly: unpaid);
+      rethrow;
+    }
+  }
 
   void _reload() => setState(() {
         _selected.clear();
@@ -180,8 +191,23 @@ class _DocumentDetailPageState extends State<DocumentDetailPage> {
   late Future<(DocumentBundle, InvoiceData)> _future = _load();
   bool _busy = false;
 
+  Future<DocumentBundle> _loadBundle() async {
+    final offline = OfflineDocuments(Get.find<AppDatabase>());
+    if (!Get.find<SyncService>().online.value) {
+      final cached = await offline.bundle(_shop.shopId, _id);
+      if (cached != null) return cached;
+    }
+    try {
+      return await _service.load(_id);
+    } catch (e) {
+      final cached = isTransientError(e) ? await offline.bundle(_shop.shopId, _id) : null;
+      if (cached != null) return cached;
+      rethrow;
+    }
+  }
+
   Future<(DocumentBundle, InvoiceData)> _load() async {
-    final bundle = await _service.load(_id);
+    final bundle = await _loadBundle();
     final modes = await Get.find<AppDatabase>().watchPaymentModes(_shop.shopId).first;
     final data = InvoiceData.fromServer(
       document: bundle.document,

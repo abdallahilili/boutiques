@@ -191,6 +191,8 @@ class MoreTab extends StatelessWidget {
     return Obx(() => ListView(children: [
           item(Icons.shopping_bag_outlined, l10n.menuOrders, Routes.orders, visible: shop.can('commandes.lire')),
           item(Icons.receipt_long_outlined, l10n.menuDocuments, Routes.documents, visible: shop.can('documents.creer')),
+          item(Icons.bar_chart, l10n.menuReports, Routes.reports, visible: shop.can('rapports.financiers')),
+          item(Icons.payments_outlined, l10n.menuExpenses, Routes.expenses, visible: shop.can('depenses.gerer')),
           item(Icons.swap_horiz, l10n.menuTransfers, Routes.transfers, visible: shop.can('stock.lire')),
           item(Icons.people_outline, l10n.menuCustomers, Routes.customers, visible: shop.can('clients.lire')),
           item(Icons.palette_outlined, l10n.menuReferentials, Routes.referentials, visible: shop.can('referentiels.lire')),
