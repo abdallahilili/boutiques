@@ -29,15 +29,13 @@ supabase functions deploy connexion_telephone_pin inscription-cliente admin-crea
 
 ## 3. Premier super-admin
 
-1. Dashboard Supabase → Authentication → Users → *Add user* (email + mot de passe fort, « Auto confirm »).
-2. SQL Editor :
+Après `npm run db:push` :
 
-```sql
-insert into public.profils (id, nom_fr, email, role_plateforme)
-select id, 'Éditeur', email, 'super_admin' from auth.users where email = 'vous@exemple.com';
+```bash
+npm run admin:create -- vous@exemple.com "MotDePasse12+" "Nom complet"
 ```
 
-À la première connexion sur `app_admin`, l'enrôlement TOTP est obligatoire. Les autres membres de l'équipe sont créés depuis *Utilisateurs internes*.
+Le script lit `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY` dans `supabase/functions/.env` (jamais commité), crée l'utilisateur Auth et son profil `super_admin`. À la première connexion sur `app_admin`, l'enrôlement TOTP est obligatoire. Les autres membres de l'équipe sont créés depuis *Utilisateurs internes*.
 
 ## 4. Applications web
 
