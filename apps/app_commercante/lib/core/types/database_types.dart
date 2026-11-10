@@ -372,6 +372,9 @@ abstract final class Rpc {
   static const creerCommercanteAvecBoutique = 'creer_commercante_avec_boutique';
   static const creerDevis = 'creer_devis';
   static const detailTransfert = 'detail_transfert';
+  static const ecartsStock = 'ecarts_stock';
+  static const enregistrerClient = 'enregistrer_client';
+  static const enregistrerDepense = 'enregistrer_depense';
   static const enregistrerEchecConnexion = 'enregistrer_echec_connexion';
   static const enregistrerPaiement = 'enregistrer_paiement';
   static const enregistrerPaiementAbonnement =
@@ -406,6 +409,7 @@ abstract final class Rpc {
   static const suivreCommandesParTelephone = 'suivre_commandes_par_telephone';
   static const tableauDeBord = 'tableau_de_bord';
   static const traiterAbonnements = 'traiter_abonnements';
+  static const validerEcartStock = 'valider_ecart_stock';
   static const verifierVerrouConnexion = 'verifier_verrou_connexion';
 }
 

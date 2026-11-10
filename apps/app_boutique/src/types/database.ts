@@ -2719,6 +2719,24 @@ export type Database = {
       }
         Returns: Json
       }
+      ecarts_stock: {
+        Args: {
+        p_boutique: string
+      }
+        Returns: Json
+      }
+      enregistrer_client: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
+      enregistrer_depense: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
       enregistrer_echec_connexion: {
         Args: {
         p_identifiant: string
@@ -2935,6 +2953,13 @@ export type Database = {
       }
       traiter_abonnements: {
         Args: Record<PropertyKey, never>
+        Returns: Json
+      }
+      valider_ecart_stock: {
+        Args: {
+        p_boutique: string
+        p_variante: string
+      }
         Returns: Json
       }
       verifier_verrou_connexion: {
