@@ -365,6 +365,7 @@ abstract final class Rpc {
   static const reserverPlageNumeros = 'reserver_plage_numeros';
   static const resoudreBoutique = 'resoudre_boutique';
   static const suivreCommande = 'suivre_commande';
+  static const tableauDeBord = 'tableau_de_bord';
   static const verifierVerrouConnexion = 'verifier_verrou_connexion';
 }
 
