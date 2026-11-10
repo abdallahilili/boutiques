@@ -2613,6 +2613,13 @@ export type Database = {
       }
         Returns: Json
       }
+      alertes_stock: {
+        Args: {
+        p_boutique: string
+        p_jours?: number
+      }
+        Returns: Json
+      }
       annuler_document: {
         Args: {
         p_id: string
@@ -2754,6 +2761,10 @@ export type Database = {
       }
         Returns: Json
       }
+      generer_alertes_stock: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
       generer_document_commande: {
         Args: {
         p_donnees: Json
@@ -2811,6 +2822,45 @@ export type Database = {
       }
         Returns: Json
       }
+      rapport_impayes: {
+        Args: {
+        p_boutique: string
+      }
+        Returns: Json
+      }
+      rapport_produits: {
+        Args: {
+        p_boutique: string
+        p_debut: string
+        p_fin: string
+        p_type: string
+        p_limite?: number
+      }
+        Returns: Json
+      }
+      rapport_stock: {
+        Args: {
+        p_boutique: string
+      }
+        Returns: Json
+      }
+      rapport_synthese: {
+        Args: {
+        p_boutique: string
+        p_debut: string
+        p_fin: string
+      }
+        Returns: Json
+      }
+      rapport_ventes: {
+        Args: {
+        p_boutique: string
+        p_debut: string
+        p_fin: string
+        p_axe: string
+      }
+        Returns: Json
+      }
       recevoir_stock: {
         Args: {
         p_donnees: Json
@@ -2863,6 +2913,10 @@ export type Database = {
         Args: {
         p_boutique_id: string
       }
+        Returns: Json
+      }
+      traiter_abonnements: {
+        Args: Record<PropertyKey, never>
         Returns: Json
       }
       verifier_verrou_connexion: {

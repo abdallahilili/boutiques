@@ -357,6 +357,7 @@ abstract final class Rpc {
   static const adminQuotasBoutique = 'admin_quotas_boutique';
   static const adminStatistiques = 'admin_statistiques';
   static const ajusterStock = 'ajuster_stock';
+  static const alertesStock = 'alertes_stock';
   static const annulerDocument = 'annuler_document';
   static const annulerTransfert = 'annuler_transfert';
   static const attribuerNumeroDocument = 'attribuer_numero_document';
@@ -378,6 +379,7 @@ abstract final class Rpc {
   static const envoyerTransfert = 'envoyer_transfert';
   static const expirerDevisPerimes = 'expirer_devis_perimes';
   static const fermerSessionCaisse = 'fermer_session_caisse';
+  static const genererAlertesStock = 'generer_alertes_stock';
   static const genererDocumentCommande = 'generer_document_commande';
   static const inviterMembre = 'inviter_membre';
   static const joindreJustificatifCommande = 'joindre_justificatif_commande';
@@ -386,6 +388,11 @@ abstract final class Rpc {
   static const modifierDevis = 'modifier_devis';
   static const ouvrirSessionCaisse = 'ouvrir_session_caisse';
   static const passerCommandeEnLigne = 'passer_commande_en_ligne';
+  static const rapportImpayes = 'rapport_impayes';
+  static const rapportProduits = 'rapport_produits';
+  static const rapportStock = 'rapport_stock';
+  static const rapportSynthese = 'rapport_synthese';
+  static const rapportVentes = 'rapport_ventes';
   static const recevoirStock = 'recevoir_stock';
   static const reinitialiserTentativesConnexion =
       'reinitialiser_tentatives_connexion';
@@ -395,6 +402,7 @@ abstract final class Rpc {
   static const suivreCommande = 'suivre_commande';
   static const suivreCommandesParTelephone = 'suivre_commandes_par_telephone';
   static const tableauDeBord = 'tableau_de_bord';
+  static const traiterAbonnements = 'traiter_abonnements';
   static const verifierVerrouConnexion = 'verifier_verrou_connexion';
 }
 
