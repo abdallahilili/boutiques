@@ -16,32 +16,46 @@ Spécification : [docs/cahier_des_charges.md](docs/cahier_des_charges.md) · dé
 
 - Node.js 20+ et npm
 - Flutter 3.4x (Dart 3.9+) — Android Studio / Xcode pour les émulateurs
-- [Supabase CLI](https://supabase.com/docs/guides/local-development) et Docker (base locale) — *optionnels pour les tests SQL, voir `make test-db-local`*
+- [Supabase CLI](https://supabase.com/docs/guides/local-development) (déploiement des migrations et des fonctions) ; Docker uniquement pour l'option locale — les tests SQL tournent aussi sans Docker (`make test-db-local`)
 - Deno 2 (Edge Functions) — installé aussi par `make setup` (dépendance npm `deno` dans `scripts/`)
 - `make` (Git Bash / WSL sous Windows)
 
-## Installation
+## Installation (projet Supabase hébergé)
+
+Les apps utilisent un projet Supabase **hébergé** ; aucun Docker n'est nécessaire.
 
 ```bash
-make setup        # dépendances npm (outils, 2 apps web), flutter pub get, code généré, fichiers .env
-make db-start     # Supabase local (Docker)
-make db-reset     # migrations + seed + régénération des types
-make fn-serve     # Edge Functions (dans un 2e terminal)
+make setup                     # dépendances npm (outils, 2 apps web), flutter pub get, code généré, fichiers .env
+# 1. Renseigner les .env (voir « Variables d'environnement ») avec l'URL et la clé publique du projet
+# 2. Initialiser le projet distant (une seule fois) :
+supabase login
+supabase link --project-ref <ref-du-projet>          # la « ref » est le début de l'URL : https://<ref>.supabase.co
+make db-push                                         # applique les migrations sur le projet distant
+supabase secrets set PIN_SECRET="$(openssl rand -hex 32)" PHONE_EMAIL_DOMAIN=tel.invalid PAYS_INDICATIF=222
+supabase functions deploy connexion_telephone_pin inscription-cliente admin-create-merchant admin-create-staff   invite-member reset-pin changer-code send-notification
+# 3. Créer le premier super-admin : docs/guide_deploiement.md (section 3)
+
 make admin        # http://localhost:5173
 make boutique     # http://localhost:5174  (ex. http://ma-boutique.localhost:5174)
-make mobile       # app Flutter sur l'appareil connecté
+make mobile       # app Flutter sur l'appareil connecté (lit apps/app_commercante/.env)
 ```
+
+`make gen-types` régénère les types TypeScript/Dart depuis les migrations (sans base ni Docker).
+
+### Alternative : Supabase local (Docker)
+
+Pour développer sans toucher au projet distant : `make db-start`, `make db-reset`, `make fn-serve`, avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
 
 ## Commandes `make`
 
 | Commande | Rôle |
 | --- | --- |
 | `setup` | Installe toutes les dépendances et crée les `.env` depuis les `.env.example` |
-| `db-start` / `db-stop` | Démarre / arrête Supabase local |
-| `db-reset` | Recrée la base locale (migrations + `supabase/seed.sql`) et régénère les types |
+| `db-start` / `db-stop` | (option locale) Démarre / arrête Supabase local via Docker |
+| `db-reset` | (option locale) Recrée la base locale (migrations + `supabase/seed.sql`) et régénère les types |
 | `db-push` | Applique les migrations sur le projet Supabase distant lié |
 | `gen-types` | Régénère les types TypeScript (web) et Dart (mobile) depuis les migrations |
-| `fn-serve` | Sert les Edge Functions en local |
+| `fn-serve` | (option locale) Sert les Edge Functions en local |
 | `admin` / `boutique` / `mobile` | Lance l'application correspondante |
 | `test` | Toutes les suites : pgTAP, Deno, Vitest (×2), Flutter |
 | `test-db` | Tests pgTAP via Supabase CLI (Docker) |
