@@ -2,7 +2,7 @@
 -- transitions de statut, facture issue d'une commande, vues publiques.
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(45);
+select plan(48);
 
 -- ---------------------------------------------------------------------------
 -- Jeu de données : boutique A (propriétaire + magasinière), 1 cliente avec compte, catalogue
@@ -97,6 +97,10 @@ select throws_ok($$select * from public.commandes$$, '42501', null, 'la visiteus
 select throws_like($$select public.suivre_commande('boutique-a', 'CMD-0000-0001', '36000077')$$, 'commande_introuvable%', 'numéro inconnu');
 select is((public.suivre_commande('boutique-a', (select 'CMD-' || to_char(now(), 'YYYY') || '-0001'), '22236000077')) ->> 'statut', 'nouvelle', 'suivi par numéro + téléphone');
 select throws_like($$select public.suivre_commande('boutique-a', 'CMD-' || to_char(now(), 'YYYY') || '-0001', '36000000')$$, 'commande_introuvable%', 'mauvais téléphone : même erreur');
+-- Suivi par téléphone seul : liste des commandes de ce numéro dans cette boutique
+select cmp_ok(jsonb_array_length(public.suivre_commandes_par_telephone('boutique-a', '36000077')), '>=', 1, 'suivi par téléphone seul : commandes retournées');
+select is(public.suivre_commandes_par_telephone('boutique-a', '36000099'), '[]'::jsonb, 'téléphone sans commande : liste vide');
+select is(public.suivre_commandes_par_telephone('boutique-inexistante', '36000077'), '[]'::jsonb, 'autre boutique : rien');
 reset role;
 select set_config('request.jwt.claims', '', true);
 

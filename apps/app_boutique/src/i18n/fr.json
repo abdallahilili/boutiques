@@ -108,6 +108,7 @@
   "suivi": {
     "titre": "Suivi de commande",
     "numero": "Numéro de commande",
+    "facultatif": "facultatif",
     "telephone": "Téléphone",
     "chercher": "Rechercher",
     "introuvable": "Aucune commande ne correspond à ces informations.",

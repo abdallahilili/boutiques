@@ -11,6 +11,7 @@ import 'core/locale/locale_controller.dart';
 import 'core/routing/app_pages.dart';
 import 'core/session/shop_controller.dart';
 import 'core/sync/sync_service.dart';
+import 'core/theme/theme_controller.dart';
 import 'features/auth/data/auth_repository.dart';
 import 'features/auth/presentation/auth_controller.dart';
 import 'features/boot/boot_controller.dart';
@@ -31,6 +32,7 @@ Future<void> main() async {
 
   // Injection de dépendances GetX : services et contrôleurs de durée de vie « application ».
   Get.put(LocaleController(prefs), permanent: true);
+  Get.put(ThemeController(prefs), permanent: true);
   Get.put<SupabaseClient>(client, permanent: true);
   Get.put<AppDatabase>(db, permanent: true);
   final shop = Get.put(ShopController(client, db), permanent: true);

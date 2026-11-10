@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 /// Thème clair/sombre : gros boutons et zones tactiles, lisibles pour des utilisatrices peu techniques.
+/// La couleur principale vient du réglage « Apparence » (couleur d'origine par défaut).
 abstract final class AppTheme {
-  static const _seed = Color(0xFF8A3B5C);
+  static const defaultSeed = Color(0xFF8A3B5C);
 
-  static ThemeData light() => _build(Brightness.light);
-  static ThemeData dark() => _build(Brightness.dark);
+  static ThemeData light([Color seed = defaultSeed]) => _build(Brightness.light, seed);
+  static ThemeData dark([Color seed = defaultSeed]) => _build(Brightness.dark, seed);
 
-  static ThemeData _build(Brightness brightness) {
-    final scheme = ColorScheme.fromSeed(seedColor: _seed, brightness: brightness);
+  static ThemeData _build(Brightness brightness, Color seed) {
+    final scheme = ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,

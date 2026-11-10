@@ -2668,6 +2668,13 @@ export type Database = {
       }
         Returns: Json
       }
+      suivre_commandes_par_telephone: {
+        Args: {
+        p_slug: string
+        p_telephone: string
+      }
+        Returns: Json
+      }
       tableau_de_bord: {
         Args: {
         p_boutique_id: string

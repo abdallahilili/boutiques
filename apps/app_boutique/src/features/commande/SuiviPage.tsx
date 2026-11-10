@@ -19,14 +19,14 @@ interface Suivi {
   boutique: { telephone: string | null; whatsapp: string | null }
 }
 
-/** Suivi sans compte : numéro de commande + téléphone (même erreur si l'un des deux est faux). */
+/** Suivi sans compte : téléphone seul (liste des commandes) ou téléphone + numéro de commande (facultatif). */
 export function SuiviPage() {
   const { t, i18n } = useTranslation()
   const { boutique } = useBoutique()
   const prefill = (useLocation().state ?? {}) as { numero?: string; telephone?: string }
   const [numero, setNumero] = useState(prefill.numero ?? '')
   const [telephone, setTelephone] = useState(prefill.telephone ?? '')
-  const [suivi, setSuivi] = useState<Suivi | null>(null)
+  const [suivis, setSuivis] = useState<Suivi[]>([])
   const [erreur, setErreur] = useState<string | null>(null)
   const [chargement, setChargement] = useState(false)
   const montant = (n: number) => formaterMontant(n, boutique.devise, i18n.language)
@@ -34,16 +34,22 @@ export function SuiviPage() {
   async function chercher(e: FormEvent) {
     e.preventDefault()
     setErreur(null)
-    setSuivi(null)
+    setSuivis([])
     setChargement(true)
-    const { data, error } = await supabase.rpc('suivre_commande', { p_slug: boutique.slug, p_numero: numero, p_telephone: telephone })
+    const reponse = numero.trim()
+      ? await supabase.rpc('suivre_commande', { p_slug: boutique.slug, p_numero: numero, p_telephone: telephone })
+      : await supabase.rpc('suivre_commandes_par_telephone', { p_slug: boutique.slug, p_telephone: telephone })
     setChargement(false)
-    if (error) setErreur(error.message.startsWith('commande_introuvable') ? t('suivi.introuvable') : t('commun.erreur'))
-    else setSuivi(data as unknown as Suivi)
+    if (reponse.error) {
+      setErreur(reponse.error.message.startsWith('commande_introuvable') ? t('suivi.introuvable') : t('commun.erreur'))
+      return
+    }
+    const liste = (Array.isArray(reponse.data) ? reponse.data : [reponse.data]) as unknown as Suivi[]
+    if (liste.length === 0) setErreur(t('suivi.introuvable'))
+    else setSuivis(liste)
   }
 
-  async function recap() {
-    if (!suivi) return
+  async function recap(suivi: Suivi) {
     const { ouvrirRecap } = await import('./RecapPdf')
     await ouvrirRecap({
       boutique: nomLocalise(boutique, i18n.language), numero: suivi.numero, date: formaterDate(suivi.cree_le, i18n.language), statut: t(`statut_commande.${suivi.statut}`),
@@ -53,20 +59,18 @@ export function SuiviPage() {
     })
   }
 
-  const contact = suivi ? lienWhatsapp(suivi.boutique.whatsapp ?? suivi.boutique.telephone, suivi.numero) : null
-
   return (
     <>
       <Seo titre={t('suivi.titre')} noindex />
       <h1 className="mb-4 text-2xl font-bold">{t('suivi.titre')}</h1>
       <form onSubmit={chercher} className="carte mb-6 grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
-        <label><span className="etiquette">{t('suivi.numero')}</span><input className="input" dir="ltr" required value={numero} onChange={(e) => setNumero(e.target.value)} /></label>
         <label><span className="etiquette">{t('suivi.telephone')}</span><input className="input" type="tel" dir="ltr" required value={telephone} onChange={(e) => setTelephone(e.target.value)} /></label>
+        <label><span className="etiquette">{t('suivi.numero')} <span className="text-discret">({t('suivi.facultatif')})</span></span><input className="input" dir="ltr" value={numero} onChange={(e) => setNumero(e.target.value)} /></label>
         <button className="btn btn-primaire" disabled={chargement}>{t('suivi.chercher')}</button>
       </form>
       {erreur && <p role="alert" className="text-danger">{erreur}</p>}
-      {suivi && (
-        <div className="carte space-y-4">
+      {suivis.map((suivi) => (
+        <div key={suivi.numero} className="carte mb-4 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="text-lg font-bold" dir="ltr">{suivi.numero}</h2>
             <span className="rounded-full bg-primaire px-3 py-1 text-sm text-primaire-texte">{t(`statut_commande.${suivi.statut}`)}</span>
@@ -80,11 +84,11 @@ export function SuiviPage() {
           <p className="flex justify-between font-bold"><span>{t('commande.total')}</span><span>{montant(suivi.total)}</span></p>
           <p className="text-sm text-discret">{t('suivi.paiement')} : {t(`statut_paiement.${suivi.statut_paiement}`)}</p>
           <div className="flex flex-wrap gap-2">
-            {contact && <a className="btn" href={contact} target="_blank" rel="noreferrer">{t('suivi.contact')}</a>}
-            <button className="btn" onClick={() => void recap()}>{t('commande.recapitulatif_pdf')}</button>
+            {lienWhatsapp(suivi.boutique.whatsapp ?? suivi.boutique.telephone, suivi.numero) && <a className="btn" href={lienWhatsapp(suivi.boutique.whatsapp ?? suivi.boutique.telephone, suivi.numero) ?? undefined} target="_blank" rel="noreferrer">{t('suivi.contact')}</a>}
+            <button className="btn" onClick={() => void recap(suivi)}>{t('commande.recapitulatif_pdf')}</button>
           </div>
         </div>
-      )}
+      ))}
     </>
   )
 }

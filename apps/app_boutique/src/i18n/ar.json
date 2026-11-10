@@ -108,6 +108,7 @@
   "suivi": {
     "titre": "تتبع الطلب",
     "numero": "رقم الطلب",
+    "facultatif": "اختياري",
     "telephone": "الهاتف",
     "chercher": "بحث",
     "introuvable": "لا يوجد طلب مطابق لهذه المعلومات.",
