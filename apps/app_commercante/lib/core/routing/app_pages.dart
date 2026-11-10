@@ -7,6 +7,7 @@ import '../../features/boot/boot_page.dart';
 import '../../features/boot/suspended_page.dart';
 import '../../features/catalog/presentation/product_form_page.dart';
 import '../../features/customers/presentation/customers_page.dart';
+import '../../features/documents/presentation/document_form_page.dart';
 import '../../features/documents/presentation/documents_pages.dart';
 import '../../features/home/home_page.dart';
 import '../../features/notifications/notifications_page.dart';
@@ -45,6 +46,7 @@ abstract final class Routes {
   static const orderDetail = '/commandes/detail';
   static const documents = '/factures';
   static const documentDetail = '/factures/detail';
+  static const documentForm = '/factures/nouveau';
   static const referentials = '/referentiels';
   static const settings = '/parametres';
   static const appearance = '/apparence';
@@ -82,6 +84,7 @@ abstract final class AppPages {
     _page(Routes.orderDetail, OrderDetailPage.new),
     _page(Routes.documents, DocumentsPage.new),
     _page(Routes.documentDetail, DocumentDetailPage.new),
+    _page(Routes.documentForm, DocumentFormPage.new),
     _page(Routes.referentials, ReferentialsPage.new),
     _page(Routes.settings, SettingsPage.new),
     _page(Routes.appearance, AppearancePage.new),

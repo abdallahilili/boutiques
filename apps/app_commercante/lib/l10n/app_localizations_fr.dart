@@ -1113,4 +1113,215 @@ class AppLocalizationsFr extends AppLocalizations {
   String productImageFailed(String details) {
     return 'Produit enregistré, mais l\'envoi de la photo a échoué : $details';
   }
+
+  @override
+  String get docTypeInvoice => 'Factures';
+
+  @override
+  String get docTypeQuote => 'Devis';
+
+  @override
+  String get docTypeDelivery => 'Bons de livraison';
+
+  @override
+  String get docTypeCredit => 'Avoirs';
+
+  @override
+  String get newQuote => 'Nouveau devis';
+
+  @override
+  String get newDeliveryNote => 'Nouveau bon de livraison';
+
+  @override
+  String get quoteTitle => 'Devis';
+
+  @override
+  String get deliveryTitle => 'Bon de livraison';
+
+  @override
+  String get creditTitle => 'Avoir';
+
+  @override
+  String get ticketTitle => 'Ticket';
+
+  @override
+  String get invoiceTitle => 'Facture';
+
+  @override
+  String get validUntil => 'Valable jusqu\'au';
+
+  @override
+  String get statusDraft => 'Brouillon';
+
+  @override
+  String get statusSent => 'Envoyé';
+
+  @override
+  String get statusAccepted => 'Accepté';
+
+  @override
+  String get statusRefused => 'Refusé';
+
+  @override
+  String get statusExpired => 'Expiré';
+
+  @override
+  String get statusValidated => 'Validé';
+
+  @override
+  String get statusDelivered => 'Livré';
+
+  @override
+  String get statusInvoiced => 'Facturé';
+
+  @override
+  String get statusIssued => 'Émise';
+
+  @override
+  String get statusPartiallyPaid => 'Partiellement payée';
+
+  @override
+  String get statusPaid => 'Payée';
+
+  @override
+  String get statusCancelled => 'Annulée';
+
+  @override
+  String get actionSend => 'Marquer comme envoyé';
+
+  @override
+  String get actionAccept => 'Accepté par la cliente';
+
+  @override
+  String get actionRefuse => 'Refusé par la cliente';
+
+  @override
+  String get actionValidate => 'Valider (sortie de stock)';
+
+  @override
+  String get actionDeliver => 'Marquer comme livré';
+
+  @override
+  String get convertToDelivery => 'Convertir en bon de livraison';
+
+  @override
+  String get convertToInvoice => 'Convertir en facture';
+
+  @override
+  String get invoiceSelected => 'Facturer la sélection';
+
+  @override
+  String get selectDeliveryNotes =>
+      'Maintenez appuyé pour regrouper plusieurs bons de livraison en une facture';
+
+  @override
+  String get cancelDocument => 'Annuler le document';
+
+  @override
+  String get cancelReason => 'Motif d\'annulation';
+
+  @override
+  String get createCreditNote => 'Créer un avoir';
+
+  @override
+  String get creditNoteReturnStock => 'Remettre les articles en stock';
+
+  @override
+  String get creditNoteHint =>
+      'Indiquez les quantités à rembourser. Le montant est d\'abord imputé sur le reste dû, puis remboursé ou crédité à la cliente.';
+
+  @override
+  String get refundMode => 'Mode de remboursement';
+
+  @override
+  String get refundAmount => 'Montant remboursé';
+
+  @override
+  String alreadyCredited(String qty) {
+    return 'déjà avoiré : $qty';
+  }
+
+  @override
+  String get documentCreated => 'Document créé';
+
+  @override
+  String get documentUpdated => 'Document mis à jour';
+
+  @override
+  String get linesRequired => 'Ajoutez au moins un article';
+
+  @override
+  String get onlineOnly => 'Cette action nécessite une connexion Internet';
+
+  @override
+  String get linkedDocuments => 'Documents liés';
+
+  @override
+  String get unitPriceLabel => 'Prix unitaire';
+
+  @override
+  String get quantityLabel => 'Quantité';
+
+  @override
+  String get serverError_devis_expire => 'Ce devis est expiré';
+
+  @override
+  String get serverError_deja_converti => 'Ce document a déjà été converti';
+
+  @override
+  String get serverError_bl_non_valide =>
+      'Validez le bon de livraison avant de le facturer';
+
+  @override
+  String get serverError_transition_invalide =>
+      'Ce changement de statut n\'est pas autorisé';
+
+  @override
+  String get serverError_annulation_impossible =>
+      'Annulation impossible : utilisez un avoir pour une facture encaissée';
+
+  @override
+  String get serverError_quantite_avoir_excessive =>
+      'Quantité supérieure à celle facturée';
+
+  @override
+  String get serverError_avoir_excessif =>
+      'Le total des avoirs dépasse la facture';
+
+  @override
+  String get serverError_remboursement_excessif =>
+      'Le remboursement dépasse le montant dû';
+
+  @override
+  String get serverError_document_non_modifiable =>
+      'Seul un brouillon est modifiable';
+
+  @override
+  String get serverError_clients_differents =>
+      'Les documents regroupés doivent concerner la même cliente';
+
+  @override
+  String get serverError_motif_requis => 'Le motif est obligatoire';
+
+  @override
+  String get serverError_destinataire_introuvable =>
+      'Boutique destinataire introuvable';
+
+  @override
+  String get serverError_transfert_deja_traite =>
+      'Ce transfert a déjà été traité';
+
+  @override
+  String get serverError_correspondance_requise =>
+      'Associez chaque article reçu à un produit';
+
+  @override
+  String get serverError_trop_de_requetes =>
+      'Trop de demandes, réessayez plus tard';
+
+  @override
+  String get dueDate => 'Échéance';
+
+  @override
+  String get chooseCustomer => 'Choisir une cliente (facultatif)';
 }

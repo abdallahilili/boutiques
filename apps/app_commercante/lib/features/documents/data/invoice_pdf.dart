@@ -8,13 +8,22 @@ import '../../../core/util/format.dart';
 import '../domain/invoice_data.dart';
 
 class _Labels {
-  const _Labels(this.title, this.number, this.date, this.customer, this.item, this.qty, this.price, this.discount, this.total, this.subtotal, this.paid, this.remaining, this.payments);
+  const _Labels(this.title, this.number, this.date, this.customer, this.item, this.qty, this.price, this.discount, this.total, this.subtotal, this.paid, this.remaining, this.payments, this.validUntil);
 
-  final String title, number, date, customer, item, qty, price, discount, total, subtotal, paid, remaining, payments;
+  final String title, number, date, customer, item, qty, price, discount, total, subtotal, paid, remaining, payments, validUntil;
 
-  static const ar = _Labels('فاتورة', 'رقم', 'التاريخ', 'الزبونة', 'المنتج', 'الكمية', 'السعر', 'تخفيض', 'المجموع', 'المجموع الفرعي', 'المدفوع', 'المتبقي', 'الدفعات');
-  static const fr = _Labels('Facture', 'N°', 'Date', 'Cliente', 'Article', 'Qté', 'Prix', 'Remise', 'Total', 'Sous-total', 'Payé', 'Reste dû', 'Paiements');
+  static const ar = _Labels('فاتورة', 'رقم', 'التاريخ', 'الزبونة', 'المنتج', 'الكمية', 'السعر', 'تخفيض', 'المجموع', 'المجموع الفرعي', 'المدفوع', 'المتبقي', 'الدفعات', 'صالح حتى');
+  static const fr = _Labels('Facture', 'N°', 'Date', 'Cliente', 'Article', 'Qté', 'Prix', 'Remise', 'Total', 'Sous-total', 'Payé', 'Reste dû', 'Paiements', "Valable jusqu'au");
 }
+
+/// Titre du document selon son type (devis, bon de livraison, avoir, ticket, facture).
+String documentTitle(String type, {required bool arabic}) => switch (type) {
+      'devis' => arabic ? 'عرض سعر' : 'Devis',
+      'bon_livraison' => arabic ? 'سند تسليم' : 'Bon de livraison',
+      'avoir' => arabic ? 'إشعار دائن' : 'Avoir',
+      'ticket' => arabic ? 'تذكرة' : 'Ticket',
+      _ => arabic ? 'فاتورة' : 'Facture',
+    };
 
 /// Charge la police arabe (Amiri) embarquée dans l'app ; indispensable pour afficher l'arabe dans le PDF.
 Future<pw.ThemeData> loadPdfTheme() async {
@@ -40,7 +49,10 @@ Future<Uint8List> buildInvoicePdf(InvoiceData d, {required bool arabic, required
     }
   }
 
-  final doc = pw.Document(title: '${l.title} ${d.number ?? ''}', theme: theme);
+  final title = documentTitle(d.type, arabic: arabic);
+  // Devis et bons de livraison n'ont ni paiement ni reste dû ; l'avoir n'affiche que son total.
+  final showPayments = d.type == 'facture' || d.type == 'ticket';
+  final doc = pw.Document(title: '$title ${d.number ?? ''}', theme: theme);
   pw.Widget cell(String text, {bool bold = false, pw.TextAlign align = pw.TextAlign.start}) =>
       pw.Padding(padding: const pw.EdgeInsets.symmetric(vertical: 4, horizontal: 4), child: pw.Text(text, textAlign: align, style: pw.TextStyle(fontWeight: bold ? pw.FontWeight.bold : pw.FontWeight.normal)));
 
@@ -61,8 +73,9 @@ Future<Uint8List> buildInvoicePdf(InvoiceData d, {required bool arabic, required
           ),
         ]),
         pw.SizedBox(height: 18),
-        pw.Text('${l.title} ${d.number == null ? '' : '${l.number} ${d.number}'}', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+        pw.Text('$title ${d.number == null ? '' : '${l.number} ${d.number}'}', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
         pw.Text('${l.date} : ${formatDateFor(d.date, arabic)}'),
+        if (d.type == 'devis' && d.dueDate != null) pw.Text('${l.validUntil} : ${formatDateFor(d.dueDate!, arabic).split(' ').first}'),
         if (d.customerName != null) pw.Text('${l.customer} : ${d.customerName}${d.customerPhone == null ? '' : ' · ${d.customerPhone}'}'),
         pw.SizedBox(height: 14),
         pw.Table(
@@ -89,12 +102,12 @@ Future<Uint8List> buildInvoicePdf(InvoiceData d, {required bool arabic, required
               if (d.discount > 0) _row(l.discount, '- ${money(d.discount)}'),
               pw.Divider(),
               _row(l.total, money(d.total), bold: true),
-              _row(l.paid, money(d.paid)),
-              if (d.remaining > 0) _row(l.remaining, money(d.remaining), bold: true),
+              if (showPayments) _row(l.paid, money(d.paid)),
+              if (showPayments && d.remaining > 0) _row(l.remaining, money(d.remaining), bold: true),
             ]),
           ),
         ),
-        if (d.payments.isNotEmpty) ...[
+        if (showPayments && d.payments.isNotEmpty) ...[
           pw.SizedBox(height: 10),
           pw.Text(l.payments, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
           for (final p in d.payments) pw.Text('${name(p.nameAr, p.nameFr)} : ${money(p.amount)}'),

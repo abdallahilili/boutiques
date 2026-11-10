@@ -2386,6 +2386,7 @@ export type Database = {
           total: number | null
           ordre: number | null
           cout_unitaire: number | null
+          ligne_source_id: string | null
         }
         Relationships: []
         }

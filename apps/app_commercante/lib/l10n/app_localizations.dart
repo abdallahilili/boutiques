@@ -2191,6 +2191,396 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تم حفظ المنتج لكن تعذّر رفع الصورة: {details}'**
   String productImageFailed(String details);
+
+  /// No description provided for @docTypeInvoice.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفواتير'**
+  String get docTypeInvoice;
+
+  /// No description provided for @docTypeQuote.
+  ///
+  /// In ar, this message translates to:
+  /// **'عروض الأسعار'**
+  String get docTypeQuote;
+
+  /// No description provided for @docTypeDelivery.
+  ///
+  /// In ar, this message translates to:
+  /// **'سندات التسليم'**
+  String get docTypeDelivery;
+
+  /// No description provided for @docTypeCredit.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإشعارات الدائنة'**
+  String get docTypeCredit;
+
+  /// No description provided for @newQuote.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض سعر جديد'**
+  String get newQuote;
+
+  /// No description provided for @newDeliveryNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'سند تسليم جديد'**
+  String get newDeliveryNote;
+
+  /// No description provided for @quoteTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض سعر'**
+  String get quoteTitle;
+
+  /// No description provided for @deliveryTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'سند تسليم'**
+  String get deliveryTitle;
+
+  /// No description provided for @creditTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'إشعار دائن'**
+  String get creditTitle;
+
+  /// No description provided for @ticketTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تذكرة'**
+  String get ticketTitle;
+
+  /// No description provided for @invoiceTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'فاتورة'**
+  String get invoiceTitle;
+
+  /// No description provided for @validUntil.
+  ///
+  /// In ar, this message translates to:
+  /// **'صالح حتى'**
+  String get validUntil;
+
+  /// No description provided for @statusDraft.
+  ///
+  /// In ar, this message translates to:
+  /// **'مسودة'**
+  String get statusDraft;
+
+  /// No description provided for @statusSent.
+  ///
+  /// In ar, this message translates to:
+  /// **'مرسل'**
+  String get statusSent;
+
+  /// No description provided for @statusAccepted.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقبول'**
+  String get statusAccepted;
+
+  /// No description provided for @statusRefused.
+  ///
+  /// In ar, this message translates to:
+  /// **'مرفوض'**
+  String get statusRefused;
+
+  /// No description provided for @statusExpired.
+  ///
+  /// In ar, this message translates to:
+  /// **'منتهي'**
+  String get statusExpired;
+
+  /// No description provided for @statusValidated.
+  ///
+  /// In ar, this message translates to:
+  /// **'مؤكد'**
+  String get statusValidated;
+
+  /// No description provided for @statusDelivered.
+  ///
+  /// In ar, this message translates to:
+  /// **'مُسلَّم'**
+  String get statusDelivered;
+
+  /// No description provided for @statusInvoiced.
+  ///
+  /// In ar, this message translates to:
+  /// **'مفوتر'**
+  String get statusInvoiced;
+
+  /// No description provided for @statusIssued.
+  ///
+  /// In ar, this message translates to:
+  /// **'صادرة'**
+  String get statusIssued;
+
+  /// No description provided for @statusPartiallyPaid.
+  ///
+  /// In ar, this message translates to:
+  /// **'مدفوعة جزئياً'**
+  String get statusPartiallyPaid;
+
+  /// No description provided for @statusPaid.
+  ///
+  /// In ar, this message translates to:
+  /// **'مدفوعة'**
+  String get statusPaid;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملغاة'**
+  String get statusCancelled;
+
+  /// No description provided for @actionSend.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعليم كمرسل'**
+  String get actionSend;
+
+  /// No description provided for @actionAccept.
+  ///
+  /// In ar, this message translates to:
+  /// **'قبلته الزبونة'**
+  String get actionAccept;
+
+  /// No description provided for @actionRefuse.
+  ///
+  /// In ar, this message translates to:
+  /// **'رفضته الزبونة'**
+  String get actionRefuse;
+
+  /// No description provided for @actionValidate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تأكيد (إخراج من المخزون)'**
+  String get actionValidate;
+
+  /// No description provided for @actionDeliver.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعليم كمُسلَّم'**
+  String get actionDeliver;
+
+  /// No description provided for @convertToDelivery.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحويل إلى سند تسليم'**
+  String get convertToDelivery;
+
+  /// No description provided for @convertToInvoice.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحويل إلى فاتورة'**
+  String get convertToInvoice;
+
+  /// No description provided for @invoiceSelected.
+  ///
+  /// In ar, this message translates to:
+  /// **'فوترة المحدد'**
+  String get invoiceSelected;
+
+  /// No description provided for @selectDeliveryNotes.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط مطولاً لتجميع عدة سندات تسليم في فاتورة واحدة'**
+  String get selectDeliveryNotes;
+
+  /// No description provided for @cancelDocument.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء الوثيقة'**
+  String get cancelDocument;
+
+  /// No description provided for @cancelReason.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبب الإلغاء'**
+  String get cancelReason;
+
+  /// No description provided for @createCreditNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنشاء إشعار دائن'**
+  String get createCreditNote;
+
+  /// No description provided for @creditNoteReturnStock.
+  ///
+  /// In ar, this message translates to:
+  /// **'إرجاع المنتجات إلى المخزون'**
+  String get creditNoteReturnStock;
+
+  /// No description provided for @creditNoteHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدّد الكميات المراد ردّها. يُخصم المبلغ أولاً من المتبقي ثم يُسترجع أو يُسجَّل رصيداً للزبونة.'**
+  String get creditNoteHint;
+
+  /// No description provided for @refundMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'طريقة الاسترجاع'**
+  String get refundMode;
+
+  /// No description provided for @refundAmount.
+  ///
+  /// In ar, this message translates to:
+  /// **'المبلغ المسترجع'**
+  String get refundAmount;
+
+  /// No description provided for @alreadyCredited.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبق ردّه: {qty}'**
+  String alreadyCredited(String qty);
+
+  /// No description provided for @documentCreated.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم إنشاء الوثيقة'**
+  String get documentCreated;
+
+  /// No description provided for @documentUpdated.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تحديث الوثيقة'**
+  String get documentUpdated;
+
+  /// No description provided for @linesRequired.
+  ///
+  /// In ar, this message translates to:
+  /// **'أضف منتجاً واحداً على الأقل'**
+  String get linesRequired;
+
+  /// No description provided for @onlineOnly.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذه العملية تتطلب اتصالاً بالإنترنت'**
+  String get onlineOnly;
+
+  /// No description provided for @linkedDocuments.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوثائق المرتبطة'**
+  String get linkedDocuments;
+
+  /// No description provided for @unitPriceLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'سعر الوحدة'**
+  String get unitPriceLabel;
+
+  /// No description provided for @quantityLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكمية'**
+  String get quantityLabel;
+
+  /// No description provided for @serverError_devis_expire.
+  ///
+  /// In ar, this message translates to:
+  /// **'انتهت صلاحية عرض السعر'**
+  String get serverError_devis_expire;
+
+  /// No description provided for @serverError_deja_converti.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبق تحويل هذه الوثيقة'**
+  String get serverError_deja_converti;
+
+  /// No description provided for @serverError_bl_non_valide.
+  ///
+  /// In ar, this message translates to:
+  /// **'أكّد سند التسليم قبل فوترته'**
+  String get serverError_bl_non_valide;
+
+  /// No description provided for @serverError_transition_invalide.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيير الحالة هذا غير مسموح'**
+  String get serverError_transition_invalide;
+
+  /// No description provided for @serverError_annulation_impossible.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يمكن الإلغاء: استخدم إشعاراً دائناً لفاتورة محصّلة'**
+  String get serverError_annulation_impossible;
+
+  /// No description provided for @serverError_quantite_avoir_excessive.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكمية أكبر من المفوترة'**
+  String get serverError_quantite_avoir_excessive;
+
+  /// No description provided for @serverError_avoir_excessif.
+  ///
+  /// In ar, this message translates to:
+  /// **'مجموع الإشعارات يتجاوز الفاتورة'**
+  String get serverError_avoir_excessif;
+
+  /// No description provided for @serverError_remboursement_excessif.
+  ///
+  /// In ar, this message translates to:
+  /// **'الاسترجاع يتجاوز المبلغ المستحق'**
+  String get serverError_remboursement_excessif;
+
+  /// No description provided for @serverError_document_non_modifiable.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يمكن تعديل إلا المسودة'**
+  String get serverError_document_non_modifiable;
+
+  /// No description provided for @serverError_clients_differents.
+  ///
+  /// In ar, this message translates to:
+  /// **'يجب أن تخص الوثائق المجمّعة الزبونة نفسها'**
+  String get serverError_clients_differents;
+
+  /// No description provided for @serverError_motif_requis.
+  ///
+  /// In ar, this message translates to:
+  /// **'السبب إلزامي'**
+  String get serverError_motif_requis;
+
+  /// No description provided for @serverError_destinataire_introuvable.
+  ///
+  /// In ar, this message translates to:
+  /// **'المتجر المستلم غير موجود'**
+  String get serverError_destinataire_introuvable;
+
+  /// No description provided for @serverError_transfert_deja_traite.
+  ///
+  /// In ar, this message translates to:
+  /// **'تمت معالجة هذا التحويل مسبقاً'**
+  String get serverError_transfert_deja_traite;
+
+  /// No description provided for @serverError_correspondance_requise.
+  ///
+  /// In ar, this message translates to:
+  /// **'اربط كل منتج مستلم بمنتج في متجرك'**
+  String get serverError_correspondance_requise;
+
+  /// No description provided for @serverError_trop_de_requetes.
+  ///
+  /// In ar, this message translates to:
+  /// **'طلبات كثيرة، حاول لاحقاً'**
+  String get serverError_trop_de_requetes;
+
+  /// No description provided for @dueDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاريخ الاستحقاق'**
+  String get dueDate;
+
+  /// No description provided for @chooseCustomer.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر زبونة (اختياري)'**
+  String get chooseCustomer;
 }
 
 class _AppLocalizationsDelegate

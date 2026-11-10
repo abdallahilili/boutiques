@@ -1099,4 +1099,208 @@ class AppLocalizationsAr extends AppLocalizations {
   String productImageFailed(String details) {
     return 'تم حفظ المنتج لكن تعذّر رفع الصورة: $details';
   }
+
+  @override
+  String get docTypeInvoice => 'الفواتير';
+
+  @override
+  String get docTypeQuote => 'عروض الأسعار';
+
+  @override
+  String get docTypeDelivery => 'سندات التسليم';
+
+  @override
+  String get docTypeCredit => 'الإشعارات الدائنة';
+
+  @override
+  String get newQuote => 'عرض سعر جديد';
+
+  @override
+  String get newDeliveryNote => 'سند تسليم جديد';
+
+  @override
+  String get quoteTitle => 'عرض سعر';
+
+  @override
+  String get deliveryTitle => 'سند تسليم';
+
+  @override
+  String get creditTitle => 'إشعار دائن';
+
+  @override
+  String get ticketTitle => 'تذكرة';
+
+  @override
+  String get invoiceTitle => 'فاتورة';
+
+  @override
+  String get validUntil => 'صالح حتى';
+
+  @override
+  String get statusDraft => 'مسودة';
+
+  @override
+  String get statusSent => 'مرسل';
+
+  @override
+  String get statusAccepted => 'مقبول';
+
+  @override
+  String get statusRefused => 'مرفوض';
+
+  @override
+  String get statusExpired => 'منتهي';
+
+  @override
+  String get statusValidated => 'مؤكد';
+
+  @override
+  String get statusDelivered => 'مُسلَّم';
+
+  @override
+  String get statusInvoiced => 'مفوتر';
+
+  @override
+  String get statusIssued => 'صادرة';
+
+  @override
+  String get statusPartiallyPaid => 'مدفوعة جزئياً';
+
+  @override
+  String get statusPaid => 'مدفوعة';
+
+  @override
+  String get statusCancelled => 'ملغاة';
+
+  @override
+  String get actionSend => 'تعليم كمرسل';
+
+  @override
+  String get actionAccept => 'قبلته الزبونة';
+
+  @override
+  String get actionRefuse => 'رفضته الزبونة';
+
+  @override
+  String get actionValidate => 'تأكيد (إخراج من المخزون)';
+
+  @override
+  String get actionDeliver => 'تعليم كمُسلَّم';
+
+  @override
+  String get convertToDelivery => 'تحويل إلى سند تسليم';
+
+  @override
+  String get convertToInvoice => 'تحويل إلى فاتورة';
+
+  @override
+  String get invoiceSelected => 'فوترة المحدد';
+
+  @override
+  String get selectDeliveryNotes =>
+      'اضغط مطولاً لتجميع عدة سندات تسليم في فاتورة واحدة';
+
+  @override
+  String get cancelDocument => 'إلغاء الوثيقة';
+
+  @override
+  String get cancelReason => 'سبب الإلغاء';
+
+  @override
+  String get createCreditNote => 'إنشاء إشعار دائن';
+
+  @override
+  String get creditNoteReturnStock => 'إرجاع المنتجات إلى المخزون';
+
+  @override
+  String get creditNoteHint =>
+      'حدّد الكميات المراد ردّها. يُخصم المبلغ أولاً من المتبقي ثم يُسترجع أو يُسجَّل رصيداً للزبونة.';
+
+  @override
+  String get refundMode => 'طريقة الاسترجاع';
+
+  @override
+  String get refundAmount => 'المبلغ المسترجع';
+
+  @override
+  String alreadyCredited(String qty) {
+    return 'سبق ردّه: $qty';
+  }
+
+  @override
+  String get documentCreated => 'تم إنشاء الوثيقة';
+
+  @override
+  String get documentUpdated => 'تم تحديث الوثيقة';
+
+  @override
+  String get linesRequired => 'أضف منتجاً واحداً على الأقل';
+
+  @override
+  String get onlineOnly => 'هذه العملية تتطلب اتصالاً بالإنترنت';
+
+  @override
+  String get linkedDocuments => 'الوثائق المرتبطة';
+
+  @override
+  String get unitPriceLabel => 'سعر الوحدة';
+
+  @override
+  String get quantityLabel => 'الكمية';
+
+  @override
+  String get serverError_devis_expire => 'انتهت صلاحية عرض السعر';
+
+  @override
+  String get serverError_deja_converti => 'سبق تحويل هذه الوثيقة';
+
+  @override
+  String get serverError_bl_non_valide => 'أكّد سند التسليم قبل فوترته';
+
+  @override
+  String get serverError_transition_invalide => 'تغيير الحالة هذا غير مسموح';
+
+  @override
+  String get serverError_annulation_impossible =>
+      'لا يمكن الإلغاء: استخدم إشعاراً دائناً لفاتورة محصّلة';
+
+  @override
+  String get serverError_quantite_avoir_excessive => 'الكمية أكبر من المفوترة';
+
+  @override
+  String get serverError_avoir_excessif => 'مجموع الإشعارات يتجاوز الفاتورة';
+
+  @override
+  String get serverError_remboursement_excessif =>
+      'الاسترجاع يتجاوز المبلغ المستحق';
+
+  @override
+  String get serverError_document_non_modifiable => 'لا يمكن تعديل إلا المسودة';
+
+  @override
+  String get serverError_clients_differents =>
+      'يجب أن تخص الوثائق المجمّعة الزبونة نفسها';
+
+  @override
+  String get serverError_motif_requis => 'السبب إلزامي';
+
+  @override
+  String get serverError_destinataire_introuvable => 'المتجر المستلم غير موجود';
+
+  @override
+  String get serverError_transfert_deja_traite =>
+      'تمت معالجة هذا التحويل مسبقاً';
+
+  @override
+  String get serverError_correspondance_requise =>
+      'اربط كل منتج مستلم بمنتج في متجرك';
+
+  @override
+  String get serverError_trop_de_requetes => 'طلبات كثيرة، حاول لاحقاً';
+
+  @override
+  String get dueDate => 'تاريخ الاستحقاق';
+
+  @override
+  String get chooseCustomer => 'اختر زبونة (اختياري)';
 }

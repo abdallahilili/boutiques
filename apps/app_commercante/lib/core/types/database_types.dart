@@ -2031,6 +2031,7 @@ class LignesDocumentVenteVueRow {
     this.total,
     this.ordre,
     this.coutUnitaire,
+    this.ligneSourceId,
   });
 
   final String? id;
@@ -2045,6 +2046,7 @@ class LignesDocumentVenteVueRow {
   final double? total;
   final int? ordre;
   final double? coutUnitaire;
+  final String? ligneSourceId;
 
   factory LignesDocumentVenteVueRow.depuisJson(
     Map<String, dynamic> json,
@@ -2073,6 +2075,9 @@ class LignesDocumentVenteVueRow {
     coutUnitaire: json['cout_unitaire'] == null
         ? null
         : (json['cout_unitaire'] as num).toDouble(),
+    ligneSourceId: json['ligne_source_id'] == null
+        ? null
+        : json['ligne_source_id'] as String,
   );
 
   Map<String, dynamic> versJson() => {
@@ -2088,6 +2093,7 @@ class LignesDocumentVenteVueRow {
     'total': total,
     'ordre': ordre,
     'cout_unitaire': coutUnitaire,
+    'ligne_source_id': ligneSourceId,
   };
 }
 

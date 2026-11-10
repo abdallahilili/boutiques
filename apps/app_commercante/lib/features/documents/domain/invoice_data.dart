@@ -43,6 +43,8 @@ class InvoiceData {
     this.footerFr,
     this.notes,
     this.decimals,
+    this.dueDate,
+    this.status,
   });
 
   final String type;
@@ -61,6 +63,10 @@ class InvoiceData {
   final String? footerAr;
   final String? footerFr;
   final String? notes;
+
+  /// Date de validité d'un devis ou échéance d'une facture.
+  final DateTime? dueDate;
+  final String? status;
   final List<InvoiceLine> lines;
   final List<InvoicePayment> payments;
   final double subtotal;
@@ -128,6 +134,8 @@ class InvoiceData {
       customerName: customer == null ? null : localName(customer['nom_ar'] as String?, customer['nom_fr'] as String?, arabic: true),
       customerPhone: customer?['telephone'] as String?,
       notes: document['notes'] as String?,
+      dueDate: document['date_echeance'] == null ? null : DateTime.parse(document['date_echeance'] as String),
+      status: document['statut'] as String?,
       lines: [
         for (final l in lines)
           InvoiceLine(
@@ -152,10 +160,17 @@ class InvoiceData {
   /// Message texte pour WhatsApp (sans pièce jointe) : numéro, total et reste dû.
   String summaryText({required bool arabic}) {
     String money(double v) => formatMoney(v, currency: currency, decimals: decimals);
+    final title = switch (type) {
+      'devis' => arabic ? 'عرض سعر' : 'Devis',
+      'bon_livraison' => arabic ? 'سند تسليم' : 'Bon de livraison',
+      'avoir' => arabic ? 'إشعار دائن' : 'Avoir',
+      'ticket' => arabic ? 'تذكرة' : 'Ticket',
+      _ => arabic ? 'فاتورة' : 'Facture',
+    };
     final lines = <String>[
-      arabic ? 'فاتورة ${number ?? ''}' : 'Facture ${number ?? ''}',
+      '$title ${number ?? ''}',
       '${arabic ? 'المجموع' : 'Total'} : ${money(total)}',
-      if (remaining > 0) '${arabic ? 'المتبقي' : 'Reste dû'} : ${money(remaining)}',
+      if (remaining > 0 && (type == 'facture' || type == 'ticket')) '${arabic ? 'المتبقي' : 'Reste dû'} : ${money(remaining)}',
       localName(shopNameAr, shopNameFr, arabic: arabic),
     ];
     return lines.join('\n');
