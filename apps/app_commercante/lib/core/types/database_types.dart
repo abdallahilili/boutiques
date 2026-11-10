@@ -203,6 +203,19 @@ enum StatutProduit {
       values.firstWhere((e) => e.valeur == valeur);
 }
 
+enum StatutTransfert {
+  enAttente('en_attente'),
+  accepte('accepte'),
+  refuse('refuse'),
+  annule('annule');
+
+  const StatutTransfert(this.valeur);
+  final String valeur;
+
+  static StatutTransfert depuisJson(String valeur) =>
+      values.firstWhere((e) => e.valeur == valeur);
+}
+
 enum TypeAjustementStock {
   sortieManuelle('sortie_manuelle'),
   inventaire('inventaire'),
@@ -294,6 +307,7 @@ abstract final class Tables {
   static const lignesDocumentVenteVue = 'lignes_document_vente_vue';
   static const lignesReceptionStock = 'lignes_reception_stock';
   static const lignesReceptionStockVue = 'lignes_reception_stock_vue';
+  static const lignesTransfert = 'lignes_transfert';
   static const limitesDebit = 'limites_debit';
   static const lotsStock = 'lots_stock';
   static const lotsStockVue = 'lots_stock_vue';
@@ -330,6 +344,7 @@ abstract final class Tables {
   static const tailles = 'tailles';
   static const tentativesConnexion = 'tentatives_connexion';
   static const themesSite = 'themes_site';
+  static const transferts = 'transferts';
   static const unites = 'unites';
   static const variantesProduit = 'variantes_produit';
   static const variantesPubliques = 'variantes_publiques';
@@ -343,6 +358,7 @@ abstract final class Rpc {
   static const adminStatistiques = 'admin_statistiques';
   static const ajusterStock = 'ajuster_stock';
   static const annulerDocument = 'annuler_document';
+  static const annulerTransfert = 'annuler_transfert';
   static const attribuerNumeroDocument = 'attribuer_numero_document';
   static const boutiqueEstActive = 'boutique_est_active';
   static const changerStatutBonLivraison = 'changer_statut_bon_livraison';
@@ -359,6 +375,7 @@ abstract final class Rpc {
   static const enregistrerPaiementAbonnement =
       'enregistrer_paiement_abonnement';
   static const enregistrerVente = 'enregistrer_vente';
+  static const envoyerTransfert = 'envoyer_transfert';
   static const expirerDevisPerimes = 'expirer_devis_perimes';
   static const fermerSessionCaisse = 'fermer_session_caisse';
   static const genererDocumentCommande = 'generer_document_commande';
@@ -372,6 +389,7 @@ abstract final class Rpc {
   static const recevoirStock = 'recevoir_stock';
   static const reinitialiserTentativesConnexion =
       'reinitialiser_tentatives_connexion';
+  static const repondreTransfert = 'repondre_transfert';
   static const reserverPlageNumeros = 'reserver_plage_numeros';
   static const resoudreBoutique = 'resoudre_boutique';
   static const suivreCommande = 'suivre_commande';
@@ -894,6 +912,7 @@ class ClientsRow {
     required this.creeLe,
     required this.modifieLe,
     this.supprimeLe,
+    this.boutiqueLieeId,
   });
 
   final String id;
@@ -911,6 +930,7 @@ class ClientsRow {
   final DateTime creeLe;
   final DateTime modifieLe;
   final DateTime? supprimeLe;
+  final String? boutiqueLieeId;
 
   factory ClientsRow.depuisJson(Map<String, dynamic> json) => ClientsRow(
     id: json['id'] as String,
@@ -932,6 +952,9 @@ class ClientsRow {
     supprimeLe: json['supprime_le'] == null
         ? null
         : DateTime.parse(json['supprime_le'] as String),
+    boutiqueLieeId: json['boutique_liee_id'] == null
+        ? null
+        : json['boutique_liee_id'] as String,
   );
 
   Map<String, dynamic> versJson() => {
@@ -950,6 +973,7 @@ class ClientsRow {
     'cree_le': creeLe.toIso8601String(),
     'modifie_le': modifieLe.toIso8601String(),
     'supprime_le': supprimeLe?.toIso8601String(),
+    'boutique_liee_id': boutiqueLieeId,
   };
 }
 
@@ -1561,6 +1585,7 @@ class FournisseursRow {
     required this.creeLe,
     required this.modifieLe,
     this.supprimeLe,
+    this.boutiqueLieeId,
   });
 
   final String id;
@@ -1575,6 +1600,7 @@ class FournisseursRow {
   final DateTime creeLe;
   final DateTime modifieLe;
   final DateTime? supprimeLe;
+  final String? boutiqueLieeId;
 
   factory FournisseursRow.depuisJson(Map<String, dynamic> json) =>
       FournisseursRow(
@@ -1594,6 +1620,9 @@ class FournisseursRow {
         supprimeLe: json['supprime_le'] == null
             ? null
             : DateTime.parse(json['supprime_le'] as String),
+        boutiqueLieeId: json['boutique_liee_id'] == null
+            ? null
+            : json['boutique_liee_id'] as String,
       );
 
   Map<String, dynamic> versJson() => {
@@ -1609,6 +1638,7 @@ class FournisseursRow {
     'cree_le': creeLe.toIso8601String(),
     'modifie_le': modifieLe.toIso8601String(),
     'supprime_le': supprimeLe?.toIso8601String(),
+    'boutique_liee_id': boutiqueLieeId,
   };
 }
 
@@ -2159,6 +2189,63 @@ class LignesReceptionStockVueRow {
     'date_expiration': dateExpiration?.toIso8601String(),
     'prix_vente': prixVente,
     'cout_unitaire': coutUnitaire,
+  };
+}
+
+/// Table `lignes_transfert`.
+class LignesTransfertRow {
+  const LignesTransfertRow({
+    required this.id,
+    required this.transfertId,
+    required this.varianteEmettriceId,
+    this.varianteDestinataireId,
+    this.libelleAr,
+    this.libelleFr,
+    required this.quantite,
+    required this.prixUnitaire,
+    required this.total,
+    required this.ordre,
+  });
+
+  final String id;
+  final String transfertId;
+  final String varianteEmettriceId;
+  final String? varianteDestinataireId;
+  final String? libelleAr;
+  final String? libelleFr;
+  final double quantite;
+  final double prixUnitaire;
+  final double total;
+  final int ordre;
+
+  factory LignesTransfertRow.depuisJson(
+    Map<String, dynamic> json,
+  ) => LignesTransfertRow(
+    id: json['id'] as String,
+    transfertId: json['transfert_id'] as String,
+    varianteEmettriceId: json['variante_emettrice_id'] as String,
+    varianteDestinataireId: json['variante_destinataire_id'] == null
+        ? null
+        : json['variante_destinataire_id'] as String,
+    libelleAr: json['libelle_ar'] == null ? null : json['libelle_ar'] as String,
+    libelleFr: json['libelle_fr'] == null ? null : json['libelle_fr'] as String,
+    quantite: (json['quantite'] as num).toDouble(),
+    prixUnitaire: (json['prix_unitaire'] as num).toDouble(),
+    total: (json['total'] as num).toDouble(),
+    ordre: json['ordre'] as int,
+  );
+
+  Map<String, dynamic> versJson() => {
+    'id': id,
+    'transfert_id': transfertId,
+    'variante_emettrice_id': varianteEmettriceId,
+    'variante_destinataire_id': varianteDestinataireId,
+    'libelle_ar': libelleAr,
+    'libelle_fr': libelleFr,
+    'quantite': quantite,
+    'prix_unitaire': prixUnitaire,
+    'total': total,
+    'ordre': ordre,
   };
 }
 
@@ -4419,6 +4506,73 @@ class ThemesSiteRow {
     'actif': actif,
     'cree_le': creeLe.toIso8601String(),
     'modifie_le': modifieLe.toIso8601String(),
+  };
+}
+
+/// Table `transferts`.
+class TransfertsRow {
+  const TransfertsRow({
+    required this.id,
+    required this.numero,
+    required this.boutiqueEmettriceId,
+    required this.boutiqueDestinataireId,
+    required this.statut,
+    this.note,
+    required this.total,
+    this.envoyePar,
+    this.reponduPar,
+    this.receptionId,
+    required this.creeLe,
+    this.reponduLe,
+  });
+
+  final String id;
+  final String numero;
+  final String boutiqueEmettriceId;
+  final String boutiqueDestinataireId;
+  final StatutTransfert statut;
+  final String? note;
+  final double total;
+  final String? envoyePar;
+  final String? reponduPar;
+  final String? receptionId;
+  final DateTime creeLe;
+  final DateTime? reponduLe;
+
+  factory TransfertsRow.depuisJson(Map<String, dynamic> json) => TransfertsRow(
+    id: json['id'] as String,
+    numero: json['numero'] as String,
+    boutiqueEmettriceId: json['boutique_emettrice_id'] as String,
+    boutiqueDestinataireId: json['boutique_destinataire_id'] as String,
+    statut: StatutTransfert.depuisJson(json['statut'] as String),
+    note: json['note'] == null ? null : json['note'] as String,
+    total: (json['total'] as num).toDouble(),
+    envoyePar: json['envoye_par'] == null ? null : json['envoye_par'] as String,
+    reponduPar: json['repondu_par'] == null
+        ? null
+        : json['repondu_par'] as String,
+    receptionId: json['reception_id'] == null
+        ? null
+        : json['reception_id'] as String,
+    creeLe: DateTime.parse(json['cree_le'] as String),
+    reponduLe: json['repondu_le'] == null
+        ? null
+        : DateTime.parse(json['repondu_le'] as String),
+  );
+
+  Map<String, dynamic> versJson() => {
+    'id': id,
+    'numero': numero,
+    'boutique_emettrice_id': boutiqueEmettriceId,
+    'boutique_destinataire_id': boutiqueDestinataireId,
+    'statut': statut.valeur,
+    'note': note,
+    'total': total,
+    'envoye_par': envoyePar,
+    'repondu_par': reponduPar,
+    'reception_id': receptionId,
+    'cree_le': creeLe.toIso8601String(),
+    'repondu_le': reponduLe?.toIso8601String(),
   };
 }
 

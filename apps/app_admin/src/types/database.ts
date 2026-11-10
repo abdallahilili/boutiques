@@ -309,6 +309,7 @@ export type Database = {
           cree_le: string
           modifie_le: string
           supprime_le: string | null
+          boutique_liee_id: string | null
         }
         Insert: {
           id?: string
@@ -326,6 +327,7 @@ export type Database = {
           cree_le?: string
           modifie_le?: string
           supprime_le?: string | null
+          boutique_liee_id?: string | null
         }
         Update: {
           id?: string
@@ -343,6 +345,7 @@ export type Database = {
           cree_le?: string
           modifie_le?: string
           supprime_le?: string | null
+          boutique_liee_id?: string | null
         }
         Relationships: []
         }
@@ -738,6 +741,7 @@ export type Database = {
           cree_le: string
           modifie_le: string
           supprime_le: string | null
+          boutique_liee_id: string | null
         }
         Insert: {
           id?: string
@@ -752,6 +756,7 @@ export type Database = {
           cree_le?: string
           modifie_le?: string
           supprime_le?: string | null
+          boutique_liee_id?: string | null
         }
         Update: {
           id?: string
@@ -766,6 +771,7 @@ export type Database = {
           cree_le?: string
           modifie_le?: string
           supprime_le?: string | null
+          boutique_liee_id?: string | null
         }
         Relationships: []
         }
@@ -1015,6 +1021,45 @@ export type Database = {
           cout_unitaire?: number
           date_expiration?: string | null
           prix_vente?: number | null
+        }
+        Relationships: []
+        }
+        lignes_transfert: {
+        Row: {
+          id: string
+          transfert_id: string
+          variante_emettrice_id: string
+          variante_destinataire_id: string | null
+          libelle_ar: string | null
+          libelle_fr: string | null
+          quantite: number
+          prix_unitaire: number
+          total: number
+          ordre: number
+        }
+        Insert: {
+          id?: string
+          transfert_id: string
+          variante_emettrice_id: string
+          variante_destinataire_id?: string | null
+          libelle_ar?: string | null
+          libelle_fr?: string | null
+          quantite: number
+          prix_unitaire: number
+          total: number
+          ordre?: number
+        }
+        Update: {
+          id?: string
+          transfert_id?: string
+          variante_emettrice_id?: string
+          variante_destinataire_id?: string | null
+          libelle_ar?: string | null
+          libelle_fr?: string | null
+          quantite?: number
+          prix_unitaire?: number
+          total?: number
+          ordre?: number
         }
         Relationships: []
         }
@@ -2089,6 +2134,51 @@ export type Database = {
         }
         Relationships: []
         }
+        transferts: {
+        Row: {
+          id: string
+          numero: string
+          boutique_emettrice_id: string
+          boutique_destinataire_id: string
+          statut: Database['public']['Enums']['statut_transfert']
+          note: string | null
+          total: number
+          envoye_par: string | null
+          repondu_par: string | null
+          reception_id: string | null
+          cree_le: string
+          repondu_le: string | null
+        }
+        Insert: {
+          id?: string
+          numero: string
+          boutique_emettrice_id: string
+          boutique_destinataire_id: string
+          statut?: Database['public']['Enums']['statut_transfert']
+          note?: string | null
+          total?: number
+          envoye_par?: string | null
+          repondu_par?: string | null
+          reception_id?: string | null
+          cree_le?: string
+          repondu_le?: string | null
+        }
+        Update: {
+          id?: string
+          numero?: string
+          boutique_emettrice_id?: string
+          boutique_destinataire_id?: string
+          statut?: Database['public']['Enums']['statut_transfert']
+          note?: string | null
+          total?: number
+          envoye_par?: string | null
+          repondu_par?: string | null
+          reception_id?: string | null
+          cree_le?: string
+          repondu_le?: string | null
+        }
+        Relationships: []
+        }
         unites: {
         Row: {
           id: string
@@ -2530,6 +2620,12 @@ export type Database = {
       }
         Returns: Json
       }
+      annuler_transfert: {
+        Args: {
+        p_id: string
+      }
+        Returns: Json
+      }
       attribuer_numero_document: {
         Args: {
         p_boutique_id: string
@@ -2640,6 +2736,12 @@ export type Database = {
       }
         Returns: Json
       }
+      envoyer_transfert: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
       expirer_devis_perimes: {
         Args: Record<PropertyKey, never>
         Returns: number
@@ -2721,6 +2823,12 @@ export type Database = {
       }
         Returns: undefined
       }
+      repondre_transfert: {
+        Args: {
+        p_donnees: Json
+      }
+        Returns: Json
+      }
       reserver_plage_numeros: {
         Args: {
         p_boutique_id: string
@@ -2780,6 +2888,7 @@ export type Database = {
       statut_membre: 'invite' | 'actif' | 'desactive'
       statut_paiement_commande: 'non_paye' | 'partiel' | 'paye'
       statut_produit: 'actif' | 'inactif'
+      statut_transfert: 'en_attente' | 'accepte' | 'refuse' | 'annule'
       type_ajustement_stock: 'sortie_manuelle' | 'inventaire' | 'retour_fournisseur'
       type_document_vente: 'devis' | 'bon_livraison' | 'facture' | 'avoir' | 'ticket'
       type_mode_paiement: 'especes' | 'mobile_money' | 'banque' | 'carte' | 'credit'
