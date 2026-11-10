@@ -60,4 +60,4 @@ Signature : créer `android/key.properties` (jamais commité) et référencer le
 
 - Activer les sauvegardes quotidiennes Supabase (PITR sur plan Pro) et programmer un export mensuel externe.
 - Surveiller les Edge Functions et les crons (phase 2) ; alerter sur les échecs.
-- Avant chaque mise en production : `make test` (dont l'isolement RLS entre deux boutiques).
+- Avant chaque mise en production : `npm test` (dont l'isolement RLS entre deux boutiques).

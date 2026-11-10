@@ -35,7 +35,7 @@ En cas de conflit entre le cahier et ce document, **ce document prime**.
 - **Réservation de stock à la création de la commande en ligne** (critère d'acceptation du §11.4) ; libérée à l'annulation, consommée à la livraison / génération du document.
 - **Stock négatif optionnel** (`boutiques.parametres.stock_negatif_autorise`) : le manque est porté par un lot « découvert » (quantité négative) absorbé par les réceptions suivantes ; l'invariant « stock = somme des lots » est conservé.
 - **Types générés sans Docker** : `scripts/gen_types.mjs` applique les migrations dans PGlite puis introspecte le catalogue pour produire `database.ts` (web) et `database_types.dart` (mobile).
-- **Tests SQL** : fichiers pgTAP dans `supabase/tests/` (`supabase test db`). Sans Docker, `make test-db-local` rejoue les mêmes fichiers dans PGlite avec un shim pgTAP (`scripts/pglite/`).
+- **Tests SQL** : fichiers pgTAP dans `supabase/tests/` (`supabase test db`). Sans Docker, `npm run test:db` rejoue les mêmes fichiers dans PGlite avec un shim pgTAP (`scripts/pglite/`).
 - **Coûts masqués par vues.** `lots_stock`, `mouvements_stock`, `receptions_stock`, `lignes_*` portant un coût ne sont lisibles qu'avec « couts.voir » ; les autres rôles lisent les vues `*_vue` (coût nul) et `stock_variante`. Les vues sont `security_barrier`, en lecture seule, filtrées par permission. Le prix de vente n'est pas masqué à la magasinière (donnée publique) : seul l'écran le cache.
 - **Hors ligne = outbox idempotente.** Ventes, entrées/sorties/inventaires, paiements et sessions de caisse sont écrits dans une file SQLite (Drift) avec des UUID d'appareil, puis rejoués vers les RPC. Erreur réseau : reprise automatique ; erreur métier (stock insuffisant…) : l'opération passe « en échec » et la commerçante décide (relancer / abandonner). Création de produits, référentiels et paramètres : connexion requise (cahier §5.13).
 - **Numéros hors ligne.** `reserver_plage_numeros` accorde 20 numéros par appareil ; une vente hors ligne consomme la plage locale. Sans plage, le serveur attribue le numéro à la synchronisation (l'écran affiche « numéro en attente »). Réserve plafonnée à 25 numéros non utilisés par appareil.
@@ -47,7 +47,7 @@ En cas de conflit entre le cahier et ce document, **ce document prime**.
 ## 3. Plan par phase
 
 ### Phase 0 — Socle
-1. Monorepo, Makefile, README, `.gitignore`, `.gitattributes`, scripts.
+1. Monorepo, scripts npm, README, `.gitignore`, `.gitattributes`, scripts.
 2. `supabase/config.toml`, migrations de base (profils, commercantes, boutiques, membres_boutique, roles, permissions_role, plans, abonnements, paiements_abonnement, journal_audit, appareils, notifications), RLS, `boutique_est_active`.
 3. Edge Functions `connexion_telephone_pin`, `admin-create-merchant`, `invite-member` + `_shared`.
 4. Génération des types (TS + Dart).
@@ -69,7 +69,7 @@ Devis, BL, avoirs, conversion, transferts, gestion du site depuis le mobile, rap
 ### Phase 0 — Socle (terminée)
 
 **Fait**
-- Monorepo, Makefile, scripts, README, guide de déploiement, `.gitignore` / `.gitattributes`.
+- Monorepo, scripts npm, README, guide de déploiement, `.gitignore` / `.gitattributes`.
 - Migrations : `profils`, `commercantes`, `boutiques`, `permissions`, `roles`, `permissions_role`, `membres_boutique`, `plans`, `abonnements`, `paiements_abonnement`, `journal_audit` (immuable), `appareils`, `notifications`, `tentatives_connexion` ; helpers RLS (`prive.*`), `boutique_est_active`, quotas de plan, triggers de protection de colonnes (slug, statut, rôles), audit.
 - Edge Functions : `connexion_telephone_pin`, `admin-create-merchant`, `invite-member`, `reset-pin`, `changer-code` + modules partagés testés (Deno).
 - Génération des types TypeScript et Dart (`scripts/gen_types.mjs`, sans Docker).
@@ -91,5 +91,5 @@ Devis, BL, avoirs, conversion, transferts, gestion du site depuis le mobile, rap
 
 **Reste / limites connues**
 - Phase 2 : devis, BL, avoirs, conversion ; transferts entre commerçantes ; gestion du site depuis le mobile ; rapports ; impression Bluetooth ; `domain-verify` ; push FCM réel ; crons (`subscription-cron`, `stock-alerts-cron`) ; `export-data` ; `admin-impersonate` ; `on-order-created` ; `storefront-sitemap` ; paiements fournisseurs ; favoris / coupons ; modules éditeur Support, base d'aide, paramètres globaux.
-- Vérification : les tests SQL tournent dans PGlite (Postgres WASM) avec un shim pgTAP ; la CLI Supabase/Docker n'était pas disponible ici (à relancer avec `make test-db`). Les Edge Functions sont typées et leurs modules partagés testés, mais non exécutées face à un projet Supabase réel. L'app Flutter est validée par analyse statique et tests, non exécutée sur un appareil dans cet environnement.
+- Vérification : les tests SQL tournent dans PGlite (Postgres WASM) avec un shim pgTAP ; la CLI Supabase/Docker n'était pas disponible ici (à relancer avec `npx supabase test db`). Les Edge Functions sont typées et leurs modules partagés testés, mais non exécutées face à un projet Supabase réel. L'app Flutter est validée par analyse statique et tests, non exécutée sur un appareil dans cet environnement.
 
