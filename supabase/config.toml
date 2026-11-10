@@ -92,3 +92,19 @@ verify_jwt = true
 
 [analytics]
 enabled = false
+
+[functions.domain-verify]
+verify_jwt = true
+
+[functions.export-data]
+verify_jwt = true
+
+# Appelées par un planificateur / un webhook : authentification par secret partagé (x-cron-secret), pas par JWT.
+[functions.subscription-cron]
+verify_jwt = false
+
+[functions.stock-alerts-cron]
+verify_jwt = false
+
+[functions.on-order-created]
+verify_jwt = false

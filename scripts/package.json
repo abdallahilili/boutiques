@@ -6,8 +6,8 @@
   "scripts": {
     "test:db": "node test_db.mjs",
     "gen:types": "node gen_types.mjs",
-    "test:functions": "cd ../supabase/functions && deno test --allow-env --allow-net _shared/",
-    "check:functions": "cd ../supabase/functions && deno check */index.ts"
+    "test:functions": "cd ../supabase/functions && deno test --node-modules-dir=none --allow-env --allow-net _shared/",
+    "check:functions": "cd ../supabase/functions && deno check --node-modules-dir=none */index.ts"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.16",

@@ -1,10 +1,11 @@
-// Envoi ciblé d'une notification par l'éditeur : in-app (table notifications) + push FCM (stub).
+// Envoi ciblé d'une notification par l'éditeur : in-app (table notifications) + push FCM.
 //
 // POST { cible: { type: "boutique" | "plan" | "tous" | "utilisateur", id? },
 //        titre_ar?, titre_fr?, corps_ar?, corps_fr?, type? }
 import { ErreurHttp, json, lireJson, servir, texte } from "../_shared/http.ts";
 import { exigerAdminPlateforme } from "../_shared/autorisations.ts";
 import { envoyerPush } from "../_shared/fcm.ts";
+import { supprimerJetonsInvalides } from "../_shared/push.ts";
 import { clientService } from "../_shared/supabase.ts";
 
 const CIBLES = ["boutique", "plan", "tous", "utilisateur"] as const;
@@ -66,5 +67,6 @@ servir(async (req) => {
     (appareils ?? []).map((a) => a.jeton_fcm as string),
     { titre: titreFr ?? titreAr ?? "", corps: corpsFr ?? corpsAr ?? "" },
   );
-  return json(200, { destinataires: utilisateurs.length, push });
+  await supprimerJetonsInvalides(service, push.invalides);
+  return json(200, { destinataires: utilisateurs.length, push: { statut: push.statut, envoyes: push.envoyes } });
 });

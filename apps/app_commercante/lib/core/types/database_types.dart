@@ -379,6 +379,7 @@ abstract final class Rpc {
   static const envoyerTransfert = 'envoyer_transfert';
   static const expirerDevisPerimes = 'expirer_devis_perimes';
   static const fermerSessionCaisse = 'fermer_session_caisse';
+  static const genererAlertesImpayes = 'generer_alertes_impayes';
   static const genererAlertesStock = 'generer_alertes_stock';
   static const genererDocumentCommande = 'generer_document_commande';
   static const inviterMembre = 'inviter_membre';

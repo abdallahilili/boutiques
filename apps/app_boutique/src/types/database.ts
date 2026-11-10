@@ -2761,6 +2761,10 @@ export type Database = {
       }
         Returns: Json
       }
+      generer_alertes_impayes: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
       generer_alertes_stock: {
         Args: Record<PropertyKey, never>
         Returns: Json
