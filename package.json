@@ -1,0 +1,32 @@
+{
+  "name": "boutiques",
+  "private": true,
+  "description": "Plateforme SaaS de gestion de boutique pour commerçantes (monorepo). Toutes les commandes passent par npm.",
+  "scripts": {
+    "postinstall": "npm --prefix scripts install && npm --prefix apps/app_admin install && npm --prefix apps/app_boutique install",
+    "mobile:setup": "cd apps/app_commercante && flutter pub get && dart run build_runner build",
+    "dev": "npm --prefix apps/app_admin run dev",
+    "dev:admin": "npm --prefix apps/app_admin run dev",
+    "dev:boutique": "npm --prefix apps/app_boutique run dev",
+    "dev:mobile": "cd apps/app_commercante && flutter run --dart-define-from-file=.env",
+    "db:login": "supabase login",
+    "db:link": "supabase link --project-ref kgwsdlgeldtfpjqdztup",
+    "db:push": "supabase db push",
+    "functions:secrets": "supabase secrets set --env-file supabase/functions/.env",
+    "functions:deploy": "supabase functions deploy",
+    "deploy": "npm run db:push && npm run functions:secrets && npm run functions:deploy",
+    "gen:types": "node scripts/gen_types.mjs",
+    "test": "npm run test:db && npm run test:functions && npm run test:admin && npm run test:boutique && npm run test:mobile",
+    "test:db": "node scripts/test_db.mjs",
+    "test:functions": "npm --prefix scripts run test:functions",
+    "test:admin": "npm --prefix apps/app_admin run test",
+    "test:boutique": "npm --prefix apps/app_boutique run test",
+    "test:mobile": "cd apps/app_commercante && flutter test",
+    "lint": "npm --prefix apps/app_admin run lint && npm --prefix apps/app_admin run typecheck && npm --prefix apps/app_boutique run lint && npm --prefix apps/app_boutique run typecheck && cd apps/app_commercante && flutter analyze",
+    "build:admin": "npm --prefix apps/app_admin run build",
+    "build:boutique": "npm --prefix apps/app_boutique run build"
+  },
+  "devDependencies": {
+    "supabase": "^3.1.0"
+  }
+}

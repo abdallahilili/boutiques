@@ -15,69 +15,56 @@ Spécification : [docs/cahier_des_charges.md](docs/cahier_des_charges.md) · dé
 ## Prérequis
 
 - Node.js 20+ et npm
-- Flutter 3.4x (Dart 3.9+) — Android Studio / Xcode pour les émulateurs
-- [Supabase CLI](https://supabase.com/docs/guides/local-development) (déploiement des migrations et des fonctions) ; Docker uniquement pour l'option locale — les tests SQL tournent aussi sans Docker (`make test-db-local`)
-- Deno 2 (Edge Functions) — installé aussi par `make setup` (dépendance npm `deno` dans `scripts/`)
-- `make` (Git Bash / WSL sous Windows)
+- Flutter 3.4x (Dart 3.9+) pour l'app mobile (Android Studio / Xcode pour les émulateurs)
+- Aucune autre installation : la CLI Supabase et Deno sont des dépendances npm (`npm install` les télécharge). Docker n'est utile que pour un Supabase local (facultatif).
 
-## Installation (projet Supabase hébergé)
+## Installation et lancement (projet Supabase hébergé)
 
-Les apps utilisent un projet Supabase **hébergé** ; aucun Docker n'est nécessaire.
+Tout passe par npm, à la racine du dépôt :
 
 ```bash
-make setup                     # dépendances npm (outils, 2 apps web), flutter pub get, code généré, fichiers .env
-# 1. Renseigner les .env (voir « Variables d'environnement ») avec l'URL et la clé publique du projet
-# 2. Initialiser le projet distant (une seule fois) :
-supabase login
-supabase link --project-ref <ref-du-projet>          # la « ref » est le début de l'URL : https://<ref>.supabase.co
-make db-push                                         # applique les migrations sur le projet distant
-supabase secrets set PIN_SECRET="$(openssl rand -hex 32)" PHONE_EMAIL_DOMAIN=tel.invalid PAYS_INDICATIF=222
-supabase functions deploy connexion_telephone_pin inscription-cliente admin-create-merchant admin-create-staff   invite-member reset-pin changer-code send-notification
-# 3. Créer le premier super-admin : docs/guide_deploiement.md (section 3)
-
-make admin        # http://localhost:5173
-make boutique     # http://localhost:5174  (ex. http://ma-boutique.localhost:5174)
-make mobile       # app Flutter sur l'appareil connecté (lit apps/app_commercante/.env)
+npm install                # installe tout : outils, CLI Supabase, app_admin, app_boutique
+npm run mobile:setup       # Flutter : flutter pub get + code généré (une fois)
 ```
 
-`make gen-types` régénère les types TypeScript/Dart depuis les migrations (sans base ni Docker).
+1. Renseigner les `.env` (voir plus bas) avec l'URL et la clé publique du projet.
+2. Initialiser le projet distant (une seule fois) :
 
-### Windows (PowerShell) sans `make` ni CLI installée
-
-`make` et la CLI Supabase ne sont pas fournis avec Windows. Équivalents sans rien installer de plus que Node :
-
-```powershell
-npm --prefix scripts install; npm --prefix apps/app_admin install; npm --prefix apps/app_boutique install
-cd apps/app_commercante; flutter pub get; dart run build_runner build; cd ../..
-npx supabase@latest login
-npx supabase@latest link --project-ref <ref-du-projet>
-npx supabase@latest db push
-npx supabase@latest secrets set PIN_SECRET=<64-caractères-hex> PHONE_EMAIL_DOMAIN=tel.invalid PAYS_INDICATIF=222
-npx supabase@latest functions deploy connexion_telephone_pin inscription-cliente admin-create-merchant admin-create-staff invite-member reset-pin changer-code send-notification
-npm --prefix apps/app_admin run dev          # make admin
-npm --prefix apps/app_boutique run dev       # make boutique
-cd apps/app_commercante; flutter run --dart-define-from-file=.env   # make mobile
+```bash
+npm run db:login           # ouvre le navigateur
+npm run db:link            # demande le mot de passe de la base (projet kgwsdlgeldtfpjqdztup)
+npm run db:push            # applique les migrations
+npm run functions:secrets  # envoie supabase/functions/.env (PIN_SECRET…) vers Supabase
+npm run functions:deploy   # déploie les Edge Functions
 ```
 
-### Alternative : Supabase local (Docker)
+`npm run deploy` enchaîne `db:push`, `functions:secrets` et `functions:deploy` pour les mises à jour suivantes.
+3. Créer le premier super-admin : [docs/guide_deploiement.md](docs/guide_deploiement.md) (section 3).
+4. Lancer les apps :
 
-Pour développer sans toucher au projet distant : `make db-start`, `make db-reset`, `make fn-serve`, avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
+```bash
+npm run dev                # console éditeur  → http://localhost:5173
+npm run dev:boutique       # boutique en ligne → http://localhost:5174 (ex. http://ma-boutique.localhost:5174)
+npm run dev:mobile         # app Flutter sur l'appareil connecté (lit apps/app_commercante/.env)
+```
 
-## Commandes `make`
+Pour changer de projet Supabase, modifier `--project-ref` dans le script `db:link` de `package.json`.
+
+## Commandes npm
 
 | Commande | Rôle |
 | --- | --- |
-| `setup` | Installe toutes les dépendances et crée les `.env` depuis les `.env.example` |
-| `db-start` / `db-stop` | (option locale) Démarre / arrête Supabase local via Docker |
-| `db-reset` | (option locale) Recrée la base locale (migrations + `supabase/seed.sql`) et régénère les types |
-| `db-push` | Applique les migrations sur le projet Supabase distant lié |
-| `gen-types` | Régénère les types TypeScript (web) et Dart (mobile) depuis les migrations |
-| `fn-serve` | (option locale) Sert les Edge Functions en local |
-| `admin` / `boutique` / `mobile` | Lance l'application correspondante |
-| `test` | Toutes les suites : pgTAP, Deno, Vitest (×2), Flutter |
-| `test-db` | Tests pgTAP via Supabase CLI (Docker) |
-| `test-db-local` | Mêmes tests SQL **sans Docker** (PGlite + shim pgTAP) |
-| `lint` | ESLint + `tsc` (web), `flutter analyze`, `deno lint` |
+| `npm install` | Installe toutes les dépendances (racine, scripts, apps web) |
+| `npm run mobile:setup` | `flutter pub get` + code généré (Drift) |
+| `npm run dev` / `dev:admin` / `dev:boutique` / `dev:mobile` | Lance l'application correspondante |
+| `npm run db:login` / `db:link` / `db:push` | Connexion, liaison et migrations du projet Supabase |
+| `npm run functions:secrets` / `functions:deploy` / `deploy` | Secrets et déploiement des Edge Functions |
+| `npm run gen:types` | Régénère les types TypeScript (web) et Dart (mobile) depuis les migrations |
+| `npm test` | Toutes les suites (SQL, Deno, Vitest ×2, Flutter) ; chacune aussi seule : `test:db`, `test:functions`, `test:admin`, `test:boutique`, `test:mobile` |
+| `npm run lint` | ESLint + `tsc` (web) et `flutter analyze` |
+| `npm run build:admin` / `build:boutique` | Builds de production |
+
+Option Supabase local (Docker) : `npx supabase start` puis `npx supabase db reset`, avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
 
 ## Variables d'environnement
 
@@ -108,12 +95,10 @@ Aucun secret n'est commité : seuls les `.env.example` le sont.
 ## Tests
 
 ```bash
-make test-db-local          # 211 tests SQL : RLS, FIFO, stock ≥ 0, numérotation, commandes, Storage
-cd supabase/functions && deno test --allow-env --allow-net _shared/
-npm --prefix apps/app_admin run test
-npm --prefix apps/app_boutique run test
-cd apps/app_commercante && flutter test      # (build_runner requis une fois : make setup)
+npm test                   # SQL (211 tests : RLS, FIFO, stock ≥ 0, numérotation, commandes, Storage), Deno, Vitest ×2, Flutter
 ```
+
+Les tests SQL s'exécutent dans PGlite (Postgres WASM) avec un substitut de pgTAP : pas de Docker requis. Avec Docker : `npx supabase test db`.
 
 ## Déploiement
 

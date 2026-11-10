@@ -3,9 +3,9 @@
 ## 1. Projet Supabase
 
 ```bash
-supabase login
-supabase link --project-ref <ref-du-projet>
-supabase db push                      # applique supabase/migrations
+npm run db:login
+npm run db:link                       # projet lié (voir package.json)
+npm run db:push                       # applique supabase/migrations
 ```
 
 Les migrations créent les tables, la RLS, les fonctions, les vues publiques, les buckets Storage, les rôles/permissions, le plan d'essai et les thèmes. `supabase/seed.sql` (plans payants d'exemple) n'est **pas** exécuté en production : créez vos plans depuis `app_admin`.
