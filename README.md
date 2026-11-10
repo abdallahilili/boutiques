@@ -65,7 +65,7 @@ Pour changer de projet Supabase, modifier `--project-ref` dans le script `db:lin
 | `npm run lint` | ESLint + `tsc` (web) et `flutter analyze` |
 | `npm run build:admin` / `build:boutique` | Builds de production |
 
-Option Supabase local (Docker) : `npx supabase start` puis `npx supabase db reset`, avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
+Option Supabase local (Docker) : `npx supabase start` puis `npx supabase db reset` (la CLI v3 vise le local par défaut : `--remote` pour le projet hébergé, déjà inclus dans `npm run db:push`), avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
 
 ## Variables d'environnement
 

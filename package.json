@@ -11,7 +11,7 @@
     "dev:mobile": "cd apps/app_commercante && flutter run --dart-define-from-file=.env",
     "db:login": "supabase login",
     "db:link": "supabase link --project-ref kgwsdlgeldtfpjqdztup",
-    "db:push": "supabase db push",
+    "db:push": "supabase db push --remote",
     "functions:secrets": "supabase secrets set --env-file supabase/functions/.env",
     "functions:deploy": "supabase functions deploy",
     "deploy": "npm run db:push && npm run functions:secrets && npm run functions:deploy",
