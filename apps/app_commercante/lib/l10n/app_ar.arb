@@ -8,7 +8,11 @@
   "invalidCredentials": "رقم الهاتف أو الرمز غير صحيح",
   "accountLocked": "محاولات كثيرة. حاول مجدداً بعد {minutes} دقيقة",
   "@accountLocked": {
-    "placeholders": { "minutes": { "type": "int" } }
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
   },
   "networkError": "تعذّر الاتصال بالخادم، تحقق من الإنترنت",
   "genericError": "حدث خطأ، حاول مجدداً",
@@ -23,5 +27,433 @@
   "arabic": "العربية",
   "french": "Français",
   "logout": "تسجيل الخروج",
-  "loading": "جارٍ التحميل…"
+  "loading": "جارٍ التحميل…",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "edit": "تعديل",
+  "add": "إضافة",
+  "create": "إنشاء",
+  "search": "بحث",
+  "confirm": "تأكيد",
+  "yes": "نعم",
+  "no": "لا",
+  "close": "إغلاق",
+  "retry": "إعادة المحاولة",
+  "optional": "اختياري",
+  "requiredField": "هذا الحقل مطلوب",
+  "nameAr": "الاسم بالعربية",
+  "nameFr": "الاسم بالفرنسية",
+  "nameRequired": "أدخل الاسم بإحدى اللغتين",
+  "amount": "المبلغ",
+  "quantity": "الكمية",
+  "price": "السعر",
+  "total": "المجموع",
+  "subtotal": "المجموع الفرعي",
+  "discount": "تخفيض",
+  "note": "ملاحظة",
+  "address": "العنوان",
+  "city": "المدينة",
+  "whatsapp": "واتساب",
+  "status": "الحالة",
+  "date": "التاريخ",
+  "actions": "إجراءات",
+  "none": "لا شيء",
+  "all": "الكل",
+  "active": "نشط",
+  "inactive": "غير نشط",
+  "scan": "مسح الباركود",
+  "saved": "تم الحفظ",
+  "deleted": "تم الحذف",
+  "emptyList": "لا توجد عناصر بعد",
+  "permissionDenied": "ليست لديك صلاحية لهذا الإجراء",
+  "connectionRequired": "هذا الإجراء يتطلب اتصالاً بالإنترنت",
+  "offlineBanner": "وضع غير متصل — ستُرسل العمليات تلقائياً عند عودة الاتصال",
+  "syncPending": "{count} عملية في الانتظار",
+  "@syncPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "syncNow": "مزامنة الآن",
+  "syncIssuesTitle": "عمليات تحتاج إلى قرارك",
+  "syncIssuesHint": "رفض الخادم هذه العمليات. أعد المحاولة أو تخلّ عنها.",
+  "discard": "تخلّي",
+  "readOnlyBanner": "الاشتراك منتهٍ: التطبيق للقراءة فقط. تواصل مع الناشر للتجديد.",
+  "graceBanner": "اشتراكك منتهٍ — فترة سماح محدودة. جدّد قريباً.",
+  "suspendedTitle": "الحساب موقوف",
+  "suspendedText": "تم إيقاف هذا المتجر بسبب انتهاء الاشتراك. بياناتك محفوظة ويمكنك الاطلاع عليها.",
+  "contactPublisher": "تواصل مع الناشر",
+  "shop": "المتجر",
+  "switchShop": "تغيير المتجر",
+  "synced": "تمت المزامنة",
+  "lastSync": "آخر مزامنة: {date}",
+  "@lastSync": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "selectOption": "اختر",
+  "unknownError": "تعذّر تنفيذ العملية: {details}",
+  "@unknownError": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "stockInsufficient": "المخزون غير كافٍ",
+  "serverError_stock_insuffisant": "المخزون غير كافٍ لهذه العملية",
+  "serverError_client_requis": "اختر زبونة لبيع بالآجل",
+  "serverError_plafond_credit_depasse": "تجاوز سقف الائتمان للزبونة",
+  "serverError_prix_non_autorise": "ليست لديك صلاحية تعديل الأسعار",
+  "serverError_boutique_inactive": "المتجر في وضع القراءة فقط",
+  "serverError_quota_depasse": "تجاوزت حد خطة اشتراكك",
+  "serverError_motif_obligatoire": "السبب إلزامي لإخراج المخزون",
+  "bootLoading": "جارٍ تحضير متجرك…",
+  "noShopTitle": "لا يوجد متجر مرتبط بحسابك",
+  "noShopText": "تواصل مع الناشر لإنشاء متجرك.",
+  "continueReadOnly": "المتابعة بوضع القراءة فقط",
+  "dashboardToday": "اليوم",
+  "dashboardWeek": "7 أيام",
+  "dashboardMonth": "هذا الشهر",
+  "revenue": "المبيعات",
+  "salesCount": "عدد المبيعات",
+  "outOfStock": "منتجات نفدت",
+  "lowStock": "مخزون منخفض",
+  "ordersToProcess": "طلبات للمعالجة",
+  "unpaidCustomers": "ديون الزبائن",
+  "shortcuts": "اختصارات",
+  "newSale": "عملية بيع جديدة",
+  "newProduct": "منتج جديد",
+  "stockEntry": "إدخال مخزون",
+  "menuOrders": "الطلبات الإلكترونية",
+  "menuDocuments": "الفواتير",
+  "menuCustomers": "الزبائن",
+  "menuReferentials": "المراجع (ألوان، أصناف…)",
+  "menuSettings": "إعدادات المتجر",
+  "menuNotifications": "الإشعارات",
+  "menuSync": "المزامنة",
+  "menuSubscription": "الاشتراك",
+  "refCategories": "الأصناف",
+  "refColors": "الألوان",
+  "refModels": "الموديلات",
+  "refSizes": "المقاسات",
+  "refBrands": "العلامات التجارية",
+  "refUnits": "الوحدات",
+  "refPaymentModes": "طرق الدفع",
+  "refDeliveryZones": "مناطق التوصيل",
+  "refSuppliers": "الموردون",
+  "colorHex": "رمز اللون (Hex)",
+  "colorInvalid": "رمز لون غير صالح (مثال: #00FF00)",
+  "parentCategory": "الصنف الأب",
+  "visibleOnline": "ظاهر في المتجر الإلكتروني",
+  "sizeType": "نوع المقاس",
+  "sizeTypeSize": "مقاس",
+  "sizeTypeShoe": "مقاس حذاء",
+  "sizeTypeLength": "طول",
+  "paymentTypeCash": "نقداً",
+  "paymentTypeMobile": "محفظة إلكترونية",
+  "paymentTypeBank": "بنك",
+  "paymentTypeCard": "بطاقة",
+  "paymentTypeCredit": "آجل",
+  "isDefault": "الافتراضية",
+  "deliveryFee": "رسوم التوصيل",
+  "deliveryDays": "المدة (أيام)",
+  "abbreviation": "الاختصار",
+  "deactivate": "تعطيل",
+  "activate": "تفعيل",
+  "usedCannotDelete": "العنصر مستعمل ولا يمكن حذفه. عطّله بدلاً من ذلك.",
+  "deleteConfirm": "حذف هذا العنصر؟",
+  "reorderHint": "اسحب لتغيير الترتيب",
+  "newItem": "عنصر جديد",
+  "addOnTheFly": "+ إضافة جديد",
+  "productsTitle": "المنتجات",
+  "searchProducts": "ابحث عن منتج أو رمز…",
+  "noProducts": "لا توجد منتجات. أضف أول منتج.",
+  "lowStockFilter": "مخزون منخفض",
+  "allCategories": "كل الأصناف",
+  "productNew": "منتج جديد",
+  "productEdit": "تعديل المنتج",
+  "descriptionAr": "الوصف بالعربية",
+  "descriptionFr": "الوصف بالفرنسية",
+  "category": "الصنف",
+  "brand": "العلامة",
+  "unit": "الوحدة",
+  "tags": "وسوم (مفصولة بفاصلة)",
+  "productActive": "منتج نشط",
+  "photos": "الصور",
+  "addPhotos": "إضافة صور",
+  "photoMain": "الرئيسية",
+  "variants": "المتغيرات (موديل، لون، مقاس)",
+  "variantAdd": "إضافة متغير",
+  "variantEdit": "تعديل المتغير",
+  "variantsGenerate": "توليد كل المتغيرات",
+  "variantsGenerateHint": "اختر الموديلات والألوان والمقاسات: تُنشأ كل التركيبات.",
+  "variantsToCreate": "{count} متغير سيُنشأ",
+  "@variantsToCreate": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "basePrice": "سعر البيع",
+  "model": "الموديل",
+  "color": "اللون",
+  "size": "المقاس",
+  "sku": "المرجع (SKU)",
+  "barcode": "الباركود",
+  "barcodeAutoHint": "يُولَّد تلقائياً إن تُرك فارغاً",
+  "promoPrice": "سعر العرض",
+  "promoStart": "بداية العرض",
+  "promoEnd": "نهاية العرض",
+  "stockMinimum": "حد التنبيه",
+  "archiveProduct": "أرشفة المنتج",
+  "archiveConfirm": "أرشفة هذا المنتج؟ يبقى سجل مبيعاته محفوظاً.",
+  "duplicateProduct": "نسخ المنتج",
+  "priceFrom": "ابتداءً من {price}",
+  "@priceFrom": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "stockCount": "المخزون: {count}",
+  "@stockCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "variantCount": "{count} متغير",
+  "@variantCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "variantExists": "هذه التركيبة موجودة مسبقاً",
+  "needOnline": "إنشاء المنتجات يتطلب اتصالاً بالإنترنت",
+  "createQuick": "إضافة سريعة",
+  "priceInvalid": "سعر غير صالح",
+  "deleteVariantConfirm": "تعطيل هذا المتغير؟",
+  "variantInactive": "معطّل",
+  "stockTitle": "المخزون",
+  "stockSearch": "ابحث بالاسم أو الباركود…",
+  "stockInStock": "المتوفر",
+  "stockReserved": "محجوز",
+  "stockAvailable": "المتاح",
+  "stockEntryTitle": "إدخال مخزون",
+  "stockOutTitle": "إخراج مخزون",
+  "inventoryTitle": "جرد المخزون",
+  "stockActions": "عمليات المخزون",
+  "supplier": "المورد",
+  "reference": "المرجع",
+  "unitCost": "سعر الشراء للوحدة",
+  "expiryDate": "تاريخ الانتهاء",
+  "newSalePrice": "سعر البيع الجديد",
+  "amountPaid": "المبلغ المدفوع",
+  "addLine": "إضافة منتج",
+  "pickVariant": "اختيار منتج",
+  "noLines": "أضف منتجاً أو امسح باركوده",
+  "reason": "السبب",
+  "reasonRequired": "اختر سبباً",
+  "counted": "الكمية المعدودة",
+  "systemQty": "في النظام: {qty}",
+  "@systemQty": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "difference": "الفرق: {qty}",
+  "@difference": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "applyInventory": "تطبيق الجرد",
+  "stockHistory": "سجل الحركات",
+  "lots": "الدفعات",
+  "lotRemaining": "المتبقي {qty} من {initial}",
+  "@lotRemaining": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      },
+      "initial": {
+        "type": "String"
+      }
+    }
+  },
+  "expiresOn": "ينتهي في {date}",
+  "@expiresOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "costLabel": "الشراء: {cost}",
+  "@costLabel": {
+    "placeholders": {
+      "cost": {
+        "type": "String"
+      }
+    }
+  },
+  "movement_entree": "إدخال",
+  "movement_sortie_vente": "بيع",
+  "movement_sortie_manuelle": "إخراج يدوي",
+  "movement_retour_client": "إرجاع زبونة",
+  "movement_retour_fournisseur": "إرجاع للمورد",
+  "movement_ajustement": "تعديل جرد",
+  "movement_reservation": "حجز",
+  "movement_liberation": "إلغاء حجز",
+  "movement_transfert_sortie": "تحويل صادر",
+  "movement_transfert_entree": "تحويل وارد",
+  "queuedOffline": "تم الحفظ وسيُرسل عند عودة الاتصال",
+  "scanNotFound": "لم يتم العثور على منتج بهذا الرمز",
+  "quantityInvalid": "كمية غير صالحة",
+  "stockOutQty": "الكمية المخرجة",
+  "cartTitle": "السلة",
+  "cartEmpty": "السلة فارغة",
+  "cartItems": "{count} منتج",
+  "@cartItems": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "viewCart": "عرض السلة",
+  "pay": "الدفع",
+  "editPrice": "تعديل السعر",
+  "applyDiscount": "تخفيض على الفاتورة",
+  "lineDiscount": "تخفيض على السطر",
+  "discountAmount": "مبلغ",
+  "discountPercent": "نسبة %",
+  "walkInCustomer": "زبونة عابرة",
+  "suspendSale": "تعليق البيع",
+  "suspendedSales": "المبيعات المعلّقة",
+  "noSuspended": "لا توجد مبيعات معلّقة",
+  "paidSoFar": "المدفوع",
+  "remainingDue": "المتبقي",
+  "changeDue": "الباقي للزبونة",
+  "receivedAmount": "المبلغ المستلم",
+  "addPayment": "إضافة دفعة",
+  "creditSale": "بيع بالآجل",
+  "customerRequiredForDebt": "اختر زبونة لتسجيل المبلغ المتبقي كدين",
+  "confirmSale": "تأكيد البيع",
+  "receiptTitle": "تم البيع",
+  "numberPending": "الرقم قيد الإسناد",
+  "saleQueued": "تم الحفظ وسيُزامَن تلقائياً",
+  "sharePdf": "مشاركة PDF",
+  "whatsappMessage": "رسالة واتساب",
+  "printInvoice": "طباعة",
+  "newSaleAction": "بيع جديد",
+  "cashSession": "الصندوق",
+  "openCash": "فتح الصندوق",
+  "closeCash": "إغلاق الصندوق",
+  "cashFloat": "مبلغ بداية الصندوق",
+  "cashCounted": "المبلغ المعدود",
+  "cashExpected": "المبلغ المنتظر",
+  "cashDifference": "الفرق",
+  "zReport": "تقرير Z",
+  "unpaidOnly": "غير مدفوعة",
+  "searchCustomers": "ابحث عن زبونة…",
+  "noCustomers": "لا توجد زبائن",
+  "newCustomer": "زبونة جديدة",
+  "editCustomer": "تعديل الزبونة",
+  "creditLimit": "سقف الدين",
+  "balanceDue": "الدين المستحق",
+  "settleDebt": "تسديد الدين",
+  "callCustomer": "اتصال",
+  "whatsappReminder": "تذكير واتساب",
+  "reminderMessage": "مرحباً {name}، نذكّرك بمبلغ مستحق: {amount}. شكراً!",
+  "@reminderMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseHistory": "سجل المشتريات",
+  "noPurchases": "لا توجد مشتريات",
+  "orderNew": "جديد",
+  "orderConfirmed": "مؤكد",
+  "orderPreparing": "قيد التجهيز",
+  "orderReady": "جاهز",
+  "orderShipped": "تم الشحن",
+  "orderDelivered": "تم التسليم",
+  "orderCancelled": "ملغى",
+  "orderReturned": "مرتجع",
+  "orderDetail": "تفاصيل الطلب",
+  "newOrderReceived": "طلب جديد",
+  "pickup": "استلام من المتجر",
+  "delivery": "توصيل",
+  "paymentMode": "طريقة الدفع",
+  "paymentProof": "إثبات الدفع",
+  "cancelOrderConfirm": "إلغاء هذا الطلب؟ سيُحرَّر المخزون المحجوز.",
+  "generateInvoice": "إنشاء فاتورة",
+  "invoiceCreated": "تم إنشاء الفاتورة",
+  "viewInvoice": "عرض الفاتورة",
+  "orderStatusMessage": "طلبك رقم {number}: {status}",
+  "@orderStatusMessage": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "shopProfile": "ملف المتجر",
+  "onlineStore": "المتجر الإلكتروني",
+  "employees": "الموظفات",
+  "currency": "العملة",
+  "documentFooterAr": "تذييل الفواتير (عربي)",
+  "documentFooterFr": "تذييل الفواتير (فرنسي)",
+  "defaultStockThreshold": "حد تنبيه المخزون الافتراضي",
+  "allowNegativeStock": "السماح بالمخزون السالب",
+  "subdomain": "النطاق الفرعي",
+  "subdomainReadOnlyHint": "يُمنح النطاق الفرعي عند إنشاء المتجر ولا يمكن تغييره من التطبيق. للتعديل تواصل مع الناشر.",
+  "customDomain": "النطاق الخاص",
+  "shopCode": "رمز المتجر",
+  "role": "الدور",
+  "roleOwner": "المالكة",
+  "roleManager": "المسيّرة",
+  "roleCashier": "بائعة",
+  "roleStockKeeper": "أمينة المخزن",
+  "inviteEmployee": "دعوة موظفة",
+  "initialCode": "الرمز الأولي",
+  "initialCodeHint": "سلّمها رقم الهاتف وهذا الرمز (يظهر مرة واحدة).",
+  "resetCode": "إعادة تعيين الرمز",
+  "unlimited": "غير محدود",
+  "renewalHint": "لتجديد اشتراكك تواصل مع الناشر: يُسجَّل الدفع من لوحة الإدارة.",
+  "onboardingTitle": "مرحباً بك!",
+  "onboardingShop": "معلومات المتجر",
+  "onboardingCategories": "أصناف البداية",
+  "onboardingCategoriesHint": "احتفظ بالأصناف التي تبيعينها. يمكنك تعديلها لاحقاً.",
+  "onboardingPayment": "طريقة الدفع الافتراضية",
+  "onboardingPaymentHint": "ستُحدَّد تلقائياً عند البيع.",
+  "chooseLogo": "اختيار شعار",
+  "back": "رجوع",
+  "next": "التالي",
+  "finish": "إنهاء"
 }

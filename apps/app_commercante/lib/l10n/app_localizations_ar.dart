@@ -72,4 +72,986 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get loading => 'جارٍ التحميل…';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get add => 'إضافة';
+
+  @override
+  String get create => 'إنشاء';
+
+  @override
+  String get search => 'بحث';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get yes => 'نعم';
+
+  @override
+  String get no => 'لا';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get optional => 'اختياري';
+
+  @override
+  String get requiredField => 'هذا الحقل مطلوب';
+
+  @override
+  String get nameAr => 'الاسم بالعربية';
+
+  @override
+  String get nameFr => 'الاسم بالفرنسية';
+
+  @override
+  String get nameRequired => 'أدخل الاسم بإحدى اللغتين';
+
+  @override
+  String get amount => 'المبلغ';
+
+  @override
+  String get quantity => 'الكمية';
+
+  @override
+  String get price => 'السعر';
+
+  @override
+  String get total => 'المجموع';
+
+  @override
+  String get subtotal => 'المجموع الفرعي';
+
+  @override
+  String get discount => 'تخفيض';
+
+  @override
+  String get note => 'ملاحظة';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get city => 'المدينة';
+
+  @override
+  String get whatsapp => 'واتساب';
+
+  @override
+  String get status => 'الحالة';
+
+  @override
+  String get date => 'التاريخ';
+
+  @override
+  String get actions => 'إجراءات';
+
+  @override
+  String get none => 'لا شيء';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get active => 'نشط';
+
+  @override
+  String get inactive => 'غير نشط';
+
+  @override
+  String get scan => 'مسح الباركود';
+
+  @override
+  String get saved => 'تم الحفظ';
+
+  @override
+  String get deleted => 'تم الحذف';
+
+  @override
+  String get emptyList => 'لا توجد عناصر بعد';
+
+  @override
+  String get permissionDenied => 'ليست لديك صلاحية لهذا الإجراء';
+
+  @override
+  String get connectionRequired => 'هذا الإجراء يتطلب اتصالاً بالإنترنت';
+
+  @override
+  String get offlineBanner =>
+      'وضع غير متصل — ستُرسل العمليات تلقائياً عند عودة الاتصال';
+
+  @override
+  String syncPending(int count) {
+    return '$count عملية في الانتظار';
+  }
+
+  @override
+  String get syncNow => 'مزامنة الآن';
+
+  @override
+  String get syncIssuesTitle => 'عمليات تحتاج إلى قرارك';
+
+  @override
+  String get syncIssuesHint =>
+      'رفض الخادم هذه العمليات. أعد المحاولة أو تخلّ عنها.';
+
+  @override
+  String get discard => 'تخلّي';
+
+  @override
+  String get readOnlyBanner =>
+      'الاشتراك منتهٍ: التطبيق للقراءة فقط. تواصل مع الناشر للتجديد.';
+
+  @override
+  String get graceBanner => 'اشتراكك منتهٍ — فترة سماح محدودة. جدّد قريباً.';
+
+  @override
+  String get suspendedTitle => 'الحساب موقوف';
+
+  @override
+  String get suspendedText =>
+      'تم إيقاف هذا المتجر بسبب انتهاء الاشتراك. بياناتك محفوظة ويمكنك الاطلاع عليها.';
+
+  @override
+  String get contactPublisher => 'تواصل مع الناشر';
+
+  @override
+  String get shop => 'المتجر';
+
+  @override
+  String get switchShop => 'تغيير المتجر';
+
+  @override
+  String get synced => 'تمت المزامنة';
+
+  @override
+  String lastSync(String date) {
+    return 'آخر مزامنة: $date';
+  }
+
+  @override
+  String get selectOption => 'اختر';
+
+  @override
+  String unknownError(String details) {
+    return 'تعذّر تنفيذ العملية: $details';
+  }
+
+  @override
+  String get stockInsufficient => 'المخزون غير كافٍ';
+
+  @override
+  String get serverError_stock_insuffisant => 'المخزون غير كافٍ لهذه العملية';
+
+  @override
+  String get serverError_client_requis => 'اختر زبونة لبيع بالآجل';
+
+  @override
+  String get serverError_plafond_credit_depasse => 'تجاوز سقف الائتمان للزبونة';
+
+  @override
+  String get serverError_prix_non_autorise => 'ليست لديك صلاحية تعديل الأسعار';
+
+  @override
+  String get serverError_boutique_inactive => 'المتجر في وضع القراءة فقط';
+
+  @override
+  String get serverError_quota_depasse => 'تجاوزت حد خطة اشتراكك';
+
+  @override
+  String get serverError_motif_obligatoire => 'السبب إلزامي لإخراج المخزون';
+
+  @override
+  String get bootLoading => 'جارٍ تحضير متجرك…';
+
+  @override
+  String get noShopTitle => 'لا يوجد متجر مرتبط بحسابك';
+
+  @override
+  String get noShopText => 'تواصل مع الناشر لإنشاء متجرك.';
+
+  @override
+  String get continueReadOnly => 'المتابعة بوضع القراءة فقط';
+
+  @override
+  String get dashboardToday => 'اليوم';
+
+  @override
+  String get dashboardWeek => '7 أيام';
+
+  @override
+  String get dashboardMonth => 'هذا الشهر';
+
+  @override
+  String get revenue => 'المبيعات';
+
+  @override
+  String get salesCount => 'عدد المبيعات';
+
+  @override
+  String get outOfStock => 'منتجات نفدت';
+
+  @override
+  String get lowStock => 'مخزون منخفض';
+
+  @override
+  String get ordersToProcess => 'طلبات للمعالجة';
+
+  @override
+  String get unpaidCustomers => 'ديون الزبائن';
+
+  @override
+  String get shortcuts => 'اختصارات';
+
+  @override
+  String get newSale => 'عملية بيع جديدة';
+
+  @override
+  String get newProduct => 'منتج جديد';
+
+  @override
+  String get stockEntry => 'إدخال مخزون';
+
+  @override
+  String get menuOrders => 'الطلبات الإلكترونية';
+
+  @override
+  String get menuDocuments => 'الفواتير';
+
+  @override
+  String get menuCustomers => 'الزبائن';
+
+  @override
+  String get menuReferentials => 'المراجع (ألوان، أصناف…)';
+
+  @override
+  String get menuSettings => 'إعدادات المتجر';
+
+  @override
+  String get menuNotifications => 'الإشعارات';
+
+  @override
+  String get menuSync => 'المزامنة';
+
+  @override
+  String get menuSubscription => 'الاشتراك';
+
+  @override
+  String get refCategories => 'الأصناف';
+
+  @override
+  String get refColors => 'الألوان';
+
+  @override
+  String get refModels => 'الموديلات';
+
+  @override
+  String get refSizes => 'المقاسات';
+
+  @override
+  String get refBrands => 'العلامات التجارية';
+
+  @override
+  String get refUnits => 'الوحدات';
+
+  @override
+  String get refPaymentModes => 'طرق الدفع';
+
+  @override
+  String get refDeliveryZones => 'مناطق التوصيل';
+
+  @override
+  String get refSuppliers => 'الموردون';
+
+  @override
+  String get colorHex => 'رمز اللون (Hex)';
+
+  @override
+  String get colorInvalid => 'رمز لون غير صالح (مثال: #00FF00)';
+
+  @override
+  String get parentCategory => 'الصنف الأب';
+
+  @override
+  String get visibleOnline => 'ظاهر في المتجر الإلكتروني';
+
+  @override
+  String get sizeType => 'نوع المقاس';
+
+  @override
+  String get sizeTypeSize => 'مقاس';
+
+  @override
+  String get sizeTypeShoe => 'مقاس حذاء';
+
+  @override
+  String get sizeTypeLength => 'طول';
+
+  @override
+  String get paymentTypeCash => 'نقداً';
+
+  @override
+  String get paymentTypeMobile => 'محفظة إلكترونية';
+
+  @override
+  String get paymentTypeBank => 'بنك';
+
+  @override
+  String get paymentTypeCard => 'بطاقة';
+
+  @override
+  String get paymentTypeCredit => 'آجل';
+
+  @override
+  String get isDefault => 'الافتراضية';
+
+  @override
+  String get deliveryFee => 'رسوم التوصيل';
+
+  @override
+  String get deliveryDays => 'المدة (أيام)';
+
+  @override
+  String get abbreviation => 'الاختصار';
+
+  @override
+  String get deactivate => 'تعطيل';
+
+  @override
+  String get activate => 'تفعيل';
+
+  @override
+  String get usedCannotDelete =>
+      'العنصر مستعمل ولا يمكن حذفه. عطّله بدلاً من ذلك.';
+
+  @override
+  String get deleteConfirm => 'حذف هذا العنصر؟';
+
+  @override
+  String get reorderHint => 'اسحب لتغيير الترتيب';
+
+  @override
+  String get newItem => 'عنصر جديد';
+
+  @override
+  String get addOnTheFly => '+ إضافة جديد';
+
+  @override
+  String get productsTitle => 'المنتجات';
+
+  @override
+  String get searchProducts => 'ابحث عن منتج أو رمز…';
+
+  @override
+  String get noProducts => 'لا توجد منتجات. أضف أول منتج.';
+
+  @override
+  String get lowStockFilter => 'مخزون منخفض';
+
+  @override
+  String get allCategories => 'كل الأصناف';
+
+  @override
+  String get productNew => 'منتج جديد';
+
+  @override
+  String get productEdit => 'تعديل المنتج';
+
+  @override
+  String get descriptionAr => 'الوصف بالعربية';
+
+  @override
+  String get descriptionFr => 'الوصف بالفرنسية';
+
+  @override
+  String get category => 'الصنف';
+
+  @override
+  String get brand => 'العلامة';
+
+  @override
+  String get unit => 'الوحدة';
+
+  @override
+  String get tags => 'وسوم (مفصولة بفاصلة)';
+
+  @override
+  String get productActive => 'منتج نشط';
+
+  @override
+  String get photos => 'الصور';
+
+  @override
+  String get addPhotos => 'إضافة صور';
+
+  @override
+  String get photoMain => 'الرئيسية';
+
+  @override
+  String get variants => 'المتغيرات (موديل، لون، مقاس)';
+
+  @override
+  String get variantAdd => 'إضافة متغير';
+
+  @override
+  String get variantEdit => 'تعديل المتغير';
+
+  @override
+  String get variantsGenerate => 'توليد كل المتغيرات';
+
+  @override
+  String get variantsGenerateHint =>
+      'اختر الموديلات والألوان والمقاسات: تُنشأ كل التركيبات.';
+
+  @override
+  String variantsToCreate(int count) {
+    return '$count متغير سيُنشأ';
+  }
+
+  @override
+  String get basePrice => 'سعر البيع';
+
+  @override
+  String get model => 'الموديل';
+
+  @override
+  String get color => 'اللون';
+
+  @override
+  String get size => 'المقاس';
+
+  @override
+  String get sku => 'المرجع (SKU)';
+
+  @override
+  String get barcode => 'الباركود';
+
+  @override
+  String get barcodeAutoHint => 'يُولَّد تلقائياً إن تُرك فارغاً';
+
+  @override
+  String get promoPrice => 'سعر العرض';
+
+  @override
+  String get promoStart => 'بداية العرض';
+
+  @override
+  String get promoEnd => 'نهاية العرض';
+
+  @override
+  String get stockMinimum => 'حد التنبيه';
+
+  @override
+  String get archiveProduct => 'أرشفة المنتج';
+
+  @override
+  String get archiveConfirm => 'أرشفة هذا المنتج؟ يبقى سجل مبيعاته محفوظاً.';
+
+  @override
+  String get duplicateProduct => 'نسخ المنتج';
+
+  @override
+  String priceFrom(String price) {
+    return 'ابتداءً من $price';
+  }
+
+  @override
+  String stockCount(String count) {
+    return 'المخزون: $count';
+  }
+
+  @override
+  String variantCount(int count) {
+    return '$count متغير';
+  }
+
+  @override
+  String get variantExists => 'هذه التركيبة موجودة مسبقاً';
+
+  @override
+  String get needOnline => 'إنشاء المنتجات يتطلب اتصالاً بالإنترنت';
+
+  @override
+  String get createQuick => 'إضافة سريعة';
+
+  @override
+  String get priceInvalid => 'سعر غير صالح';
+
+  @override
+  String get deleteVariantConfirm => 'تعطيل هذا المتغير؟';
+
+  @override
+  String get variantInactive => 'معطّل';
+
+  @override
+  String get stockTitle => 'المخزون';
+
+  @override
+  String get stockSearch => 'ابحث بالاسم أو الباركود…';
+
+  @override
+  String get stockInStock => 'المتوفر';
+
+  @override
+  String get stockReserved => 'محجوز';
+
+  @override
+  String get stockAvailable => 'المتاح';
+
+  @override
+  String get stockEntryTitle => 'إدخال مخزون';
+
+  @override
+  String get stockOutTitle => 'إخراج مخزون';
+
+  @override
+  String get inventoryTitle => 'جرد المخزون';
+
+  @override
+  String get stockActions => 'عمليات المخزون';
+
+  @override
+  String get supplier => 'المورد';
+
+  @override
+  String get reference => 'المرجع';
+
+  @override
+  String get unitCost => 'سعر الشراء للوحدة';
+
+  @override
+  String get expiryDate => 'تاريخ الانتهاء';
+
+  @override
+  String get newSalePrice => 'سعر البيع الجديد';
+
+  @override
+  String get amountPaid => 'المبلغ المدفوع';
+
+  @override
+  String get addLine => 'إضافة منتج';
+
+  @override
+  String get pickVariant => 'اختيار منتج';
+
+  @override
+  String get noLines => 'أضف منتجاً أو امسح باركوده';
+
+  @override
+  String get reason => 'السبب';
+
+  @override
+  String get reasonRequired => 'اختر سبباً';
+
+  @override
+  String get counted => 'الكمية المعدودة';
+
+  @override
+  String systemQty(String qty) {
+    return 'في النظام: $qty';
+  }
+
+  @override
+  String difference(String qty) {
+    return 'الفرق: $qty';
+  }
+
+  @override
+  String get applyInventory => 'تطبيق الجرد';
+
+  @override
+  String get stockHistory => 'سجل الحركات';
+
+  @override
+  String get lots => 'الدفعات';
+
+  @override
+  String lotRemaining(String qty, String initial) {
+    return 'المتبقي $qty من $initial';
+  }
+
+  @override
+  String expiresOn(String date) {
+    return 'ينتهي في $date';
+  }
+
+  @override
+  String costLabel(String cost) {
+    return 'الشراء: $cost';
+  }
+
+  @override
+  String get movement_entree => 'إدخال';
+
+  @override
+  String get movement_sortie_vente => 'بيع';
+
+  @override
+  String get movement_sortie_manuelle => 'إخراج يدوي';
+
+  @override
+  String get movement_retour_client => 'إرجاع زبونة';
+
+  @override
+  String get movement_retour_fournisseur => 'إرجاع للمورد';
+
+  @override
+  String get movement_ajustement => 'تعديل جرد';
+
+  @override
+  String get movement_reservation => 'حجز';
+
+  @override
+  String get movement_liberation => 'إلغاء حجز';
+
+  @override
+  String get movement_transfert_sortie => 'تحويل صادر';
+
+  @override
+  String get movement_transfert_entree => 'تحويل وارد';
+
+  @override
+  String get queuedOffline => 'تم الحفظ وسيُرسل عند عودة الاتصال';
+
+  @override
+  String get scanNotFound => 'لم يتم العثور على منتج بهذا الرمز';
+
+  @override
+  String get quantityInvalid => 'كمية غير صالحة';
+
+  @override
+  String get stockOutQty => 'الكمية المخرجة';
+
+  @override
+  String get cartTitle => 'السلة';
+
+  @override
+  String get cartEmpty => 'السلة فارغة';
+
+  @override
+  String cartItems(String count) {
+    return '$count منتج';
+  }
+
+  @override
+  String get viewCart => 'عرض السلة';
+
+  @override
+  String get pay => 'الدفع';
+
+  @override
+  String get editPrice => 'تعديل السعر';
+
+  @override
+  String get applyDiscount => 'تخفيض على الفاتورة';
+
+  @override
+  String get lineDiscount => 'تخفيض على السطر';
+
+  @override
+  String get discountAmount => 'مبلغ';
+
+  @override
+  String get discountPercent => 'نسبة %';
+
+  @override
+  String get walkInCustomer => 'زبونة عابرة';
+
+  @override
+  String get suspendSale => 'تعليق البيع';
+
+  @override
+  String get suspendedSales => 'المبيعات المعلّقة';
+
+  @override
+  String get noSuspended => 'لا توجد مبيعات معلّقة';
+
+  @override
+  String get paidSoFar => 'المدفوع';
+
+  @override
+  String get remainingDue => 'المتبقي';
+
+  @override
+  String get changeDue => 'الباقي للزبونة';
+
+  @override
+  String get receivedAmount => 'المبلغ المستلم';
+
+  @override
+  String get addPayment => 'إضافة دفعة';
+
+  @override
+  String get creditSale => 'بيع بالآجل';
+
+  @override
+  String get customerRequiredForDebt => 'اختر زبونة لتسجيل المبلغ المتبقي كدين';
+
+  @override
+  String get confirmSale => 'تأكيد البيع';
+
+  @override
+  String get receiptTitle => 'تم البيع';
+
+  @override
+  String get numberPending => 'الرقم قيد الإسناد';
+
+  @override
+  String get saleQueued => 'تم الحفظ وسيُزامَن تلقائياً';
+
+  @override
+  String get sharePdf => 'مشاركة PDF';
+
+  @override
+  String get whatsappMessage => 'رسالة واتساب';
+
+  @override
+  String get printInvoice => 'طباعة';
+
+  @override
+  String get newSaleAction => 'بيع جديد';
+
+  @override
+  String get cashSession => 'الصندوق';
+
+  @override
+  String get openCash => 'فتح الصندوق';
+
+  @override
+  String get closeCash => 'إغلاق الصندوق';
+
+  @override
+  String get cashFloat => 'مبلغ بداية الصندوق';
+
+  @override
+  String get cashCounted => 'المبلغ المعدود';
+
+  @override
+  String get cashExpected => 'المبلغ المنتظر';
+
+  @override
+  String get cashDifference => 'الفرق';
+
+  @override
+  String get zReport => 'تقرير Z';
+
+  @override
+  String get unpaidOnly => 'غير مدفوعة';
+
+  @override
+  String get searchCustomers => 'ابحث عن زبونة…';
+
+  @override
+  String get noCustomers => 'لا توجد زبائن';
+
+  @override
+  String get newCustomer => 'زبونة جديدة';
+
+  @override
+  String get editCustomer => 'تعديل الزبونة';
+
+  @override
+  String get creditLimit => 'سقف الدين';
+
+  @override
+  String get balanceDue => 'الدين المستحق';
+
+  @override
+  String get settleDebt => 'تسديد الدين';
+
+  @override
+  String get callCustomer => 'اتصال';
+
+  @override
+  String get whatsappReminder => 'تذكير واتساب';
+
+  @override
+  String reminderMessage(String name, String amount) {
+    return 'مرحباً $name، نذكّرك بمبلغ مستحق: $amount. شكراً!';
+  }
+
+  @override
+  String get purchaseHistory => 'سجل المشتريات';
+
+  @override
+  String get noPurchases => 'لا توجد مشتريات';
+
+  @override
+  String get orderNew => 'جديد';
+
+  @override
+  String get orderConfirmed => 'مؤكد';
+
+  @override
+  String get orderPreparing => 'قيد التجهيز';
+
+  @override
+  String get orderReady => 'جاهز';
+
+  @override
+  String get orderShipped => 'تم الشحن';
+
+  @override
+  String get orderDelivered => 'تم التسليم';
+
+  @override
+  String get orderCancelled => 'ملغى';
+
+  @override
+  String get orderReturned => 'مرتجع';
+
+  @override
+  String get orderDetail => 'تفاصيل الطلب';
+
+  @override
+  String get newOrderReceived => 'طلب جديد';
+
+  @override
+  String get pickup => 'استلام من المتجر';
+
+  @override
+  String get delivery => 'توصيل';
+
+  @override
+  String get paymentMode => 'طريقة الدفع';
+
+  @override
+  String get paymentProof => 'إثبات الدفع';
+
+  @override
+  String get cancelOrderConfirm => 'إلغاء هذا الطلب؟ سيُحرَّر المخزون المحجوز.';
+
+  @override
+  String get generateInvoice => 'إنشاء فاتورة';
+
+  @override
+  String get invoiceCreated => 'تم إنشاء الفاتورة';
+
+  @override
+  String get viewInvoice => 'عرض الفاتورة';
+
+  @override
+  String orderStatusMessage(String number, String status) {
+    return 'طلبك رقم $number: $status';
+  }
+
+  @override
+  String get shopProfile => 'ملف المتجر';
+
+  @override
+  String get onlineStore => 'المتجر الإلكتروني';
+
+  @override
+  String get employees => 'الموظفات';
+
+  @override
+  String get currency => 'العملة';
+
+  @override
+  String get documentFooterAr => 'تذييل الفواتير (عربي)';
+
+  @override
+  String get documentFooterFr => 'تذييل الفواتير (فرنسي)';
+
+  @override
+  String get defaultStockThreshold => 'حد تنبيه المخزون الافتراضي';
+
+  @override
+  String get allowNegativeStock => 'السماح بالمخزون السالب';
+
+  @override
+  String get subdomain => 'النطاق الفرعي';
+
+  @override
+  String get subdomainReadOnlyHint =>
+      'يُمنح النطاق الفرعي عند إنشاء المتجر ولا يمكن تغييره من التطبيق. للتعديل تواصل مع الناشر.';
+
+  @override
+  String get customDomain => 'النطاق الخاص';
+
+  @override
+  String get shopCode => 'رمز المتجر';
+
+  @override
+  String get role => 'الدور';
+
+  @override
+  String get roleOwner => 'المالكة';
+
+  @override
+  String get roleManager => 'المسيّرة';
+
+  @override
+  String get roleCashier => 'بائعة';
+
+  @override
+  String get roleStockKeeper => 'أمينة المخزن';
+
+  @override
+  String get inviteEmployee => 'دعوة موظفة';
+
+  @override
+  String get initialCode => 'الرمز الأولي';
+
+  @override
+  String get initialCodeHint =>
+      'سلّمها رقم الهاتف وهذا الرمز (يظهر مرة واحدة).';
+
+  @override
+  String get resetCode => 'إعادة تعيين الرمز';
+
+  @override
+  String get unlimited => 'غير محدود';
+
+  @override
+  String get renewalHint =>
+      'لتجديد اشتراكك تواصل مع الناشر: يُسجَّل الدفع من لوحة الإدارة.';
+
+  @override
+  String get onboardingTitle => 'مرحباً بك!';
+
+  @override
+  String get onboardingShop => 'معلومات المتجر';
+
+  @override
+  String get onboardingCategories => 'أصناف البداية';
+
+  @override
+  String get onboardingCategoriesHint =>
+      'احتفظ بالأصناف التي تبيعينها. يمكنك تعديلها لاحقاً.';
+
+  @override
+  String get onboardingPayment => 'طريقة الدفع الافتراضية';
+
+  @override
+  String get onboardingPaymentHint => 'ستُحدَّد تلقائياً عند البيع.';
+
+  @override
+  String get chooseLogo => 'اختيار شعار';
+
+  @override
+  String get back => 'رجوع';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get finish => 'إنهاء';
 }
