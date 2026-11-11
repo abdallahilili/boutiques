@@ -733,5 +733,10 @@
   "exportTruncated": "مقتطع عند 20 000 سطر",
   "shareFiles": "مشاركة الملفات",
   "selectAll": "تحديد الكل",
-  "selectNone": "إلغاء التحديد"
+  "selectNone": "إلغاء التحديد",
+  "categoryImage": "صورة الفئة",
+  "choosePhoto": "اختيار صورة",
+  "chooseIcon": "اختيار أيقونة",
+  "removeImage": "إزالة",
+  "noImageHint": "لا توجد صورة؟ اختر أيقونة من القائمة."
 }

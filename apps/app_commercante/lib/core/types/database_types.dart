@@ -777,6 +777,7 @@ class CategoriesRow {
     this.creePar,
     required this.creeLe,
     required this.modifieLe,
+    this.icone,
   });
 
   final String id;
@@ -791,6 +792,7 @@ class CategoriesRow {
   final String? creePar;
   final DateTime creeLe;
   final DateTime modifieLe;
+  final String? icone;
 
   factory CategoriesRow.depuisJson(Map<String, dynamic> json) => CategoriesRow(
     id: json['id'] as String,
@@ -805,6 +807,7 @@ class CategoriesRow {
     creePar: json['cree_par'] == null ? null : json['cree_par'] as String,
     creeLe: DateTime.parse(json['cree_le'] as String),
     modifieLe: DateTime.parse(json['modifie_le'] as String),
+    icone: json['icone'] == null ? null : json['icone'] as String,
   );
 
   Map<String, dynamic> versJson() => {
@@ -820,6 +823,7 @@ class CategoriesRow {
     'cree_par': creePar,
     'cree_le': creeLe.toIso8601String(),
     'modifie_le': modifieLe.toIso8601String(),
+    'icone': icone,
   };
 }
 
@@ -875,6 +879,7 @@ class CategoriesPubliquesRow {
     this.nomFr,
     this.imageUrl,
     this.ordre,
+    this.icone,
   });
 
   final String? id;
@@ -884,6 +889,7 @@ class CategoriesPubliquesRow {
   final String? nomFr;
   final String? imageUrl;
   final int? ordre;
+  final String? icone;
 
   factory CategoriesPubliquesRow.depuisJson(
     Map<String, dynamic> json,
@@ -897,6 +903,7 @@ class CategoriesPubliquesRow {
     nomFr: json['nom_fr'] == null ? null : json['nom_fr'] as String,
     imageUrl: json['image_url'] == null ? null : json['image_url'] as String,
     ordre: json['ordre'] == null ? null : json['ordre'] as int,
+    icone: json['icone'] == null ? null : json['icone'] as String,
   );
 
   Map<String, dynamic> versJson() => {
@@ -907,6 +914,7 @@ class CategoriesPubliquesRow {
     'nom_fr': nomFr,
     'image_url': imageUrl,
     'ordre': ordre,
+    'icone': icone,
   };
 }
 

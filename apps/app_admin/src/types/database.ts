@@ -231,6 +231,7 @@ export type Database = {
           cree_par: string | null
           cree_le: string
           modifie_le: string
+          icone: string | null
         }
         Insert: {
           id?: string
@@ -245,6 +246,7 @@ export type Database = {
           cree_par?: string | null
           cree_le?: string
           modifie_le?: string
+          icone?: string | null
         }
         Update: {
           id?: string
@@ -259,6 +261,7 @@ export type Database = {
           cree_par?: string | null
           cree_le?: string
           modifie_le?: string
+          icone?: string | null
         }
         Relationships: []
         }
@@ -2346,6 +2349,7 @@ export type Database = {
           nom_fr: string | null
           image_url: string | null
           ordre: number | null
+          icone: string | null
         }
         Relationships: []
         }

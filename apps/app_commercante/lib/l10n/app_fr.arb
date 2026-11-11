@@ -605,5 +605,10 @@
   "exportTruncated": "tronqué à 20 000 lignes",
   "shareFiles": "Partager les fichiers",
   "selectAll": "Tout sélectionner",
-  "selectNone": "Tout désélectionner"
+  "selectNone": "Tout désélectionner",
+  "categoryImage": "Image de la catégorie",
+  "choosePhoto": "Choisir une photo",
+  "chooseIcon": "Choisir une icône",
+  "removeImage": "Retirer",
+  "noImageHint": "Pas de photo ? Choisissez une icône dans la liste."
 }

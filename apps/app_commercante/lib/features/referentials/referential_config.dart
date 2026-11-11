@@ -1,7 +1,7 @@
 import '../../l10n/app_localizations.dart';
 import '../../core/types/database_types.dart';
 
-enum RefFieldKind { text, number, hex, choice, toggle, categoryParent }
+enum RefFieldKind { text, number, hex, choice, toggle, categoryParent, categoryImage }
 
 class RefField {
   const RefField(this.key, this.kind, {this.choices = const [], this.defaultValue});
@@ -74,7 +74,7 @@ abstract final class RefConfigs {
     table: Tables.categories,
     title: (l) => l.refCategories,
     reorderable: true,
-    fields: const [RefField('parent_id', RefFieldKind.categoryParent), RefField('visible_en_ligne', RefFieldKind.toggle, defaultValue: true)],
+    fields: const [RefField('image', RefFieldKind.categoryImage), RefField('parent_id', RefFieldKind.categoryParent), RefField('visible_en_ligne', RefFieldKind.toggle, defaultValue: true)],
   );
   static final colors = RefConfig(
     table: Tables.couleurs,

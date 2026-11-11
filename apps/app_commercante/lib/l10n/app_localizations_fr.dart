@@ -1871,4 +1871,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get selectNone => 'Tout désélectionner';
+
+  @override
+  String get categoryImage => 'Image de la catégorie';
+
+  @override
+  String get choosePhoto => 'Choisir une photo';
+
+  @override
+  String get chooseIcon => 'Choisir une icône';
+
+  @override
+  String get removeImage => 'Retirer';
+
+  @override
+  String get noImageHint =>
+      'Pas de photo ? Choisissez une icône dans la liste.';
 }

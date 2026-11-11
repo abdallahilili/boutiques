@@ -3649,6 +3649,36 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إلغاء التحديد'**
   String get selectNone;
+
+  /// No description provided for @categoryImage.
+  ///
+  /// In ar, this message translates to:
+  /// **'صورة الفئة'**
+  String get categoryImage;
+
+  /// No description provided for @choosePhoto.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختيار صورة'**
+  String get choosePhoto;
+
+  /// No description provided for @chooseIcon.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختيار أيقونة'**
+  String get chooseIcon;
+
+  /// No description provided for @removeImage.
+  ///
+  /// In ar, this message translates to:
+  /// **'إزالة'**
+  String get removeImage;
+
+  /// No description provided for @noImageHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد صورة؟ اختر أيقونة من القائمة.'**
+  String get noImageHint;
 }
 
 class _AppLocalizationsDelegate

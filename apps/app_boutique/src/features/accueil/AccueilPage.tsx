@@ -1,3 +1,4 @@
+import { iconeCategorie } from '@/lib/icones'
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
@@ -68,7 +69,11 @@ function CategoriesSection({ titre }: { titre: string }) {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {categories.data.filter((c) => !c.parent_id).map((c) => (
           <Link key={c.id as string} to={`/catalogue?categorie=${c.id}`} className="group overflow-hidden rounded-boutique border border-bordure bg-surface text-center">
-            <div className="aspect-[4/3] bg-fond">{c.image_url && <img src={urlImage(c.image_url, 400, 'shop-assets')} alt="" loading="lazy" className="h-full w-full object-cover" />}</div>
+            <div className="flex aspect-[4/3] items-center justify-center bg-fond">
+              {c.image_url
+                ? <img src={urlImage(c.image_url, 400, 'shop-assets')} alt="" loading="lazy" className="h-full w-full object-cover" />
+                : iconeCategorie(c.icone as string | null) && <span aria-hidden="true" className="text-5xl">{iconeCategorie(c.icone as string | null)}</span>}
+            </div>
             <p className="p-2 text-sm font-medium">{nomLocalise(c, i18n.language)}</p>
           </Link>
         ))}

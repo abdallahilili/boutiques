@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/session/shop_controller.dart';
 import '../../core/sync/sync_service.dart';
@@ -8,6 +9,8 @@ import '../../core/util/format.dart';
 import '../../core/widgets/color_picker.dart';
 import '../../core/widgets/common.dart';
 import '../../l10n/app_localizations.dart';
+import '../site/data/site_service.dart';
+import 'category_image_field.dart';
 import 'referential_config.dart';
 import 'referential_controller.dart';
 
@@ -76,7 +79,11 @@ class _ReferentialListPageState extends State<ReferentialListPage> {
       final color = row['code_hex'] is String ? _parseHex(row['code_hex'] as String) : null;
       return ListTile(
         key: ValueKey(row['id']),
-        leading: color != null ? CircleAvatar(backgroundColor: color, radius: 16) : null,
+        leading: color != null
+            ? CircleAvatar(backgroundColor: color, radius: 16)
+            : config.fields.any((f) => f.kind == RefFieldKind.categoryImage)
+                ? CategoryAvatar(imagePath: row['image_url'] as String?, iconKey: row['icone'] as String?)
+                : null,
         title: Text(localName(row['nom_ar'] as String?, row['nom_fr'] as String?, arabic: arabic), style: active ? null : const TextStyle(decoration: TextDecoration.lineThrough)),
         subtitle: _subtitle(config, row, l10n),
         trailing: _controller.canWrite
@@ -164,6 +171,7 @@ class _RefFormState extends State<RefForm> {
     for (final f in widget.config.fields) f.key: widget.row?[f.key] ?? f.defaultValue,
   };
   final Map<String, TextEditingController> _text = {};
+  late CategoryImageValue _image = CategoryImageValue(imagePath: widget.row?['image_url'] as String?, iconKey: widget.row?['icone'] as String?);
   bool _saving = false;
 
   TextEditingController _controllerFor(RefField f) =>
@@ -176,10 +184,29 @@ class _RefFormState extends State<RefForm> {
     try {
       final values = <String, dynamic>{'nom_ar': _ar.text.trim(), 'nom_fr': _fr.text.trim()};
       for (final f in widget.config.fields) {
+        if (f.kind == RefFieldKind.categoryImage) continue; // géré après la boucle (envoi de la photo)
         final raw = f.kind == RefFieldKind.number || f.kind == RefFieldKind.text || f.kind == RefFieldKind.hex ? _controllerFor(f).text.trim() : _values[f.key];
         values[f.key] = f.kind == RefFieldKind.number ? (raw.toString().isEmpty ? null : parseAmount(raw.toString())) : raw;
       }
-      final saved = await widget.controller.save(values, id: widget.row?['id'] as String?);
+      // Image de catégorie : la nouvelle photo est envoyée avant l'enregistrement ; l'ancien fichier n'est
+      // supprimé qu'une fois la ligne enregistrée (et la photo envoyée est retirée si l'enregistrement échoue).
+      final hasImageField = widget.config.fields.any((f) => f.kind == RefFieldKind.categoryImage);
+      final site = SiteService(Get.find<SupabaseClient>(), Get.find<ShopController>().shopId);
+      final previousPath = widget.row?['image_url'] as String?;
+      String? uploaded;
+      if (hasImageField) {
+        if (_image.newImage != null) uploaded = await site.uploadAsset(_image.newImage!, 'categories');
+        values['image_url'] = uploaded ?? _image.imagePath;
+        values['icone'] = _image.iconKey;
+      }
+      final Map<String, dynamic> saved;
+      try {
+        saved = await widget.controller.save(values, id: widget.row?['id'] as String?);
+      } catch (_) {
+        await site.removeAsset(uploaded);
+        rethrow;
+      }
+      if (hasImageField && previousPath != null && previousPath != values['image_url']) await site.removeAsset(previousPath);
       widget.onSaved?.call(saved);
       if (mounted) Navigator.pop(context);
     } catch (e) {
@@ -216,6 +243,7 @@ class _RefFormState extends State<RefForm> {
                     onChanged: (v) => _values[f.key] = v,
                   ),
                 RefFieldKind.toggle => SwitchListTile(contentPadding: EdgeInsets.zero, title: Text(config.fieldLabel(f)(l10n)), value: _values[f.key] == true, onChanged: (v) => setState(() => _values[f.key] = v)),
+                RefFieldKind.categoryImage => CategoryImageField(value: _image, onChanged: (v) => setState(() => _image = v)),
                 RefFieldKind.categoryParent => DropdownButtonFormField<String?>(
                     initialValue: _values[f.key] as String?,
                     decoration: InputDecoration(labelText: config.fieldLabel(f)(l10n)),

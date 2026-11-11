@@ -1847,4 +1847,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get selectNone => 'إلغاء التحديد';
+
+  @override
+  String get categoryImage => 'صورة الفئة';
+
+  @override
+  String get choosePhoto => 'اختيار صورة';
+
+  @override
+  String get chooseIcon => 'اختيار أيقونة';
+
+  @override
+  String get removeImage => 'إزالة';
+
+  @override
+  String get noImageHint => 'لا توجد صورة؟ اختر أيقونة من القائمة.';
 }
