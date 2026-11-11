@@ -93,11 +93,12 @@ Aucun secret n'est commité : seuls les `.env.example` le sont.
 - **Authentification** : téléphone + code à 4 chiffres via l'Edge Function `connexion_telephone_pin` (5 tentatives puis verrouillage) ; admin web : numéro de téléphone (nom d'utilisateur) + mot de passe.
 - **Documents** : aucun PDF stocké ; en-tête figé en base, PDF généré à la demande sur l'appareil ou le navigateur.
 - **Aucune taxe / TVA** dans le modèle de données.
+- **Phase 2** : devis, bons de livraison, avoirs et conversions ; transferts entre commerçantes ; rapports ; gestion de la boutique en ligne depuis le mobile ; impression Bluetooth ; domaines personnalisés ; notifications FCM ; tâches planifiées ; export des données (voir [docs/decisions.md](docs/decisions.md) et la section 6 de [docs/guide_deploiement.md](docs/guide_deploiement.md)).
 
 ## Tests
 
 ```bash
-npm test                   # SQL (211 tests : RLS, FIFO, stock ≥ 0, numérotation, commandes, Storage), Deno, Vitest ×2, Flutter
+npm test                   # SQL (329 tests : RLS, FIFO, stock ≥ 0, numérotation, documents, transferts, rapports, hors ligne), Deno, Vitest ×2, Flutter
 ```
 
 Les tests SQL s'exécutent dans PGlite (Postgres WASM) avec un substitut de pgTAP : pas de Docker requis. Avec Docker : `npx supabase test db`.

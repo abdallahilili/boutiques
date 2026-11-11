@@ -1849,4 +1849,26 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get printThermal => 'Imprimer (ticket Bluetooth)';
+
+  @override
+  String get exportData => 'Exporter mes données';
+
+  @override
+  String get exportHint =>
+      'Chaque table est exportée en CSV (ouvrable dans Excel). Réservé à la propriétaire, 3 exports par heure au maximum.';
+
+  @override
+  String get exportReady => 'Export prêt';
+
+  @override
+  String get exportTruncated => 'tronqué à 20 000 lignes';
+
+  @override
+  String get shareFiles => 'Partager les fichiers';
+
+  @override
+  String get selectAll => 'Tout sélectionner';
+
+  @override
+  String get selectNone => 'Tout désélectionner';
 }

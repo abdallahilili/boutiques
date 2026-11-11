@@ -3607,6 +3607,48 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'طباعة (تذكرة بلوتوث)'**
   String get printThermal;
+
+  /// No description provided for @exportData.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصدير بياناتي'**
+  String get exportData;
+
+  /// No description provided for @exportHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'يُصدَّر كل جدول بصيغة CSV (يفتح في إكسل). للمالكة فقط، 3 عمليات تصدير في الساعة كحد أقصى.'**
+  String get exportHint;
+
+  /// No description provided for @exportReady.
+  ///
+  /// In ar, this message translates to:
+  /// **'التصدير جاهز'**
+  String get exportReady;
+
+  /// No description provided for @exportTruncated.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقتطع عند 20 000 سطر'**
+  String get exportTruncated;
+
+  /// No description provided for @shareFiles.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة الملفات'**
+  String get shareFiles;
+
+  /// No description provided for @selectAll.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديد الكل'**
+  String get selectAll;
+
+  /// No description provided for @selectNone.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء التحديد'**
+  String get selectNone;
 }
 
 class _AppLocalizationsDelegate

@@ -598,5 +598,12 @@
   "printerConnectionFailed": "Connexion à l'imprimante impossible : vérifiez qu'elle est allumée et à portée",
   "printerWriteFailed": "L'impression a été interrompue",
   "printSent": "Impression envoyée",
-  "printThermal": "Imprimer (ticket Bluetooth)"
+  "printThermal": "Imprimer (ticket Bluetooth)",
+  "exportData": "Exporter mes données",
+  "exportHint": "Chaque table est exportée en CSV (ouvrable dans Excel). Réservé à la propriétaire, 3 exports par heure au maximum.",
+  "exportReady": "Export prêt",
+  "exportTruncated": "tronqué à 20 000 lignes",
+  "shareFiles": "Partager les fichiers",
+  "selectAll": "Tout sélectionner",
+  "selectNone": "Tout désélectionner"
 }

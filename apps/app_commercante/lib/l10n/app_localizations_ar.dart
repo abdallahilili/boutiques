@@ -1825,4 +1825,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get printThermal => 'طباعة (تذكرة بلوتوث)';
+
+  @override
+  String get exportData => 'تصدير بياناتي';
+
+  @override
+  String get exportHint =>
+      'يُصدَّر كل جدول بصيغة CSV (يفتح في إكسل). للمالكة فقط، 3 عمليات تصدير في الساعة كحد أقصى.';
+
+  @override
+  String get exportReady => 'التصدير جاهز';
+
+  @override
+  String get exportTruncated => 'مقتطع عند 20 000 سطر';
+
+  @override
+  String get shareFiles => 'مشاركة الملفات';
+
+  @override
+  String get selectAll => 'تحديد الكل';
+
+  @override
+  String get selectNone => 'إلغاء التحديد';
 }

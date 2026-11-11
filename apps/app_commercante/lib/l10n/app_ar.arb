@@ -726,5 +726,12 @@
   "printerConnectionFailed": "تعذّر الاتصال بالطابعة: تأكد من تشغيلها وقربها",
   "printerWriteFailed": "توقفت الطباعة",
   "printSent": "تم إرسال الطباعة",
-  "printThermal": "طباعة (تذكرة بلوتوث)"
+  "printThermal": "طباعة (تذكرة بلوتوث)",
+  "exportData": "تصدير بياناتي",
+  "exportHint": "يُصدَّر كل جدول بصيغة CSV (يفتح في إكسل). للمالكة فقط، 3 عمليات تصدير في الساعة كحد أقصى.",
+  "exportReady": "التصدير جاهز",
+  "exportTruncated": "مقتطع عند 20 000 سطر",
+  "shareFiles": "مشاركة الملفات",
+  "selectAll": "تحديد الكل",
+  "selectNone": "إلغاء التحديد"
 }

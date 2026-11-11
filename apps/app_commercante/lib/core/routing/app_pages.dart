@@ -22,6 +22,7 @@ import '../../features/pos/presentation/receipt_page.dart';
 import '../../features/printing/printer_page.dart';
 import '../../features/referentials/referential_pages.dart';
 import '../../features/settings/appearance_page.dart';
+import '../../features/settings/export_page.dart';
 import '../../features/settings/settings_pages.dart';
 import '../../features/stock/presentation/stock_adjust_page.dart';
 import '../../features/stock/presentation/stock_entry_page.dart';
@@ -66,6 +67,7 @@ abstract final class Routes {
   static const sitePages = '/site/pages';
   static const siteSales = '/site/vente';
   static const siteCatalog = '/site/catalogue';
+  static const exportData = '/export';
   static const printer = '/imprimante';
   static const reports = '/rapports';
   static const expenses = '/depenses';
@@ -118,6 +120,7 @@ abstract final class AppPages {
     _page(Routes.sitePages, SitePagesPage.new),
     _page(Routes.siteSales, SiteSalesPage.new),
     _page(Routes.siteCatalog, SiteCatalogPage.new),
+    _page(Routes.exportData, ExportPage.new),
     _page(Routes.printer, PrinterPage.new),
     _page(Routes.reports, ReportsPage.new),
     _page(Routes.expenses, ExpensesPage.new),
