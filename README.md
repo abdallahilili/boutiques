@@ -46,6 +46,7 @@ npm run functions:deploy   # déploie les Edge Functions
 npm run dev                # console éditeur  → http://localhost:5173
 npm run dev:boutique       # boutique en ligne → http://localhost:5174 (ex. http://ma-boutique.localhost:5174)
 npm run dev:mobile         # app Flutter sur l'appareil connecté (lit apps/app_commercante/.env)
+npm run build:apk          # APK de l'app commerçante → apps/app_commercante/build/app/outputs/flutter-apk/app-release.apk
 ```
 
 Pour changer de projet Supabase, modifier `--project-ref` dans le script `db:link` de `package.json`.
@@ -65,6 +66,7 @@ Pour changer de projet Supabase, modifier `--project-ref` dans le script `db:lin
 | `npm test` | Toutes les suites (SQL, Deno, Vitest ×2, Flutter) ; chacune aussi seule : `test:db`, `test:functions`, `test:admin`, `test:boutique`, `test:mobile` |
 | `npm run lint` | ESLint + `tsc` (web) et `flutter analyze` |
 | `npm run build:admin` / `build:boutique` | Builds de production |
+| `npm run build:apk` / `build:apk:debug` | APK Android de l'app commerçante (release / debug), avec `apps/app_commercante/.env` ; sortie : `apps/app_commercante/build/app/outputs/flutter-apk/` |
 
 Option Supabase local (Docker) : `npx supabase start` puis `npx supabase db reset` (la CLI v3 vise le local par défaut : `--remote` pour le projet hébergé, déjà inclus dans `npm run db:push`), avec les `.env.example` (ils pointent sur `127.0.0.1:54321`).
 

@@ -26,7 +26,9 @@
     "test:mobile": "cd apps/app_commercante && flutter test",
     "lint": "npm --prefix apps/app_admin run lint && npm --prefix apps/app_admin run typecheck && npm --prefix apps/app_boutique run lint && npm --prefix apps/app_boutique run typecheck && cd apps/app_commercante && flutter analyze",
     "build:admin": "npm --prefix apps/app_admin run build",
-    "build:boutique": "npm --prefix apps/app_boutique run build"
+    "build:boutique": "npm --prefix apps/app_boutique run build",
+    "build:apk": "cd apps/app_commercante && flutter build apk --release --dart-define-from-file=.env",
+    "build:apk:debug": "cd apps/app_commercante && flutter build apk --debug --dart-define-from-file=.env"
   },
   "devDependencies": {
     "supabase": "^3.1.0"
